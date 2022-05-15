@@ -679,6 +679,29 @@ function drawHome() {
   mainCtx.textAlign = "center";
   mainCtx.fillText("Work ? out !", mainCanvas.width / 2, mainCanvas.height / 2);
 
+  // mainCtx.textAlign = "left";
+  // mainCtx.font = "48px Segoe UI";
+  // mainCtx.fillText(
+  //   "中文字體範例 - Segoe UI",
+  //   mainCanvas.width / 2,
+  //   mainCanvas.height / 2 + 100
+  // );
+
+  // mainCtx.font = "48px 微軟正黑體";
+  // mainCtx.fillText(
+  //   "中文字體範例 - 微軟正黑體",
+  //   mainCanvas.width / 2,
+  //   mainCanvas.height / 2 + 150
+  // );
+
+  // mainCtx.font = "48px Arial";
+  // mainCtx.fillText(
+  //   "中文字體範例 - Arial",
+  //   mainCanvas.width / 2,
+  //   mainCanvas.height / 2 + 200
+  // );
+  //mainCtx.fillText("中文字體範例", mainCanvas.width / 2, mainCanvas.height / 2);
+
   mainCtx.font = "28px Segoe UI";
   mainCtx.fillText(
     "Muscle Soothe for Office Worker",
@@ -699,8 +722,9 @@ function drawIntro() {
 
   mainCtx.font = "46px Segoe UI";
   mainCtx.textAlign = "left";
-  mainCtx.fillText('"關於 "Work ? out !"', 50, 140);
+  mainCtx.fillText('關於 "Work ? out !"', 50, 140);
 
+  //mainCtx.font = "26px 微軟正黑體";
   mainCtx.font = "26px Segoe UI";
   mainCtx.fillText(
     "現今上班族與學生族群，都經常坐著辦公或讀書，不斷的長時間",
@@ -740,7 +764,7 @@ function drawMain() {
   mainCtx.fillText("3", centerX + 360, mainCanvas.height / 2 + 230);
 
   mainCtx.fillStyle = "#f00";
-  mainCtx.fillText("僅為預防症狀，毀解肌肉。", centerX, mainCanvas.height - 75);
+  mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 75);
   mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 40);
 }
 
