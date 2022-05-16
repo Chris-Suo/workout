@@ -134,6 +134,7 @@ var buttons = [
       page: "main",
     },
     text: "Carpal Tunnel",
+    subText: "腕隧道",
     size: {
       width: 350,
       heigth: 350,
@@ -148,13 +149,20 @@ var buttons = [
     },
     font: {
       size: 40,
-      color: "white",
+      color: "#555555",
       family: "Segoe UI",
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
     action: function () {
-      console.log("HAHA");
+      //console.log("HAHA");
+    },
+    img: {
+      src: "../Src/Imgs/W-02.png",
+      size: {
+        width: 325,
+        height: 262,
+      },
     },
   },
   {
@@ -163,6 +171,7 @@ var buttons = [
       page: "main",
     },
     text: "Neck & Shoulder",
+    subText: "肩頸",
     size: {
       width: 350,
       heigth: 350,
@@ -177,12 +186,19 @@ var buttons = [
     },
     font: {
       size: 40,
-      color: "white",
+      color: "#555555",
       family: "Segoe UI",
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
     //action: intorBtnAction,
+    img: {
+      src: "../Src/Imgs/W-03.png",
+      size: {
+        width: 325,
+        height: 262,
+      },
+    },
   },
   {
     belong: {
@@ -190,6 +206,7 @@ var buttons = [
       page: "main",
     },
     text: "Elbow",
+    subText: "手肘",
     size: {
       width: 350,
       heigth: 350,
@@ -204,12 +221,74 @@ var buttons = [
     },
     font: {
       size: 40,
-      color: "white",
+      color: "#555555",
       family: "Segoe UI",
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
     //action: intorBtnAction,
+    img: {
+      src: "../Src/Imgs/W-04.png",
+      size: {
+        width: 325,
+        height: 262,
+      },
+    },
+  },
+
+  {
+    belong: {
+      theme: "health",
+      page: "main",
+    },
+    sharp: "iconBtn",
+    text: "內　容",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "white";
+        roundRect(mainCtx, x, y, w, h, 5);
+
+        mainCtx.strokeStyle = "#9BCAE5";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + 5, y + h / 2);
+        mainCtx.lineTo(x + w - 5, y + h / 2);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 2, y + 5);
+        mainCtx.lineTo(x + w / 2, y + h - 5);
+        mainCtx.stroke();
+      },
+    },
+    showText: true,
+    size: {
+      width: 130,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 535,
+      y: 120,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 535;
+      this.position.y = 120;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "Segoe UI",
+    },
+
+    action: function () {
+      updateDialog = showContentDialog;
+      updateDialog();
+      showDialog();
+      //console.log("click!");
+    },
   },
 
   //
@@ -405,6 +484,58 @@ function drawButtons() {
             btn.size.heigth,
             10
           );
+          let img = new Image();
+          img.src = btn.img.src;
+          img.addEventListener(
+            "load",
+            function () {
+              mainCtx.drawImage(
+                img,
+                btn.position.x + 20,
+                btn.position.y,
+                btn.img.size.width,
+                btn.img.size.height
+              );
+            },
+            false
+          );
+          mainCtx.font = "38px " + btn.font.family;
+          mainCtx.fillStyle = btn.font.color;
+          mainCtx.textBaseline = "middle";
+          mainCtx.textAlign = "center";
+          mainCtx.fillText(
+            btn.text,
+            btn.position.x + btn.size.width / 2,
+            btn.position.y + btn.size.heigth - 80
+          );
+
+          mainCtx.font = "32px " + btn.font.family;
+          mainCtx.fillText(
+            btn.subText,
+            btn.position.x + btn.size.width / 2,
+            btn.position.y + btn.size.heigth - 30
+          );
+          break;
+
+        case "iconBtn":
+          if (btn.icon.direction == "left") {
+            btn.icon.drawIcon(
+              btn.position.x,
+              btn.position.y,
+              btn.icon.size.w,
+              btn.icon.size.h
+            );
+            mainCtx.font = btn.font.size + "px " + btn.font.family;
+            mainCtx.fillStyle = btn.font.color;
+            mainCtx.textBaseline = "middle";
+            mainCtx.textAlign = "left";
+            mainCtx.fillText(
+              btn.text,
+              btn.position.x + btn.icon.size.w + 5,
+              btn.position.y + 18
+            );
+          } else {
+          }
 
           break;
       }
@@ -418,6 +549,7 @@ function showDialog() {
 
 function closeDialog() {
   dialogButtons = null;
+  updateDialog = null;
   dialogCanvas.style.zIndex = 1;
 }
 
@@ -493,225 +625,315 @@ function startBtnAction() {
   }
 }
 
+function showContentDialog() {
+  dialogCtx.fillStyle = "rgba(0, 0, 0, 0.7)";
+  dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
+
+  let btnPosX = dialogCanvas.width / 2 - 100;
+  let btnPosY = dialogCanvas.height - 110;
+  dialogCtx.fillStyle = "#73A5BE";
+  roundRect(dialogCtx, btnPosX, btnPosY, 200, 70, 10);
+
+  dialogCtx.font = "40px Segoe UI";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  dialogCtx.fillText("內容", dialogCanvas.width / 2, 40);
+
+  dialogCtx.font = "36px Segoe UI";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillText("確　定", btnPosX + 46, btnPosY + 20);
+
+  dialogCtx.fillStyle = "F5F5F5";
+  let boxPosY = 80;
+  let box1PosX = dialogCanvas.width / 2 - 535;
+  let box2PosX = dialogCanvas.width / 2 - 175;
+  let box3PosX = dialogCanvas.width / 2 + 185;
+
+  let imgMainOption1 = new Image();
+  let imgMainOption2 = new Image();
+  let imgMainOption3 = new Image();
+
+  imgMainOption1.src = "../Src/Imgs/W-02.png"; //2168*1751
+  imgMainOption2.src = "../Src/Imgs/W-03.png"; //2168*1751
+  imgMainOption3.src = "../Src/Imgs/W-04.png"; //2168*1751
+
+  imgMainOption1.addEventListener(
+    "load",
+    function () {
+      //console.log('test');
+      dialogCtx.drawImage(
+        imgMainOption1,
+        box1PosX + 20,
+        boxPosY + 50,
+        325,
+        262
+      );
+    },
+    false
+  );
+
+  imgMainOption2.addEventListener(
+    "load",
+    function () {
+      dialogCtx.drawImage(
+        imgMainOption2,
+        box2PosX + 20,
+        boxPosY + 50,
+        325,
+        262
+      );
+    },
+    false
+  );
+
+  imgMainOption3.addEventListener(
+    "load",
+    function () {
+      dialogCtx.drawImage(
+        imgMainOption3,
+        box3PosX + 20,
+        boxPosY + 50,
+        325,
+        262
+      );
+    },
+    false
+  );
+
+  // img1.addEventListener(
+  //   "load",
+  //   function () {
+  //     mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
+  //   },
+  //   false
+  // );
+
+  roundRect(dialogCtx, box1PosX, boxPosY, 350, 530, 10);
+  roundRect(dialogCtx, box2PosX, boxPosY, 350, 530, 10);
+  roundRect(dialogCtx, box3PosX, boxPosY, 350, 530, 10);
+
+  dialogCtx.fillStyle = "#555555";
+  dialogCtx.font = "40px Segoe UI";
+  dialogCtx.textAlign = "center";
+  dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 30);
+  dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 30);
+  dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 30);
+
+  dialogCtx.font = "20px Segoe UI";
+  dialogCtx.textAlign = "left";
+  let textYbase = 300;
+  let textHeight = 20;
+
+  dialogCtx.fillText(
+    "腕隧道症候群是一種常見的疾病，會",
+    box1PosX + 14,
+    boxPosY + textYbase
+  );
+  dialogCtx.fillText(
+    "導致手和手臂疼痛、麻木和刺痛。",
+    box1PosX + 14,
+    boxPosY + textYbase + textHeight
+  );
+  dialogCtx.fillText(
+    "當手的主要神經之一-正中神經-受到",
+    box1PosX + 14,
+    boxPosY + textYbase + textHeight * 3
+  );
+  dialogCtx.fillText(
+    "擠壓或壓縮時，就會出現這種情況。",
+    box1PosX + 14,
+    boxPosY + textYbase + textHeight * 4
+  );
+  dialogCtx.fillText(
+    "症狀通常可以通過簡單的措施得到",
+    box1PosX + 14,
+    boxPosY + textYbase + textHeight * 6
+  );
+  dialogCtx.fillText(
+    "緩解和預防。",
+    box1PosX + 14,
+    boxPosY + textYbase + textHeight * 7
+  );
+
+  dialogCtx.fillText(
+    "肌筋膜頸部疼痛是頸肩部慢性疼痛",
+    box2PosX + 14,
+    boxPosY + textYbase
+  );
+  dialogCtx.fillText(
+    "的常見原因。",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight
+  );
+  dialogCtx.fillText(
+    "頸部肌肉的過度使用或創傷，以及",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 3
+  );
+  dialogCtx.fillText(
+    "壓力和姿勢，都可能導致頸部/肩部",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 4
+  );
+  dialogCtx.fillText(
+    "的肌筋膜疼痛。",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 5
+  );
+  dialogCtx.fillText(
+    "對於整天在辦公桌前工作並且在使",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 7
+  );
+  dialogCtx.fillText(
+    "用計算機時操作不當的患者。肌肉",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 8
+  );
+  dialogCtx.fillText(
+    "可能因過度使用或受傷而變得緊繃",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 9
+  );
+  dialogCtx.fillText(
+    "或發炎。",
+    box2PosX + 14,
+    boxPosY + textYbase + textHeight * 10
+  );
+
+  dialogCtx.fillText(
+    "網球肘是一種導致肘部外側疼痛的",
+    box3PosX + 14,
+    boxPosY + textYbase
+  );
+  dialogCtx.fillText("疾病。", box3PosX + 14, boxPosY + textYbase + textHeight);
+  dialogCtx.fillText(
+    "它經常發生在肘關節附近的前臂肌",
+    box3PosX + 14,
+    boxPosY + textYbase + textHeight * 3
+  );
+  dialogCtx.fillText(
+    "肉過度使用或重複動作之後。",
+    box3PosX + 14,
+    boxPosY + textYbase + textHeight * 4
+  );
+  dialogCtx.fillText(
+    "可能會注意到肘部外側疼痛，您可",
+    box3PosX + 14,
+    boxPosY + textYbase + textHeight * 6
+  );
+  dialogCtx.fillText(
+    "能還會發現難以完全伸展手臂。",
+    box3PosX + 14,
+    boxPosY + textYbase + textHeight * 7
+  );
+  dialogCtx.fillText(
+    "網球肘不治療會好起來的。",
+    box3PosX + 14,
+    boxPosY + textYbase + textHeight * 9
+  );
+
+  dialogButtons = {
+    range: {
+      x: btnPosX,
+      y: btnPosY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      closeDialog();
+    },
+  };
+
+  // dialogButtons.push({
+  //   test: "hshs",
+  // });
+}
+
 function intorBtnAction() {
   changeThemePage("health", "main");
-  updateDialog = function () {
-    dialogCtx.fillStyle = "rgba(0, 0, 0, 0.7)";
-    dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
-
-    let btnPosX = dialogCanvas.width / 2 - 100;
-    let btnPosY = dialogCanvas.height - 110;
-    dialogCtx.fillStyle = "#73A5BE";
-    roundRect(dialogCtx, btnPosX, btnPosY, 200, 70, 10);
-
-    dialogCtx.font = "40px Segoe UI";
-    dialogCtx.fillStyle = "#FFF";
-    dialogCtx.textBaseline = "middle";
-    dialogCtx.textAlign = "center";
-    dialogCtx.fillText("內容", dialogCanvas.width / 2, 40);
-
-    dialogCtx.font = "36px Segoe UI";
-    dialogCtx.textBaseline = "top";
-    dialogCtx.textAlign = "left";
-    dialogCtx.fillText("確　定", btnPosX + 46, btnPosY + 20);
-
-    dialogCtx.fillStyle = "F5F5F5";
-    let boxPosY = 80;
-    let box1PosX = dialogCanvas.width / 2 - 535;
-    let box2PosX = dialogCanvas.width / 2 - 175;
-    let box3PosX = dialogCanvas.width / 2 + 185;
-
-    roundRect(dialogCtx, box1PosX, boxPosY, 350, 530, 10);
-    roundRect(dialogCtx, box2PosX, boxPosY, 350, 530, 10);
-    roundRect(dialogCtx, box3PosX, boxPosY, 350, 530, 10);
-
-    dialogCtx.fillStyle = "#555555";
-    dialogCtx.font = "40px Segoe UI";
-    dialogCtx.textAlign = "center";
-    dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 30);
-    dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 30);
-    dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 30);
-
-    dialogCtx.font = "20px Segoe UI";
-    dialogCtx.textAlign = "left";
-    let textYbase = 300;
-    let textHeight = 20;
-
-    dialogCtx.fillText(
-      "腕隧道症候群是一種常見的疾病，會",
-      box1PosX + 14,
-      boxPosY + textYbase
-    );
-    dialogCtx.fillText(
-      "導致手和手臂疼痛、麻木和刺痛。",
-      box1PosX + 14,
-      boxPosY + textYbase + textHeight
-    );
-    dialogCtx.fillText(
-      "當手的主要神經之一-正中神經-受到",
-      box1PosX + 14,
-      boxPosY + textYbase + textHeight * 3
-    );
-    dialogCtx.fillText(
-      "擠壓或壓縮時，就會出現這種情況。",
-      box1PosX + 14,
-      boxPosY + textYbase + textHeight * 4
-    );
-    dialogCtx.fillText(
-      "症狀通常可以通過簡單的措施得到",
-      box1PosX + 14,
-      boxPosY + textYbase + textHeight * 6
-    );
-    dialogCtx.fillText(
-      "緩解和預防。",
-      box1PosX + 14,
-      boxPosY + textYbase + textHeight * 7
-    );
-
-    dialogCtx.fillText(
-      "肌筋膜頸部疼痛是頸肩部慢性疼痛",
-      box2PosX + 14,
-      boxPosY + textYbase
-    );
-    dialogCtx.fillText(
-      "的常見原因。",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight
-    );
-    dialogCtx.fillText(
-      "頸部肌肉的過度使用或創傷，以及",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 3
-    );
-    dialogCtx.fillText(
-      "壓力和姿勢，都可能導致頸部/肩部",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 4
-    );
-    dialogCtx.fillText(
-      "的肌筋膜疼痛。",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 5
-    );
-    dialogCtx.fillText(
-      "對於整天在辦公桌前工作並且在使",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 7
-    );
-    dialogCtx.fillText(
-      "用計算機時操作不當的患者。肌肉",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 8
-    );
-    dialogCtx.fillText(
-      "可能因過度使用或受傷而變得緊繃",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 9
-    );
-    dialogCtx.fillText(
-      "或發炎。",
-      box2PosX + 14,
-      boxPosY + textYbase + textHeight * 10
-    );
-
-    dialogCtx.fillText(
-      "網球肘是一種導致肘部外側疼痛的",
-      box3PosX + 14,
-      boxPosY + textYbase
-    );
-    dialogCtx.fillText(
-      "疾病。",
-      box3PosX + 14,
-      boxPosY + textYbase + textHeight
-    );
-    dialogCtx.fillText(
-      "它經常發生在肘關節附近的前臂肌",
-      box3PosX + 14,
-      boxPosY + textYbase + textHeight * 3
-    );
-    dialogCtx.fillText(
-      "肉過度使用或重複動作之後。",
-      box3PosX + 14,
-      boxPosY + textYbase + textHeight * 4
-    );
-    dialogCtx.fillText(
-      "可能會注意到肘部外側疼痛，您可",
-      box3PosX + 14,
-      boxPosY + textYbase + textHeight * 6
-    );
-    dialogCtx.fillText(
-      "能還會發現難以完全伸展手臂。",
-      box3PosX + 14,
-      boxPosY + textYbase + textHeight * 7
-    );
-    dialogCtx.fillText(
-      "網球肘不治療會好起來的。",
-      box3PosX + 14,
-      boxPosY + textYbase + textHeight * 9
-    );
-
-    dialogButtons = {
-      range: {
-        x: btnPosX,
-        y: btnPosY,
-        w: 200,
-        h: 70,
-      },
-      action: function () {
-        closeDialog();
-      },
-    };
-
-    // dialogButtons.push({
-    //   test: "hshs",
-    // });
-  };
+  updateDialog = showContentDialog;
   updateDialog();
   showDialog();
 }
 
 // Theme Define
 function drawHome() {
+  let middleX = mainCanvas.width / 2;
+  let middleY = mainCanvas.height / 2;
+  let img = new Image();
+
+  img.addEventListener(
+    "load",
+    function () {
+      mainCtx.drawImage(img, middleX - 270, middleY - 40, 83, 124);
+    },
+    false
+  );
+  img.src = "../Src/Imgs/W-07.png"; //418*626
+
   //console.log('home');
   mainCtx.font = "78px Segoe UI";
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
-  mainCtx.fillText("Work ? out !", mainCanvas.width / 2, mainCanvas.height / 2);
+  mainCtx.fillText("Work ? out !", middleX, middleY);
 
-  // mainCtx.textAlign = "left";
-  // mainCtx.font = "48px Segoe UI";
-  // mainCtx.fillText(
-  //   "中文字體範例 - Segoe UI",
-  //   mainCanvas.width / 2,
-  //   mainCanvas.height / 2 + 100
-  // );
+  //mainCtx.textAlign = "left";
+  //  mainCtx.font = "48px Segoe UI";
+  //  mainCtx.fillText(
+  //    "中文字體範例 - Segoe UI",
+  //    middleX,
+  //    middleY + 100
+  //  );
 
-  // mainCtx.font = "48px 微軟正黑體";
+  // mainCtx.font = "38px 微軟正黑體";
   // mainCtx.fillText(
   //   "中文字體範例 - 微軟正黑體",
-  //   mainCanvas.width / 2,
-  //   mainCanvas.height / 2 + 150
+  //   middleX,
+  //   middleY + 100
   // );
 
-  // mainCtx.font = "48px Arial";
+  // mainCtx.font = "38px NotoSansTC";
   // mainCtx.fillText(
-  //   "中文字體範例 - Arial",
-  //   mainCanvas.width / 2,
-  //   mainCanvas.height / 2 + 200
+  //   "中文字體範例 - NotoSansTC",
+  //   middleX,
+  //   middleY + 140
   // );
-  //mainCtx.fillText("中文字體範例", mainCanvas.width / 2, mainCanvas.height / 2);
+
+  // mainCtx.font = "38px NotoSansTC-Light";
+  // mainCtx.fillText(
+  //   "中文字體範例 - NotoSansTC-Light",
+  //   middleX,
+  //   middleY + 180
+  // );
+  // mainCtx.font = "38px NotoSansTC-Thin";
+  // mainCtx.fillText(
+  //   "中文字體範例 - NotoSansTC-Thin",
+  //   middleX,
+  //   middleY + 220
+  // );
+  //mainCtx.fillText("中文字體範例", middleX, middleY);
 
   mainCtx.font = "28px Segoe UI";
-  mainCtx.fillText(
-    "Muscle Soothe for Office Worker",
-    mainCanvas.width / 2,
-    mainCanvas.height / 2 + 50
-  );
+  mainCtx.fillText("Muscle Soothe for Office Worker", middleX, middleY + 50);
   //mainCtx.clearRect(10, 10, 20, 20);
 }
 
 function drawIntro() {
+  let img = new Image();
+
+  img.addEventListener(
+    "load",
+    function () {
+      mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
+    },
+    false
+  );
+  img.src = "../Src/Imgs/W-01.png"; //3126*3001
+
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
@@ -722,31 +944,38 @@ function drawIntro() {
 
   mainCtx.font = "46px Segoe UI";
   mainCtx.textAlign = "left";
-  mainCtx.fillText('關於 "Work ? out !"', 50, 140);
+  mainCtx.fillText('關於 "Work ? out !"', 50, 240);
 
+  let baseY = 300;
+  let linStep = 40;
   //mainCtx.font = "26px 微軟正黑體";
   mainCtx.font = "26px Segoe UI";
   mainCtx.fillText(
-    "現今上班族與學生族群，都經常坐著辦公或讀書，不斷的長時間",
+    "現今上班族與學生族群，都經常坐著辦公或讀書，不斷的",
     50,
-    220
+    baseY
   );
   mainCtx.fillText(
-    "重複某一特定動作，長時間坐著的上班族「電腦症候群」因姿勢、",
+    "長時間重複某一特定動作，長時間坐著的上班族「電腦症",
     50,
-    250
+    baseY + linStep
   );
   mainCtx.fillText(
-    "長時間打電腦或接電話，衍伸出毛病如：手腕、肩頸及手肘痠痛。",
+    "候群」因姿勢、長時間打電腦或接電話，衍伸出毛病如：",
     50,
-    280
+    baseY + linStep * 2
+  );
+  mainCtx.fillText("手腕、肩頸及手肘痠痛。", 50, baseY + linStep * 3);
+  mainCtx.fillText(
+    '"Work? Out!"則是以簡單的肌肉舒緩運動幫助使用者預防',
+    50,
+    baseY + linStep * 4
   );
   mainCtx.fillText(
-    '"Work? Out!"則是以簡單的肌肉舒緩運動幫助使用者預防及改善，',
+    "及改善，並透過遊戲化的樂趣增加用戶的動機與習慣建立!",
     50,
-    310
+    baseY + linStep * 5
   );
-  mainCtx.fillText("並透過遊戲化的樂趣增加用戶的動機與習慣建立!", 50, 360);
 }
 
 function drawMain() {
