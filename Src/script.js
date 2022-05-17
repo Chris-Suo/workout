@@ -41,7 +41,7 @@ var buttons = [
     font: {
       size: 36,
       color: "white",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "normal",
     color: "#73A5BE",
@@ -68,7 +68,7 @@ var buttons = [
     font: {
       size: 36,
       color: "white",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "normal",
     color: "#73A5BE",
@@ -95,7 +95,7 @@ var buttons = [
     font: {
       size: 40,
       color: "white",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "themeSelector_l",
     color: "#73A5BE",
@@ -122,7 +122,7 @@ var buttons = [
     font: {
       size: 40,
       color: "white",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "themeSelector_r",
     color: "#555555",
@@ -150,7 +150,7 @@ var buttons = [
     font: {
       size: 40,
       color: "#555555",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
@@ -187,7 +187,7 @@ var buttons = [
     font: {
       size: 40,
       color: "#555555",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
@@ -222,7 +222,7 @@ var buttons = [
     font: {
       size: 40,
       color: "#555555",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
@@ -235,7 +235,6 @@ var buttons = [
       },
     },
   },
-
   {
     belong: {
       theme: "health",
@@ -271,22 +270,79 @@ var buttons = [
     },
     position: {
       x: mainCanvas.width / 2 - 535,
-      y: 120,
+      y: 160,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 535;
-      this.position.y = 120;
+      this.position.y = 160;
     },
     font: {
       size: 34,
       color: "white",
-      family: "Segoe UI",
+      family: "NotoSansTC-Light",
     },
 
     action: function () {
       updateDialog = showContentDialog;
       updateDialog();
       showDialog();
+      //console.log("click!");
+    },
+  },
+  {
+    belong: {
+      theme: "health",
+      page: "main",
+    },
+    sharp: "iconBtn",
+    text: "介　紹",
+    icon: {
+      direction: "right",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.strokeStyle = "white";
+        mainCtx.lineWidth = 5;
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + 2);
+        mainCtx.lineTo(x + w, y + 2);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h - 2);
+        mainCtx.lineTo(x + w, y + h - 2);
+        mainCtx.stroke();
+      },
+    },
+    showText: true,
+    size: {
+      width: 130,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 535 - 130,
+      y: 160,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 535 - this.size.width;
+      this.position.y = 160;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+
+    action: function () {
+      changeThemePage('home','intro');
+      //updateDialog = showContentDialog;
+      //updateDialog();
+      //showDialog();
       //console.log("click!");
     },
   },
@@ -531,10 +587,26 @@ function drawButtons() {
             mainCtx.textAlign = "left";
             mainCtx.fillText(
               btn.text,
-              btn.position.x + btn.icon.size.w + 5,
+              btn.position.x + btn.icon.size.w + 10,
               btn.position.y + 18
             );
           } else {
+            btn.icon.drawIcon(
+              btn.position.x + btn.size.width - btn.icon.size.w,
+              btn.position.y,
+              btn.icon.size.w,
+              btn.icon.size.h
+            );
+
+            mainCtx.font = btn.font.size + "px " + btn.font.family;
+            mainCtx.fillStyle = btn.font.color;
+            mainCtx.textBaseline = "middle";
+            mainCtx.textAlign = "left";
+            mainCtx.fillText(
+              btn.text,
+              btn.position.x - 10,
+              btn.position.y + 18
+            );
           }
 
           break;
@@ -619,8 +691,10 @@ function startBtnAction() {
     //alert("first");
     changeThemePage("home", "intro");
     //state.page = 'hehe';
-    state.firstUse = false;
+    //state.firstUse = false;
   } else {
+
+    changeThemePage("health", "main");
     //alert("not first");
   }
 }
@@ -634,13 +708,13 @@ function showContentDialog() {
   dialogCtx.fillStyle = "#73A5BE";
   roundRect(dialogCtx, btnPosX, btnPosY, 200, 70, 10);
 
-  dialogCtx.font = "40px Segoe UI";
+  dialogCtx.font = "40px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
   dialogCtx.fillText("內容", dialogCanvas.width / 2, 40);
 
-  dialogCtx.font = "36px Segoe UI";
+  dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.textBaseline = "top";
   dialogCtx.textAlign = "left";
   dialogCtx.fillText("確　定", btnPosX + 46, btnPosY + 20);
@@ -663,13 +737,7 @@ function showContentDialog() {
     "load",
     function () {
       //console.log('test');
-      dialogCtx.drawImage(
-        imgMainOption1,
-        box1PosX + 20,
-        boxPosY + 50,
-        325,
-        262
-      );
+      dialogCtx.drawImage(imgMainOption1, box1PosX + 30, boxPosY + 50);
     },
     false
   );
@@ -677,13 +745,7 @@ function showContentDialog() {
   imgMainOption2.addEventListener(
     "load",
     function () {
-      dialogCtx.drawImage(
-        imgMainOption2,
-        box2PosX + 20,
-        boxPosY + 50,
-        325,
-        262
-      );
+      dialogCtx.drawImage(imgMainOption2, box2PosX + 30, boxPosY + 50);
     },
     false
   );
@@ -691,13 +753,7 @@ function showContentDialog() {
   imgMainOption3.addEventListener(
     "load",
     function () {
-      dialogCtx.drawImage(
-        imgMainOption3,
-        box3PosX + 20,
-        boxPosY + 50,
-        325,
-        262
-      );
+      dialogCtx.drawImage(imgMainOption3, box3PosX + 30, boxPosY + 50);
     },
     false
   );
@@ -715,13 +771,13 @@ function showContentDialog() {
   roundRect(dialogCtx, box3PosX, boxPosY, 350, 530, 10);
 
   dialogCtx.fillStyle = "#555555";
-  dialogCtx.font = "40px Segoe UI";
+  dialogCtx.font = "40px NotoSansTC-Light";
   dialogCtx.textAlign = "center";
   dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 30);
   dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 30);
   dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 30);
 
-  dialogCtx.font = "20px Segoe UI";
+  dialogCtx.font = "20px NotoSansTC-Light";
   dialogCtx.textAlign = "left";
   let textYbase = 300;
   let textHeight = 20;
@@ -844,6 +900,7 @@ function showContentDialog() {
     },
     action: function () {
       closeDialog();
+      state.firstUse = false;
     },
   };
 
@@ -868,23 +925,24 @@ function drawHome() {
   img.addEventListener(
     "load",
     function () {
-      mainCtx.drawImage(img, middleX - 270, middleY - 40, 83, 124);
+      mainCtx.drawImage(img, middleX - 250, middleY - 40);
+      // mainCtx.drawImage(img, middleX - 270, middleY - 40, 83, 124);
     },
     false
   );
   img.src = "../Src/Imgs/W-07.png"; //418*626
 
   //console.log('home');
-  mainCtx.font = "78px Segoe UI";
+  mainCtx.font = "78px NotoSansTC-Light";
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
   mainCtx.fillText("Work ? out !", middleX, middleY);
 
   //mainCtx.textAlign = "left";
-  //  mainCtx.font = "48px Segoe UI";
+  //  mainCtx.font = "48px NotoSansTC-Light";
   //  mainCtx.fillText(
-  //    "中文字體範例 - Segoe UI",
+  //    "中文字體範例 - NotoSansTC-Light",
   //    middleX,
   //    middleY + 100
   //  );
@@ -917,7 +975,7 @@ function drawHome() {
   // );
   //mainCtx.fillText("中文字體範例", middleX, middleY);
 
-  mainCtx.font = "28px Segoe UI";
+  mainCtx.font = "28px NotoSansTC-Light";
   mainCtx.fillText("Muscle Soothe for Office Worker", middleX, middleY + 50);
   //mainCtx.clearRect(10, 10, 20, 20);
 }
@@ -928,7 +986,8 @@ function drawIntro() {
   img.addEventListener(
     "load",
     function () {
-      mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
+      mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100);
+      //mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
     },
     false
   );
@@ -939,17 +998,17 @@ function drawIntro() {
   mainCtx.textAlign = "center";
   //let middleY = mainCanvas.height / 2;
 
-  mainCtx.font = "40px Segoe UI";
+  mainCtx.font = "40px NotoSansTC-Light";
   mainCtx.fillText("介 紹", mainCanvas.width / 2, 50);
 
-  mainCtx.font = "46px Segoe UI";
+  mainCtx.font = "46px NotoSansTC-Light";
   mainCtx.textAlign = "left";
   mainCtx.fillText('關於 "Work ? out !"', 50, 240);
 
   let baseY = 300;
   let linStep = 40;
   //mainCtx.font = "26px 微軟正黑體";
-  mainCtx.font = "26px Segoe UI";
+  mainCtx.font = "26px NotoSansTC-Light";
   mainCtx.fillText(
     "現今上班族與學生族群，都經常坐著辦公或讀書，不斷的",
     50,
@@ -984,7 +1043,20 @@ function drawMain() {
   mainCtx.textAlign = "center";
   //let middleY = mainCanvas.height / 2;
   let centerX = mainCanvas.width / 2;
-  mainCtx.font = "32px Segoe UI";
+
+  let img = new Image();
+
+  img.addEventListener(
+    "load",
+    function () {
+      mainCtx.drawImage(img, mainCanvas.width/2 - 540, 20);
+    },
+    false
+  );
+  img.src = "../Src/Imgs/W-05.png"; //626*626 (0.15)
+
+  mainCtx.font = "32px NotoSansTC-Light";
+  mainCtx.fillText("- 0", mainCanvas.width/2 - 420, 75);
   mainCtx.fillText("您可以選擇您要緩解的部分。", centerX, 120);
   mainCtx.fillText("完成後，您將獲得積分!", centerX, 160);
 
