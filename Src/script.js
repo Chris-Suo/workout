@@ -9,14 +9,17 @@ var dialogCtx = dialogCanvas.getContext("2d");
 /*
   home: home/intro/content
   health: main
-  tasty
+  tasty: intro
 
   dialog types: intro
 */
 var state = {
-  firstUse: true,
-  theme: "home",
-  page: "home",
+  firstUse: {
+    health: true,
+    tasty: true,
+  },
+  theme: "tasty",
+  page: "intro",
 };
 
 var buttons = [
@@ -76,6 +79,33 @@ var buttons = [
   },
   {
     belong: {
+      theme: "tasty",
+      page: "intro",
+    },
+    text: "確　定",
+    size: {
+      width: 200,
+      heigth: 70,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 100,
+      y: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - this.size.width / 2;
+      this.position.y = mainCanvas.height - 120;
+    },
+    font: {
+      size: 36,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "normal",
+    color: "#88A073",
+    action: tastyIntorBtnAction,
+  },
+  {
+    belong: {
       theme: "health",
       page: "main",
     },
@@ -126,7 +156,69 @@ var buttons = [
     },
     sharp: "themeSelector_r",
     color: "#555555",
-    //action: intorBtnAction,
+    action: function () {
+      if (state.firstUse.tasty) {
+        changeThemePage("tasty", "intro");
+        
+      } else {
+        changeThemePage("tasty", "main");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "tasty",
+      page: "main",
+    },
+    text: "Health",
+    size: {
+      width: 200,
+      heigth: 60,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 20,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 20;
+    },
+    font: {
+      size: 40,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "themeSelector_l",
+    color: "#555555",
+    action: function () {
+      changeThemePage("health", "main");
+    },
+  },
+  {
+    belong: {
+      theme: "tasty",
+      page: "main",
+    },
+    text: "Tasty",
+    size: {
+      width: 200,
+      heigth: 60,
+    },
+    position: {
+      x: mainCanvas.width / 2,
+      y: 20,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2;
+      this.position.y = 20;
+    },
+    font: {
+      size: 40,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "themeSelector_r",
+    color: "#88A073",
   },
   {
     belong: {
@@ -339,7 +431,7 @@ var buttons = [
     },
 
     action: function () {
-      changeThemePage('home','intro');
+      changeThemePage("home", "intro");
       //updateDialog = showContentDialog;
       //updateDialog();
       //showDialog();
@@ -397,6 +489,15 @@ function updateTheme() {
       }
       break;
     case "tasty":
+      switch (state.page) {
+        case "intro":
+        default:
+          drawTastyIntro();
+          break;
+        case "main":
+          drawTastyMain();
+          break;
+      }
       break;
   }
   drawButtons();
@@ -420,6 +521,8 @@ function redraw() {
 
 function setBackGround() {
   if (state.theme == "tasty") {
+    mainCtx.fillStyle = "#B2CA9D";
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
   } else {
     mainCtx.fillStyle = "#9BCAE5";
     mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
@@ -687,13 +790,12 @@ dialogCanvas.addEventListener("click", function (e) {
 // Buttons Action Define
 function startBtnAction() {
   //setBackGround();
-  if (state.firstUse) {
+  if (state.firstUse.health) {
     //alert("first");
     changeThemePage("home", "intro");
     //state.page = 'hehe';
-    //state.firstUse = false;
+    
   } else {
-
     changeThemePage("health", "main");
     //alert("not first");
   }
@@ -900,7 +1002,7 @@ function showContentDialog() {
     },
     action: function () {
       closeDialog();
-      state.firstUse = false;
+      state.firstUse.health = false;
     },
   };
 
@@ -914,6 +1016,13 @@ function intorBtnAction() {
   updateDialog = showContentDialog;
   updateDialog();
   showDialog();
+}
+
+function tastyIntorBtnAction() {
+  changeThemePage("tasty", "main");
+  // updateDialog = showContentDialog;
+  // updateDialog();
+  // showDialog();
 }
 
 // Theme Define
@@ -1049,14 +1158,14 @@ function drawMain() {
   img.addEventListener(
     "load",
     function () {
-      mainCtx.drawImage(img, mainCanvas.width/2 - 540, 20);
+      mainCtx.drawImage(img, mainCanvas.width / 2 - 540, 20);
     },
     false
   );
   img.src = "../Src/Imgs/W-05.png"; //626*626 (0.15)
 
   mainCtx.font = "32px NotoSansTC-Light";
-  mainCtx.fillText("- 0", mainCanvas.width/2 - 420, 75);
+  mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
   mainCtx.fillText("您可以選擇您要緩解的部分。", centerX, 120);
   mainCtx.fillText("完成後，您將獲得積分!", centerX, 160);
 
@@ -1070,3 +1179,117 @@ function drawMain() {
 }
 
 function drawContent() {}
+
+function drawTastyIntro() {
+  let middleX = mainCanvas.width / 2;
+  // let middleY = mainCanvas.height / 2;
+  //let img = new Image();
+
+  // img.addEventListener(
+  //   "load",
+  //   function () {
+  //     mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100);
+  //     //mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
+  //   },
+  //   false
+  // );
+  // img.src = "../Src/Imgs/W-01.png"; //3126*3001
+
+  mainCtx.fillStyle = "#FFF";
+  mainCtx.textBaseline = "middle";
+  mainCtx.textAlign = "center";
+  //let middleY = mainCanvas.height / 2;
+
+  mainCtx.font = "40px NotoSansTC-Light";
+  mainCtx.fillText("介 紹", mainCanvas.width / 2, 50);
+
+  mainCtx.font = "46px NotoSansTC-Light";
+  mainCtx.textAlign = "left";
+  mainCtx.fillText('關於 "Tasty ? out !"', 50, 180);
+
+  let baseY = 240;
+  let linStep = 40;
+  let baseX = middleX + 130;
+  mainCtx.font = "32px NotoSansTC-Light";
+  mainCtx.fillText("配合Work?out! 肌肉舒緩。", baseX, baseY);
+  mainCtx.fillText("遊戲中有8種不同的美食類型推薦，", baseX, baseY + linStep);
+  mainCtx.fillText(
+    "點擊新增將會消耗舒緩所累積的點數",
+    baseX,
+    baseY + linStep * 2
+  );
+  mainCtx.fillText(
+    "並隨機新增推薦餐廳至玩家地圖中。",
+    baseX,
+    baseY + linStep * 3
+  );
+  mainCtx.fillText(
+    "邊舒緩肌肉減緩長時間辦公的不適，",
+    baseX,
+    baseY + linStep * 5
+  );
+  mainCtx.fillText("同時組成屬於自己的美食地圖，", baseX, baseY + linStep * 6);
+  mainCtx.fillText("能與好友、同事、家人 交流，", baseX, baseY + linStep * 7);
+  mainCtx.fillText("再也不必煩惱下一餐吃甚麼!", baseX, baseY + linStep * 8);
+  // mainCtx.fillText(
+  //   '"Work? Out!"則是以簡單的肌肉舒緩運動幫助使用者預防',
+  //   50,
+  //   baseY + linStep * 4
+  // );
+  // mainCtx.fillText(
+  //   "及改善，並透過遊戲化的樂趣增加用戶的動機與習慣建立!",
+  //   50,
+  //   baseY + linStep * 5
+  // );
+
+  // let img = new Image();
+
+  // img.addEventListener(
+  //   "load",
+  //   function () {
+  //     mainCtx.drawImage(img, middleX - 250, middleY - 40);
+  //     // mainCtx.drawImage(img, middleX - 270, middleY - 40, 83, 124);
+  //   },
+  //   false
+  // );
+  // img.src = "../Src/Imgs/W-07.png"; //418*626
+
+  // //console.log('home');
+  // mainCtx.font = "78px NotoSansTC-Light";
+  // mainCtx.fillStyle = "#FFF";
+  // mainCtx.textBaseline = "middle";
+  // mainCtx.textAlign = "center";
+  // mainCtx.fillText("Work ? out !", middleX, middleY);
+}
+
+function drawTastyMain() {
+  // mainCtx.fillStyle = "#FFF";
+  // mainCtx.textBaseline = "middle";
+  // mainCtx.textAlign = "center";
+  // //let middleY = mainCanvas.height / 2;
+  // let centerX = mainCanvas.width / 2;
+
+  let img = new Image();
+
+  img.addEventListener(
+    "load",
+    function () {
+      mainCtx.drawImage(img, mainCanvas.width / 2 - 540, 20);
+    },
+    false
+  );
+  img.src = "../Src/Imgs/W-05.png"; //626*626 (0.15)
+
+  // mainCtx.font = "32px NotoSansTC-Light";
+  // mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
+  // mainCtx.fillText("您可以選擇您要緩解的部分。", centerX, 120);
+  // mainCtx.fillText("完成後，您將獲得積分!", centerX, 160);
+
+  // mainCtx.fillText("1", centerX - 360, mainCanvas.height / 2 + 230);
+  // mainCtx.fillText("2", centerX, mainCanvas.height / 2 + 230);
+  // mainCtx.fillText("3", centerX + 360, mainCanvas.height / 2 + 230);
+
+  // mainCtx.fillStyle = "#f00";
+  // mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 75);
+  // mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 40);
+}
