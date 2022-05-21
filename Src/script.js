@@ -139,8 +139,8 @@ var state = {
     health: true,
     tasty: true,
   },
-  theme: "health",
-  page: "main",
+  theme: "home",
+  page: "home",
   gameObjects: {
     stars: 0,
     maps: [
