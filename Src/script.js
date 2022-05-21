@@ -138,6 +138,7 @@ var state = {
   firstUse: {
     health: true,
     tasty: true,
+    exersise: [true, true, true],
   },
   theme: "home",
   page: "home",
@@ -641,6 +642,7 @@ var buttons = [
 
 var updateDialog = null;
 var dialogButtons = null;
+var dialogParameters = {};
 
 var loaded = 0;
 function loadResources() {
@@ -728,6 +730,20 @@ function updateTheme() {
             "放鬆動作：",
             "手肘彎曲撐著，手腕維持正中位置，手指放鬆。",
           ]);
+          if (state.firstUse.exersise[0]) {
+            //if (true) {
+            //console.log('t');
+            updateDialog = showReadyExerciseDialog;
+            dialogParameters.index = 0; 
+            dialogParameters.exerciseName = "腕隧道舒緩";
+            dialogParameters.numPart = "7";
+            dialogParameters.seconds = "10~30";
+          } else {
+            updateDialog = showStartExerciseDialog;
+          }
+
+          updateDialog();
+          showDialog();
           break;
       }
       break;
@@ -953,8 +969,10 @@ function showDialog() {
 }
 
 function closeDialog() {
+  dialogCtx.clearRect(0, 0, dialogCanvas.width, dialogCanvas.height);
   dialogButtons = null;
   updateDialog = null;
+  dialogParameters = {};
   dialogCanvas.style.zIndex = -1;
 }
 
@@ -1206,6 +1224,103 @@ function showContentDialog() {
   // });
 }
 
+function showStartExerciseDialog() {
+  //console.log("??");
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+
+  dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
+
+  dialogCtx.beginPath();
+  dialogCtx.arc(middleX, middleY, 150, 0, Math.PI * 2, true);
+  dialogCtx.fill();
+
+  dialogCtx.font = "40px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+
+  dialogCtx.fillText("開　始", middleX, middleY - 50);
+  dialogCtx.fillText("START", middleX, middleY + 50);
+
+  dialogButtons = {
+    range: {
+      x: middleX - 150,
+      y: middleY - 150,
+      w: 300,
+      h: 300,
+    },
+    action: function () {
+      closeDialog();
+    },
+  };
+}
+
+function showReadyExerciseDialog() {
+  let exerciseName = dialogParameters.exerciseName || "";
+  let numPart = dialogParameters.numPart || "";
+  let seconds = dialogParameters.seconds || "";
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+
+  dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
+  roundRect(dialogCtx, middleX - 400, middleY - 250, 800, 500);
+
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  let baseY = middleY - 140;
+  let step = 42;
+  dialogCtx.fillText(exerciseName + "運動將花約 5 分鐘，", middleX, baseY);
+  dialogCtx.fillText(
+    "共" + numPart + "部分，每部分約" + seconds + "秒，",
+    middleX,
+    baseY + step
+  );
+  dialogCtx.fillText("請自行做適量舒緩。", middleX, baseY + step * 2);
+  dialogCtx.fillText(
+    "完成動作後，觸摸屏幕將進入下一步。",
+    middleX,
+    baseY + step * 4
+  );
+  dialogCtx.fillStyle = "#FFAFAF";
+  dialogCtx.fillText("若感到不適，請立即停止。", middleX, baseY + step * 6);
+
+  dialogCtx.fillStyle = "#73A5BE";
+  let BtnX = middleX - 100;
+  let BtnY = baseY + step * 8 - 50;
+  roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
+
+  // dialogCtx.font = "40px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.font = "34px NotoSansTC-Light";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillText("確　定", BtnX + 46, BtnY + 20);
+
+  dialogButtons = {
+    range: {
+      x: BtnX,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      state.firstUse.exersise[dialogParameters.index] = false;
+      closeDialog();
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  };
+}
+
 function intorBtnAction() {
   changeThemePage("health", "main");
   updateDialog = showContentDialog;
@@ -1400,18 +1515,18 @@ function drawExerciseText(second, number, textArr) {
     "若感到不適，請立即停止。",
     30 + (mainCanvas.width * 0.6) / 2,
     220
-  );  
+  );
 
   mainCtx.font = "30px NotoSansTC-Light";
   mainCtx.fillText(
     "當感到舒緩或完成動作，",
     30 + (mainCanvas.width * 0.6) / 2,
-    110 +mainCanvas.height - 240
+    110 + mainCanvas.height - 240
   );
   mainCtx.fillText(
     "點擊螢幕中央，即可進入下一個動作。",
     30 + (mainCanvas.width * 0.6) / 2,
-    110 +mainCanvas.height - 200
+    110 + mainCanvas.height - 200
   );
 }
 
