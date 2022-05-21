@@ -1,15 +1,126 @@
-const MIN_WIDTH = 1080;
-const MIN_HEIGHT = 528; //810;
+// 1920 * 940
+// 1366 * 668 (x1.4055)
+const MIN_WIDTH = 1366;
+const MIN_HEIGHT = 668;
+
+var images = {
+  A01: "../Src/Imgs/store/A-01.png",
+  A02: "../Src/Imgs/store/A-02.png",
+  A03: "../Src/Imgs/store/A-03.png",
+  A04: "../Src/Imgs/store/A-04.png",
+  A05: "../Src/Imgs/store/A-05.png",
+  A06: "../Src/Imgs/store/A-06.png",
+  A07: "../Src/Imgs/store/A-07.png",
+  A08: "../Src/Imgs/store/A-08.png",
+  A09: "../Src/Imgs/store/A-09.png",
+  A010: "../Src/Imgs/store/A-10.png",
+  A011: "../Src/Imgs/store/A-11.png",
+  A012: "../Src/Imgs/store/A-12.png",
+  A013: "../Src/Imgs/store/A-13.png",
+  A014: "../Src/Imgs/store/A-14.png",
+  A015: "../Src/Imgs/store/A-15.png",
+  A016: "../Src/Imgs/store/A-16.png",
+  A017: "../Src/Imgs/store/A-17.png",
+  A018: "../Src/Imgs/store/A-18.png",
+  A019: "../Src/Imgs/store/A-19.png",
+  A020: "../Src/Imgs/store/A-20.png",
+  A021: "../Src/Imgs/store/A-21.png",
+  A022: "../Src/Imgs/store/A-22.png",
+  A023: "../Src/Imgs/store/A-23.png",
+  A024: "../Src/Imgs/store/A-24.png",
+  A025: "../Src/Imgs/store/A-25.png",
+  A026: "../Src/Imgs/store/A-26.png",
+  A027: "../Src/Imgs/store/A-27.png",
+  A028: "../Src/Imgs/store/A-28.png",
+  A029: "../Src/Imgs/store/A-29.png",
+  A030: "../Src/Imgs/store/A-30.png",
+  A031: "../Src/Imgs/store/A-31.png",
+  A032: "../Src/Imgs/store/A-32.png",
+  A033: "../Src/Imgs/store/A-33.png",
+  A034: "../Src/Imgs/store/A-34.png",
+  A035: "../Src/Imgs/store/A-35.png",
+  A036: "../Src/Imgs/store/A-36.png",
+  A037: "../Src/Imgs/store/A-37.png",
+  A038: "../Src/Imgs/store/A-38.png",
+  A039: "../Src/Imgs/store/A-39.png",
+  A040: "../Src/Imgs/store/A-40.png",
+  A041: "../Src/Imgs/store/A-41.png",
+  A042: "../Src/Imgs/store/A-42.png",
+  A043: "../Src/Imgs/store/A-43.png",
+  A044: "../Src/Imgs/store/A-44.png",
+  A045: "../Src/Imgs/store/A-45.png",
+  A046: "../Src/Imgs/store/A-46.png",
+  A047: "../Src/Imgs/store/A-47.png",
+  A048: "../Src/Imgs/store/A-48.png",
+  A049: "../Src/Imgs/store/A-49.png",
+  A050: "../Src/Imgs/store/A-50.png",
+  A051: "../Src/Imgs/store/A-51.png",
+  A052: "../Src/Imgs/store/A-52.png",
+  A053: "../Src/Imgs/store/A-53.png",
+  A054: "../Src/Imgs/store/A-54.png",
+  A055: "../Src/Imgs/store/A-55.png",
+  A056: "../Src/Imgs/store/A-56.png",
+  A057: "../Src/Imgs/store/A-57.png",
+  A058: "../Src/Imgs/store/A-58.png",
+  A059: "../Src/Imgs/store/A-59.png",
+  A060: "../Src/Imgs/store/A-60.png",
+  A061: "../Src/Imgs/store/A-61.png",
+  A062: "../Src/Imgs/store/A-62.png",
+  A063: "../Src/Imgs/store/A-63.png",
+  A064: "../Src/Imgs/store/A-64.png",
+  A065: "../Src/Imgs/store/A-65.png",
+  A066: "../Src/Imgs/store/A-66.png",
+  A067: "../Src/Imgs/store/A-67.png",
+  A068: "../Src/Imgs/store/A-68.png",
+  A069: "../Src/Imgs/store/A-69.png",
+  A070: "../Src/Imgs/store/A-70.png",
+  A071: "../Src/Imgs/store/A-71.png",
+  A072: "../Src/Imgs/store/A-72.png",
+  A073: "../Src/Imgs/store/A-73.png",
+  A074: "../Src/Imgs/store/A-74.png",
+  A075: "../Src/Imgs/store/A-75.png",
+  A076: "../Src/Imgs/store/A-76.png",
+  A077: "../Src/Imgs/store/A-77.png",
+  A078: "../Src/Imgs/store/A-78.png",
+  A079: "../Src/Imgs/store/A-79.png",
+  A080: "../Src/Imgs/store/A-80.png",
+  A081: "../Src/Imgs/store/A-81.png",
+  A082: "../Src/Imgs/store/A-82.png",
+  A083: "../Src/Imgs/store/A-83.png",
+  A084: "../Src/Imgs/store/A-84.png",
+  A085: "../Src/Imgs/store/A-85.png",
+  A086: "../Src/Imgs/store/A-86.png",
+  A087: "../Src/Imgs/store/A-87.png",
+  A088: "../Src/Imgs/store/A-88.png",
+  A089: "../Src/Imgs/store/A-89.png",
+  A090: "../Src/Imgs/store/A-90.png",
+  A091: "../Src/Imgs/store/A-91.png",
+  A092: "../Src/Imgs/store/A-92.png",
+  A093: "../Src/Imgs/store/A-93.png",
+  A094: "../Src/Imgs/store/A-94.png",
+  A095: "../Src/Imgs/store/A-95.png",
+  A096: "../Src/Imgs/store/A-96.png",
+  A097: "../Src/Imgs/store/A-97.png",
+  A098: "../Src/Imgs/store/A-98.png",
+  A099: "../Src/Imgs/store/A-99.png",
+};
 
 var mainCanvas = document.getElementById("mainCanvas");
 var mainCtx = mainCanvas.getContext("2d");
 var dialogCanvas = document.getElementById("dialogCanvas");
 var dialogCtx = dialogCanvas.getContext("2d");
+var gameCanvas = document.getElementById("gameCanvas");
+var gameCtx = gameCanvas.getContext("2d");
+
+// var gameZoneWidth = 0;
+// var gameZoneHeight = 0;
+var gameZoneX = -180;
+var gameZoneY = -150;
 
 /*
   home: home/intro/content
   health: main
-  tasty: intro
+  tasty: intro/main
 
   dialog types: intro
 */
@@ -18,8 +129,20 @@ var state = {
     health: true,
     tasty: true,
   },
-  theme: "tasty",
-  page: "intro",
+  theme: "home",
+  page: "home",
+  gameObjects: {
+    stars: 0,
+    maps: [
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, -1, -2, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+    ],
+  },
 };
 
 var buttons = [
@@ -159,7 +282,6 @@ var buttons = [
     action: function () {
       if (state.firstUse.tasty) {
         changeThemePage("tasty", "intro");
-        
       } else {
         changeThemePage("tasty", "main");
       }
@@ -362,11 +484,11 @@ var buttons = [
     },
     position: {
       x: mainCanvas.width / 2 - 535,
-      y: 160,
+      y: 130,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 535;
-      this.position.y = 160;
+      this.position.y = 130;
     },
     font: {
       size: 34,
@@ -418,11 +540,11 @@ var buttons = [
     },
     position: {
       x: mainCanvas.width / 2 + 535 - 130,
-      y: 160,
+      y: 130,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 535 - this.size.width;
-      this.position.y = 160;
+      this.position.y = 130;
     },
     font: {
       size: 34,
@@ -445,9 +567,58 @@ var buttons = [
 var updateDialog = null;
 var dialogButtons = null;
 
+var loaded = 0;
+function loadResources() {
+  let count = 0;
+  for (let key in images) {
+    count++;
+    //console.log(key);
+    let _src = images[key];
+    images[key] = new Image();
+    images[key].src = _src;
+    images[key].addEventListener(
+      "load",
+      function () {
+        loaded++;
+      },
+      false
+    );
+  }
+  console.log('C:'+count);
+  // console.log(images.keys());
+  //images.forEach((src, i)=>{
+  // console.log(src);
+  // //console.log(i);
+  //
+  //     images[i] = new Image();
+  //     images[i].src = _src;
+  //  })
+
+  //console.log(images);
+  //console.log(images['A01'])
+  //A-01
+  //let imgMainOption1 = new Image();
+  //   let imgMainOption2 = new Image();
+  //   let imgMainOption3 = new Image();
+
+  //   imgMainOption1.src = "../Src/Imgs/W-02.png"; //2168*1751
+  //   imgMainOption2.src = "../Src/Imgs/W-03.png"; //2168*1751
+  //   imgMainOption3.src = "../Src/Imgs/W-04.png"; //2168*1751
+
+  //   imgMainOption1.addEventListener(
+  //     "load",
+  //     function () {
+  //       //console.log('test');
+  //       dialogCtx.drawImage(imgMainOption1, box1PosX + 30, boxPosY + 40);
+  //     },
+  //     false
+  //   );
+}
+
 function initialize() {
   window.addEventListener("resize", redraw, false);
   redraw();
+  loadResources();
 }
 
 initialize();
@@ -461,6 +632,7 @@ function updateComponentPosition() {
 function updateTheme() {
   //console.log("setTheme" + JSON.stringify(state));
   setBackGround();
+  gameCanvas.style.zIndex = -1;
   switch (state.theme) {
     case "home":
     default:
@@ -495,6 +667,7 @@ function updateTheme() {
           drawTastyIntro();
           break;
         case "main":
+          gameCanvas.style.zIndex = 2;
           drawTastyMain();
           break;
       }
@@ -513,6 +686,8 @@ function redraw() {
     mainCanvas.height = newHeight;
     dialogCanvas.width = newWidth;
     dialogCanvas.height = newHeight;
+    gameCanvas.width = 1080;
+    gameCanvas.height = newHeight - 140;
     updateComponentPosition();
     updateTheme();
     if (updateDialog) updateDialog();
@@ -529,7 +704,7 @@ function setBackGround() {
   }
 }
 
-function roundRect(ctx, x, y, width, height, radius) {
+function roundRect(ctx, x, y, width, height, radius, boardOnly) {
   if (typeof radius === "undefined") {
     radius = 5;
   }
@@ -557,7 +732,11 @@ function roundRect(ctx, x, y, width, height, radius) {
   ctx.lineTo(x, y + radius.tl);
   ctx.quadraticCurveTo(x, y, x + radius.tl, y);
   ctx.closePath();
-  ctx.fill();
+  if (boardOnly) {
+    ctx.stroke();
+  } else {
+    ctx.fill();
+  }
 }
 
 function drawButtons() {
@@ -725,7 +904,7 @@ function showDialog() {
 function closeDialog() {
   dialogButtons = null;
   updateDialog = null;
-  dialogCanvas.style.zIndex = 1;
+  dialogCanvas.style.zIndex = -1;
 }
 
 function changeThemePage(toTheme, toPage) {
@@ -794,7 +973,6 @@ function startBtnAction() {
     //alert("first");
     changeThemePage("home", "intro");
     //state.page = 'hehe';
-    
   } else {
     changeThemePage("health", "main");
     //alert("not first");
@@ -806,7 +984,7 @@ function showContentDialog() {
   dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
 
   let btnPosX = dialogCanvas.width / 2 - 100;
-  let btnPosY = dialogCanvas.height - 110;
+  let btnPosY = dialogCanvas.height - 80;
   dialogCtx.fillStyle = "#73A5BE";
   roundRect(dialogCtx, btnPosX, btnPosY, 200, 70, 10);
 
@@ -822,7 +1000,7 @@ function showContentDialog() {
   dialogCtx.fillText("確　定", btnPosX + 46, btnPosY + 20);
 
   dialogCtx.fillStyle = "F5F5F5";
-  let boxPosY = 80;
+  let boxPosY = 65;
   let box1PosX = dialogCanvas.width / 2 - 535;
   let box2PosX = dialogCanvas.width / 2 - 175;
   let box3PosX = dialogCanvas.width / 2 + 185;
@@ -839,7 +1017,7 @@ function showContentDialog() {
     "load",
     function () {
       //console.log('test');
-      dialogCtx.drawImage(imgMainOption1, box1PosX + 30, boxPosY + 50);
+      dialogCtx.drawImage(imgMainOption1, box1PosX + 30, boxPosY + 40);
     },
     false
   );
@@ -847,7 +1025,7 @@ function showContentDialog() {
   imgMainOption2.addEventListener(
     "load",
     function () {
-      dialogCtx.drawImage(imgMainOption2, box2PosX + 30, boxPosY + 50);
+      dialogCtx.drawImage(imgMainOption2, box2PosX + 30, boxPosY + 40);
     },
     false
   );
@@ -855,7 +1033,7 @@ function showContentDialog() {
   imgMainOption3.addEventListener(
     "load",
     function () {
-      dialogCtx.drawImage(imgMainOption3, box3PosX + 30, boxPosY + 50);
+      dialogCtx.drawImage(imgMainOption3, box3PosX + 30, boxPosY + 40);
     },
     false
   );
@@ -868,20 +1046,20 @@ function showContentDialog() {
   //   false
   // );
 
-  roundRect(dialogCtx, box1PosX, boxPosY, 350, 530, 10);
-  roundRect(dialogCtx, box2PosX, boxPosY, 350, 530, 10);
-  roundRect(dialogCtx, box3PosX, boxPosY, 350, 530, 10);
+  roundRect(dialogCtx, box1PosX, boxPosY, 350, 510, 10);
+  roundRect(dialogCtx, box2PosX, boxPosY, 350, 510, 10);
+  roundRect(dialogCtx, box3PosX, boxPosY, 350, 510, 10);
 
   dialogCtx.fillStyle = "#555555";
   dialogCtx.font = "40px NotoSansTC-Light";
   dialogCtx.textAlign = "center";
-  dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 30);
-  dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 30);
-  dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 30);
+  dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 20);
+  dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 20);
+  dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 20);
 
   dialogCtx.font = "20px NotoSansTC-Light";
   dialogCtx.textAlign = "left";
-  let textYbase = 300;
+  let textYbase = 290;
   let textHeight = 20;
 
   dialogCtx.fillText(
@@ -1174,8 +1352,8 @@ function drawMain() {
   mainCtx.fillText("3", centerX + 360, mainCanvas.height / 2 + 230);
 
   mainCtx.fillStyle = "#f00";
-  mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 75);
-  mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 40);
+  mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 65);
+  mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 30);
 }
 
 function drawContent() {}
@@ -1263,7 +1441,9 @@ function drawTastyIntro() {
 }
 
 function drawTastyMain() {
-  // mainCtx.fillStyle = "#FFF";
+  // gameCanvas.style= "board:1px solid red";
+  updateGameZone();
+  //
   // mainCtx.textBaseline = "middle";
   // mainCtx.textAlign = "center";
   // //let middleY = mainCanvas.height / 2;
@@ -1293,3 +1473,150 @@ function drawTastyMain() {
   // mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 75);
   // mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 40);
 }
+
+function updateGameZone() {
+  // //gameZoneWidth = mainCanvas.width - (mainCanvas.width / 2 - 540) * 2;
+  // gameZoneWidth = 1080;
+  // gameZoneHeight = mainCanvas.height - 140;
+  // gameZoneX = mainCanvas.width / 2 - 540;
+  // gameZoneY = 120;
+
+  // //console.log(gameZoneHeight);
+  // console.log(state.gameObjects.maps[0].length)
+
+  let img = new Image();
+  img.addEventListener(
+    "load",
+    function () {
+      let _gameZoneX = gameZoneX;
+      let _gameZoneY = gameZoneY;
+      state.gameObjects.maps.forEach((row) => {
+        row.forEach((obj) => {
+          //console.log(obj);
+          if (obj == 0) {
+            gameCtx.drawImage(img, _gameZoneX, _gameZoneY);
+          } else if (obj == -1) {
+            //_gameZoneX += 180;
+          }
+          _gameZoneX += 180;
+        });
+        _gameZoneY += 150;
+        _gameZoneX = gameZoneX;
+      });
+      //gameCtx.drawImage(img, -90, gameZoneY);
+
+      //     //     let ptrn = mainCtx.createPattern(img, "repeat");
+      //     //     mainCtx.fillStyle = ptrn;
+      //     //     // mainCtx.fillRect(gameZoneX, gameZoneY, gameZoneWidth, gameZoneHeight);
+      //     //      mainCtx.fillRect(0, 0, gameZoneWidth, gameZoneHeight);
+      //gameCtx.drawImage(img, 0, 0);
+      // gameCtx.drawImage(img, 0, 0);
+
+      //     mainCtx.drawImage(img, gameZoneX+img.width, gameZoneY);
+    },
+    false
+  );
+  img.src = "../Src/Imgs/mapBg.png"; // 180*150
+
+  // console.log(gameCanvas.offsetTop);
+  // gameCtx.strokeStyle = "#B2caff";
+  //      //mainCtx.strokeStyle = "#B2CA9D";
+  // //     //     //mainCtx.strokeStyle = 'rgba(255,255,255,0.2)'
+  // gameCtx.lineWidth = 30;
+  //     roundRect(
+  //       gameCtx,
+  //       0,
+  //       0,
+  //       gameCanvas.width,
+  //       gameCanvas.height,
+  //       60,
+  //       true
+  //     );
+}
+
+//console.log('out'+gameZoneWidth);
+// var canvas;
+// var ctx;
+var x = 75;
+var y = 50;
+var WIDTH = 400;
+var HEIGHT = 300;
+var dragok = false;
+
+function rect(x, y, w, h) {
+  mainCtx.beginPath();
+  mainCtx.rect(x, y, w, h);
+  mainCtx.closePath();
+  mainCtx.fill();
+}
+
+function clear() {
+  mainCtx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+// function init() {
+//  canvas = document.getElementById("canvas");
+//  ctx = canvas.getContext("2d");
+//  return setInterval(draw, 10);
+// }
+
+function draw() {
+  clear();
+  mainCtx.fillStyle = "#FAF7F8";
+  rect(0, 0, WIDTH, HEIGHT);
+  mainCtx.fillStyle = "#444444";
+  rect(x - 15, y - 15, 30, 30);
+}
+//draw();
+
+function myMove(e) {
+  if (dragok) {
+    x = e.pageX - mainCanvas.offsetLeft;
+    y = e.pageY - mainCanvas.offsetTop;
+  }
+}
+
+// function myDown(e){
+//
+// }
+
+function myUp() {
+  dragok = false;
+  mainCanvas.onmousemove = null;
+  // console.log(x);
+  // console.log(y);
+}
+
+// init();
+mainCanvas.onmousedown = (e) => {
+  // console.log(gameZoneWidth);
+  if (
+    e.pageX < x + 15 + mainCanvas.offsetLeft &&
+    e.pageX > x - 15 + mainCanvas.offsetLeft &&
+    e.pageY < y + 15 + mainCanvas.offsetTop &&
+    e.pageY > y - 15 + mainCanvas.offsetTop
+  ) {
+    console.log("hi");
+    console.log(x);
+    console.log(y);
+    x = e.pageX - mainCanvas.offsetLeft;
+    y = e.pageY - mainCanvas.offsetTop;
+    dragok = true;
+    mainCanvas.onmousemove = myMove;
+    window.requestAnimationFrame(ana);
+  }
+};
+mainCanvas.onmouseup = myUp;
+
+//var start = null;
+function ana(timestamp) {
+  //if(!start) start = timestamp;
+  //let progress = timestamp - start;
+  console.log(timestamp);
+  draw();
+  if (dragok) {
+    window.requestAnimationFrame(ana);
+  }
+}
+
+//window.requestAnimationFrame(ana);

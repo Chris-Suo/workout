@@ -39,9 +39,19 @@ canvas {
 }
 
 #mainCanvas {
-  z-index: 2;
+  z-index: 1;
 }
 
 #dialogCanvas {
-  z-index: 1;
+  z-index: -1;
+}
+
+#gameCanvas{
+  z-index: -1;
+  /* display: block; */
+  position: absolute;
+  top:120px;
+  left:50%;
+  transform: translate(-50%, 0);               
+  border: 1px solid red;
 }
