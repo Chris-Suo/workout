@@ -3,106 +3,115 @@
 const MIN_WIDTH = 1366;
 const MIN_HEIGHT = 668;
 
+var resLoaded = false;
 var images = {
-  A01: "../Src/Imgs/store/A-01.png",
-  A02: "../Src/Imgs/store/A-02.png",
-  A03: "../Src/Imgs/store/A-03.png",
-  A04: "../Src/Imgs/store/A-04.png",
-  A05: "../Src/Imgs/store/A-05.png",
-  A06: "../Src/Imgs/store/A-06.png",
-  A07: "../Src/Imgs/store/A-07.png",
-  A08: "../Src/Imgs/store/A-08.png",
-  A09: "../Src/Imgs/store/A-09.png",
-  A010: "../Src/Imgs/store/A-10.png",
-  A011: "../Src/Imgs/store/A-11.png",
-  A012: "../Src/Imgs/store/A-12.png",
-  A013: "../Src/Imgs/store/A-13.png",
-  A014: "../Src/Imgs/store/A-14.png",
-  A015: "../Src/Imgs/store/A-15.png",
-  A016: "../Src/Imgs/store/A-16.png",
-  A017: "../Src/Imgs/store/A-17.png",
-  A018: "../Src/Imgs/store/A-18.png",
-  A019: "../Src/Imgs/store/A-19.png",
-  A020: "../Src/Imgs/store/A-20.png",
-  A021: "../Src/Imgs/store/A-21.png",
-  A022: "../Src/Imgs/store/A-22.png",
-  A023: "../Src/Imgs/store/A-23.png",
-  A024: "../Src/Imgs/store/A-24.png",
-  A025: "../Src/Imgs/store/A-25.png",
-  A026: "../Src/Imgs/store/A-26.png",
-  A027: "../Src/Imgs/store/A-27.png",
-  A028: "../Src/Imgs/store/A-28.png",
-  A029: "../Src/Imgs/store/A-29.png",
-  A030: "../Src/Imgs/store/A-30.png",
-  A031: "../Src/Imgs/store/A-31.png",
-  A032: "../Src/Imgs/store/A-32.png",
-  A033: "../Src/Imgs/store/A-33.png",
-  A034: "../Src/Imgs/store/A-34.png",
-  A035: "../Src/Imgs/store/A-35.png",
-  A036: "../Src/Imgs/store/A-36.png",
-  A037: "../Src/Imgs/store/A-37.png",
-  A038: "../Src/Imgs/store/A-38.png",
-  A039: "../Src/Imgs/store/A-39.png",
-  A040: "../Src/Imgs/store/A-40.png",
-  A041: "../Src/Imgs/store/A-41.png",
-  A042: "../Src/Imgs/store/A-42.png",
-  A043: "../Src/Imgs/store/A-43.png",
-  A044: "../Src/Imgs/store/A-44.png",
-  A045: "../Src/Imgs/store/A-45.png",
-  A046: "../Src/Imgs/store/A-46.png",
-  A047: "../Src/Imgs/store/A-47.png",
-  A048: "../Src/Imgs/store/A-48.png",
-  A049: "../Src/Imgs/store/A-49.png",
-  A050: "../Src/Imgs/store/A-50.png",
-  A051: "../Src/Imgs/store/A-51.png",
-  A052: "../Src/Imgs/store/A-52.png",
-  A053: "../Src/Imgs/store/A-53.png",
-  A054: "../Src/Imgs/store/A-54.png",
-  A055: "../Src/Imgs/store/A-55.png",
-  A056: "../Src/Imgs/store/A-56.png",
-  A057: "../Src/Imgs/store/A-57.png",
-  A058: "../Src/Imgs/store/A-58.png",
-  A059: "../Src/Imgs/store/A-59.png",
-  A060: "../Src/Imgs/store/A-60.png",
-  A061: "../Src/Imgs/store/A-61.png",
-  A062: "../Src/Imgs/store/A-62.png",
-  A063: "../Src/Imgs/store/A-63.png",
-  A064: "../Src/Imgs/store/A-64.png",
-  A065: "../Src/Imgs/store/A-65.png",
-  A066: "../Src/Imgs/store/A-66.png",
-  A067: "../Src/Imgs/store/A-67.png",
-  A068: "../Src/Imgs/store/A-68.png",
-  A069: "../Src/Imgs/store/A-69.png",
-  A070: "../Src/Imgs/store/A-70.png",
-  A071: "../Src/Imgs/store/A-71.png",
-  A072: "../Src/Imgs/store/A-72.png",
-  A073: "../Src/Imgs/store/A-73.png",
-  A074: "../Src/Imgs/store/A-74.png",
-  A075: "../Src/Imgs/store/A-75.png",
-  A076: "../Src/Imgs/store/A-76.png",
-  A077: "../Src/Imgs/store/A-77.png",
-  A078: "../Src/Imgs/store/A-78.png",
-  A079: "../Src/Imgs/store/A-79.png",
-  A080: "../Src/Imgs/store/A-80.png",
-  A081: "../Src/Imgs/store/A-81.png",
-  A082: "../Src/Imgs/store/A-82.png",
-  A083: "../Src/Imgs/store/A-83.png",
-  A084: "../Src/Imgs/store/A-84.png",
-  A085: "../Src/Imgs/store/A-85.png",
-  A086: "../Src/Imgs/store/A-86.png",
-  A087: "../Src/Imgs/store/A-87.png",
-  A088: "../Src/Imgs/store/A-88.png",
-  A089: "../Src/Imgs/store/A-89.png",
-  A090: "../Src/Imgs/store/A-90.png",
-  A091: "../Src/Imgs/store/A-91.png",
-  A092: "../Src/Imgs/store/A-92.png",
-  A093: "../Src/Imgs/store/A-93.png",
-  A094: "../Src/Imgs/store/A-94.png",
-  A095: "../Src/Imgs/store/A-95.png",
-  A096: "../Src/Imgs/store/A-96.png",
-  A097: "../Src/Imgs/store/A-97.png",
-  A098: "../Src/Imgs/store/A-98.png",
-  A099: "../Src/Imgs/store/A-99.png",
+  W01: "../Src/Imgs/W-01.png",
+  W02: "../Src/Imgs/W-02.png",
+  W03: "../Src/Imgs/W-03.png",
+  W04: "../Src/Imgs/W-04.png",
+  W05: "../Src/Imgs/W-05.png",
+  W07: "../Src/Imgs/W-07.png",
+  mapBg: "../Src/Imgs/mapBg.png",
+  home: "../Src/Imgs/home.png",
+  A001: "../Src/Imgs/stores/A-001.png",
+  A002: "../Src/Imgs/stores/A-002.png",
+  A003: "../Src/Imgs/stores/A-003.png",
+  A004: "../Src/Imgs/stores/A-004.png",
+  A005: "../Src/Imgs/stores/A-005.png",
+  A006: "../Src/Imgs/stores/A-006.png",
+  A007: "../Src/Imgs/stores/A-007.png",
+  A008: "../Src/Imgs/stores/A-008.png",
+  A009: "../Src/Imgs/stores/A-009.png",
+  A010: "../Src/Imgs/stores/A-010.png",
+  A011: "../Src/Imgs/stores/A-011.png",
+  A012: "../Src/Imgs/stores/A-012.png",
+  A013: "../Src/Imgs/stores/A-013.png",
+  A014: "../Src/Imgs/stores/A-014.png",
+  A015: "../Src/Imgs/stores/A-015.png",
+  A016: "../Src/Imgs/stores/A-016.png",
+  A017: "../Src/Imgs/stores/A-017.png",
+  A018: "../Src/Imgs/stores/A-018.png",
+  A019: "../Src/Imgs/stores/A-019.png",
+  A020: "../Src/Imgs/stores/A-020.png",
+  A021: "../Src/Imgs/stores/A-021.png",
+  A022: "../Src/Imgs/stores/A-022.png",
+  A023: "../Src/Imgs/stores/A-023.png",
+  A024: "../Src/Imgs/stores/A-024.png",
+  A025: "../Src/Imgs/stores/A-025.png",
+  A026: "../Src/Imgs/stores/A-026.png",
+  A027: "../Src/Imgs/stores/A-027.png",
+  A028: "../Src/Imgs/stores/A-028.png",
+  A029: "../Src/Imgs/stores/A-029.png",
+  A030: "../Src/Imgs/stores/A-030.png",
+  A031: "../Src/Imgs/stores/A-031.png",
+  A032: "../Src/Imgs/stores/A-032.png",
+  A033: "../Src/Imgs/stores/A-033.png",
+  A034: "../Src/Imgs/stores/A-034.png",
+  A035: "../Src/Imgs/stores/A-035.png",
+  A036: "../Src/Imgs/stores/A-036.png",
+  A037: "../Src/Imgs/stores/A-037.png",
+  A038: "../Src/Imgs/stores/A-038.png",
+  A039: "../Src/Imgs/stores/A-039.png",
+  A040: "../Src/Imgs/stores/A-040.png",
+  A041: "../Src/Imgs/stores/A-041.png",
+  A042: "../Src/Imgs/stores/A-042.png",
+  A043: "../Src/Imgs/stores/A-043.png",
+  A044: "../Src/Imgs/stores/A-044.png",
+  A045: "../Src/Imgs/stores/A-045.png",
+  A046: "../Src/Imgs/stores/A-046.png",
+  A047: "../Src/Imgs/stores/A-047.png",
+  A048: "../Src/Imgs/stores/A-048.png",
+  A049: "../Src/Imgs/stores/A-049.png",
+  A050: "../Src/Imgs/stores/A-050.png",
+  A051: "../Src/Imgs/stores/A-051.png",
+  A052: "../Src/Imgs/stores/A-052.png",
+  A053: "../Src/Imgs/stores/A-053.png",
+  A054: "../Src/Imgs/stores/A-054.png",
+  A055: "../Src/Imgs/stores/A-055.png",
+  A056: "../Src/Imgs/stores/A-056.png",
+  A057: "../Src/Imgs/stores/A-057.png",
+  A058: "../Src/Imgs/stores/A-058.png",
+  A059: "../Src/Imgs/stores/A-059.png",
+  A060: "../Src/Imgs/stores/A-060.png",
+  A061: "../Src/Imgs/stores/A-061.png",
+  A062: "../Src/Imgs/stores/A-062.png",
+  A063: "../Src/Imgs/stores/A-063.png",
+  A064: "../Src/Imgs/stores/A-064.png",
+  A065: "../Src/Imgs/stores/A-065.png",
+  A066: "../Src/Imgs/stores/A-066.png",
+  A067: "../Src/Imgs/stores/A-067.png",
+  A068: "../Src/Imgs/stores/A-068.png",
+  A069: "../Src/Imgs/stores/A-069.png",
+  A070: "../Src/Imgs/stores/A-070.png",
+  // A071: "../Src/Imgs/store/A-71.png",
+  // A072: "../Src/Imgs/store/A-72.png",
+  // A073: "../Src/Imgs/store/A-73.png",
+  // A074: "../Src/Imgs/store/A-74.png",
+  // A075: "../Src/Imgs/store/A-75.png",
+  // A076: "../Src/Imgs/store/A-76.png",
+  // A077: "../Src/Imgs/store/A-77.png",
+  // A078: "../Src/Imgs/store/A-78.png",
+  // A079: "../Src/Imgs/store/A-79.png",
+  // A080: "../Src/Imgs/store/A-80.png",
+  // A081: "../Src/Imgs/store/A-81.png",
+  // A082: "../Src/Imgs/store/A-82.png",
+  // A083: "../Src/Imgs/store/A-83.png",
+  // A084: "../Src/Imgs/store/A-84.png",
+  // A085: "../Src/Imgs/store/A-85.png",
+  // A086: "../Src/Imgs/store/A-86.png",
+  // A087: "../Src/Imgs/store/A-87.png",
+  // A088: "../Src/Imgs/store/A-88.png",
+  // A089: "../Src/Imgs/store/A-89.png",
+  // A090: "../Src/Imgs/store/A-90.png",
+  // A091: "../Src/Imgs/store/A-91.png",
+  // A092: "../Src/Imgs/store/A-92.png",
+  // A093: "../Src/Imgs/store/A-93.png",
+  // A094: "../Src/Imgs/store/A-94.png",
+  // A095: "../Src/Imgs/store/A-95.png",
+  // A096: "../Src/Imgs/store/A-96.png",
+  // A097: "../Src/Imgs/store/A-97.png",
+  // A098: "../Src/Imgs/store/A-98.png",
+  // A099: "../Src/Imgs/store/A-99.png",
 };
 
 var mainCanvas = document.getElementById("mainCanvas");
@@ -118,8 +127,9 @@ var gameZoneX = -180;
 var gameZoneY = -150;
 
 /*
-  home: home/intro/content
+  home: home/intro
   health: main
+  exercise: 1/2/3...
   tasty: intro/main
 
   dialog types: intro
@@ -129,19 +139,84 @@ var state = {
     health: true,
     tasty: true,
   },
-  theme: "home",
-  page: "home",
+  theme: "health",
+  page: "main",
   gameObjects: {
     stars: 0,
     maps: [
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, -1, -2, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: -1, state: 0 },
+        { store: -2, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
     ],
+    // maps: [
+    //   [1, 2, 3, 4, 5, 6, 7],
+    //   [8, 9, 10, 11, 12, 13, 14],
+    //   [15, 16, 17, 18, 19, 20, 21],
+    //   [22, 23, 24, -1, -2, 25, 26],
+    //   [27, 28, 29, 30, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0],
+    // ],
   },
 };
 
@@ -369,10 +444,10 @@ var buttons = [
     sharp: "imageBtn",
     color: "#F5F5F5",
     action: function () {
-      //console.log("HAHA");
+      changeThemePage("exercise", "1");
     },
     img: {
-      src: "../Src/Imgs/W-02.png",
+      src: "W02",
       size: {
         width: 325,
         height: 262,
@@ -407,7 +482,7 @@ var buttons = [
     color: "#F5F5F5",
     //action: intorBtnAction,
     img: {
-      src: "../Src/Imgs/W-03.png",
+      src: "W03",
       size: {
         width: 325,
         height: 262,
@@ -442,7 +517,7 @@ var buttons = [
     color: "#F5F5F5",
     //action: intorBtnAction,
     img: {
-      src: "../Src/Imgs/W-04.png",
+      src: "W04",
       size: {
         width: 325,
         height: 262,
@@ -569,10 +644,7 @@ var dialogButtons = null;
 
 var loaded = 0;
 function loadResources() {
-  let count = 0;
   for (let key in images) {
-    count++;
-    //console.log(key);
     let _src = images[key];
     images[key] = new Image();
     images[key].src = _src;
@@ -580,45 +652,20 @@ function loadResources() {
       "load",
       function () {
         loaded++;
+        if (loaded == Object.keys(images).length) {
+          resLoaded = true;
+          console.log("OK");
+        }
       },
       false
     );
   }
-  console.log('C:'+count);
-  // console.log(images.keys());
-  //images.forEach((src, i)=>{
-  // console.log(src);
-  // //console.log(i);
-  //
-  //     images[i] = new Image();
-  //     images[i].src = _src;
-  //  })
-
-  //console.log(images);
-  //console.log(images['A01'])
-  //A-01
-  //let imgMainOption1 = new Image();
-  //   let imgMainOption2 = new Image();
-  //   let imgMainOption3 = new Image();
-
-  //   imgMainOption1.src = "../Src/Imgs/W-02.png"; //2168*1751
-  //   imgMainOption2.src = "../Src/Imgs/W-03.png"; //2168*1751
-  //   imgMainOption3.src = "../Src/Imgs/W-04.png"; //2168*1751
-
-  //   imgMainOption1.addEventListener(
-  //     "load",
-  //     function () {
-  //       //console.log('test');
-  //       dialogCtx.drawImage(imgMainOption1, box1PosX + 30, boxPosY + 40);
-  //     },
-  //     false
-  //   );
 }
 
 function initialize() {
+  loadResources();
   window.addEventListener("resize", redraw, false);
   redraw();
-  loadResources();
 }
 
 initialize();
@@ -645,9 +692,9 @@ function updateTheme() {
           drawIntro();
           //alert('int');
           break;
-        case "content":
-          drawContent();
-          break;
+        // case "content":
+        //   drawContent();
+        //   break;
       }
 
       break;
@@ -669,6 +716,18 @@ function updateTheme() {
         case "main":
           gameCanvas.style.zIndex = 2;
           drawTastyMain();
+          break;
+      }
+      break;
+    case "exercise":
+      drawExercise();
+      switch (state.page) {
+        case "1":
+        default:
+          drawExerciseText(10, "1~3", [
+            "放鬆動作：",
+            "手肘彎曲撐著，手腕維持正中位置，手指放鬆。",
+          ]);
           break;
       }
       break;
@@ -822,20 +881,12 @@ function drawButtons() {
             btn.size.heigth,
             10
           );
-          let img = new Image();
-          img.src = btn.img.src;
-          img.addEventListener(
-            "load",
-            function () {
-              mainCtx.drawImage(
-                img,
-                btn.position.x + 20,
-                btn.position.y,
-                btn.img.size.width,
-                btn.img.size.height
-              );
-            },
-            false
+          mainCtx.drawImage(
+            images[btn.img.src],
+            btn.position.x + 20,
+            btn.position.y,
+            btn.img.size.width,
+            btn.img.size.height
           );
           mainCtx.font = "38px " + btn.font.family;
           mainCtx.fillStyle = btn.font.color;
@@ -968,9 +1019,12 @@ dialogCanvas.addEventListener("click", function (e) {
 
 // Buttons Action Define
 function startBtnAction() {
-  //setBackGround();
+  if (!resLoaded) {
+    console.log("Loading...");
+    return;
+  }
+
   if (state.firstUse.health) {
-    //alert("first");
     changeThemePage("home", "intro");
     //state.page = 'hehe';
   } else {
@@ -1005,50 +1059,13 @@ function showContentDialog() {
   let box2PosX = dialogCanvas.width / 2 - 175;
   let box3PosX = dialogCanvas.width / 2 + 185;
 
-  let imgMainOption1 = new Image();
-  let imgMainOption2 = new Image();
-  let imgMainOption3 = new Image();
-
-  imgMainOption1.src = "../Src/Imgs/W-02.png"; //2168*1751
-  imgMainOption2.src = "../Src/Imgs/W-03.png"; //2168*1751
-  imgMainOption3.src = "../Src/Imgs/W-04.png"; //2168*1751
-
-  imgMainOption1.addEventListener(
-    "load",
-    function () {
-      //console.log('test');
-      dialogCtx.drawImage(imgMainOption1, box1PosX + 30, boxPosY + 40);
-    },
-    false
-  );
-
-  imgMainOption2.addEventListener(
-    "load",
-    function () {
-      dialogCtx.drawImage(imgMainOption2, box2PosX + 30, boxPosY + 40);
-    },
-    false
-  );
-
-  imgMainOption3.addEventListener(
-    "load",
-    function () {
-      dialogCtx.drawImage(imgMainOption3, box3PosX + 30, boxPosY + 40);
-    },
-    false
-  );
-
-  // img1.addEventListener(
-  //   "load",
-  //   function () {
-  //     mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
-  //   },
-  //   false
-  // );
-
   roundRect(dialogCtx, box1PosX, boxPosY, 350, 510, 10);
   roundRect(dialogCtx, box2PosX, boxPosY, 350, 510, 10);
   roundRect(dialogCtx, box3PosX, boxPosY, 350, 510, 10);
+
+  dialogCtx.drawImage(images["W02"], box1PosX + 30, boxPosY + 40);
+  dialogCtx.drawImage(images["W03"], box2PosX + 30, boxPosY + 40);
+  dialogCtx.drawImage(images["W04"], box3PosX + 30, boxPosY + 40);
 
   dialogCtx.fillStyle = "#555555";
   dialogCtx.font = "40px NotoSansTC-Light";
@@ -1207,17 +1224,6 @@ function tastyIntorBtnAction() {
 function drawHome() {
   let middleX = mainCanvas.width / 2;
   let middleY = mainCanvas.height / 2;
-  let img = new Image();
-
-  img.addEventListener(
-    "load",
-    function () {
-      mainCtx.drawImage(img, middleX - 250, middleY - 40);
-      // mainCtx.drawImage(img, middleX - 270, middleY - 40, 83, 124);
-    },
-    false
-  );
-  img.src = "../Src/Imgs/W-07.png"; //418*626
 
   //console.log('home');
   mainCtx.font = "78px NotoSansTC-Light";
@@ -1225,6 +1231,13 @@ function drawHome() {
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
   mainCtx.fillText("Work ? out !", middleX, middleY);
+
+  images["W07"].addEventListener("load", () => {
+    //console.log('load');
+    mainCtx.drawImage(images["W07"], middleX - 250, middleY - 40);
+  });
+  //console.log('go');
+  mainCtx.drawImage(images["W07"], middleX - 250, middleY - 40);
 
   //mainCtx.textAlign = "left";
   //  mainCtx.font = "48px NotoSansTC-Light";
@@ -1268,17 +1281,7 @@ function drawHome() {
 }
 
 function drawIntro() {
-  let img = new Image();
-
-  img.addEventListener(
-    "load",
-    function () {
-      mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100);
-      //mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
-    },
-    false
-  );
-  img.src = "../Src/Imgs/W-01.png"; //3126*3001
+  mainCtx.drawImage(images["W01"], mainCanvas.width / 2 + 50, 100);
 
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
@@ -1331,16 +1334,7 @@ function drawMain() {
   //let middleY = mainCanvas.height / 2;
   let centerX = mainCanvas.width / 2;
 
-  let img = new Image();
-
-  img.addEventListener(
-    "load",
-    function () {
-      mainCtx.drawImage(img, mainCanvas.width / 2 - 540, 20);
-    },
-    false
-  );
-  img.src = "../Src/Imgs/W-05.png"; //626*626 (0.15)
+  mainCtx.drawImage(images["W05"], mainCanvas.width / 2 - 540, 20);
 
   mainCtx.font = "32px NotoSansTC-Light";
   mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
@@ -1351,12 +1345,77 @@ function drawMain() {
   mainCtx.fillText("2", centerX, mainCanvas.height / 2 + 230);
   mainCtx.fillText("3", centerX + 360, mainCanvas.height / 2 + 230);
 
-  mainCtx.fillStyle = "#f00";
+  mainCtx.fillStyle = "#FFAFAF";
   mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 65);
   mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 30);
 }
 
-function drawContent() {}
+function drawExercise() {
+  //console.log('cc');
+  mainCtx.fillStyle = "#ECF4F9";
+  roundRect(
+    mainCtx,
+    20,
+    100,
+    mainCanvas.width - 40,
+    mainCanvas.height - 120,
+    10
+  );
+
+  mainCtx.fillStyle = "#d5d5d5";
+  roundRect(
+    mainCtx,
+    30,
+    110,
+    mainCanvas.width * 0.6,
+    mainCanvas.height - 140,
+    10
+  );
+}
+
+function drawExerciseText(second, number, textArr) {
+  mainCtx.fillStyle = "#555555";
+  mainCtx.textBaseline = "middle";
+  mainCtx.textAlign = "center";
+  mainCtx.font = "34px NotoSansTC-Light";
+  mainCtx.fillText(
+    second + " 秒 / " + number + " 次",
+    30 + (mainCanvas.width * 0.6) / 2,
+    160
+  );
+
+  mainCtx.font = "30px NotoSansTC-Light";
+  textArr.forEach((line, i) => {
+    //console.log(i);
+    mainCtx.fillText(
+      line,
+      30 + (mainCanvas.width * 0.6) / 2,
+      130 + (mainCanvas.height - 140) / 2 + 42 * i
+    );
+  });
+
+  mainCtx.fillStyle = "#FFAFAF";
+  mainCtx.font = "34px NotoSansTC-Light";
+  mainCtx.fillText(
+    "若感到不適，請立即停止。",
+    30 + (mainCanvas.width * 0.6) / 2,
+    220
+  );  
+
+  mainCtx.font = "30px NotoSansTC-Light";
+  mainCtx.fillText(
+    "當感到舒緩或完成動作，",
+    30 + (mainCanvas.width * 0.6) / 2,
+    110 +mainCanvas.height - 240
+  );
+  mainCtx.fillText(
+    "點擊螢幕中央，即可進入下一個動作。",
+    30 + (mainCanvas.width * 0.6) / 2,
+    110 +mainCanvas.height - 200
+  );
+}
+
+// function drawContent() {}
 
 function drawTastyIntro() {
   let middleX = mainCanvas.width / 2;
@@ -1448,17 +1507,13 @@ function drawTastyMain() {
   // mainCtx.textAlign = "center";
   // //let middleY = mainCanvas.height / 2;
   // let centerX = mainCanvas.width / 2;
+  mainCtx.font = "32px NotoSansTC-Light";
+  mainCtx.fillStyle = "#fff";
+  mainCtx.textBaseline = "middle";
+  mainCtx.textAlign = "center";
 
-  let img = new Image();
-
-  img.addEventListener(
-    "load",
-    function () {
-      mainCtx.drawImage(img, mainCanvas.width / 2 - 540, 20);
-    },
-    false
-  );
-  img.src = "../Src/Imgs/W-05.png"; //626*626 (0.15)
+  mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
+  mainCtx.drawImage(images["W05"], mainCanvas.width / 2 - 540, 20);
 
   // mainCtx.font = "32px NotoSansTC-Light";
   // mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
@@ -1484,40 +1539,27 @@ function updateGameZone() {
   // //console.log(gameZoneHeight);
   // console.log(state.gameObjects.maps[0].length)
 
-  let img = new Image();
-  img.addEventListener(
-    "load",
-    function () {
-      let _gameZoneX = gameZoneX;
-      let _gameZoneY = gameZoneY;
-      state.gameObjects.maps.forEach((row) => {
-        row.forEach((obj) => {
-          //console.log(obj);
-          if (obj == 0) {
-            gameCtx.drawImage(img, _gameZoneX, _gameZoneY);
-          } else if (obj == -1) {
-            //_gameZoneX += 180;
-          }
-          _gameZoneX += 180;
-        });
-        _gameZoneY += 150;
-        _gameZoneX = gameZoneX;
-      });
-      //gameCtx.drawImage(img, -90, gameZoneY);
+  let _gameZoneX = gameZoneX;
+  let _gameZoneY = gameZoneY;
+  state.gameObjects.maps.forEach((row) => {
+    row.forEach((obj) => {
+      //console.log(obj);
+      if (obj.store == 0) {
+        gameCtx.drawImage(images["mapBg"], _gameZoneX, _gameZoneY);
+      } else if (obj.store == -1) {
+        gameCtx.drawImage(images["home"], _gameZoneX, _gameZoneY);
+        //_gameZoneX += 180;
+      } else if (obj.store > 0) {
+        let name = "A" + obj.store.toString().padStart(3, "0");
+        console.log(name);
 
-      //     //     let ptrn = mainCtx.createPattern(img, "repeat");
-      //     //     mainCtx.fillStyle = ptrn;
-      //     //     // mainCtx.fillRect(gameZoneX, gameZoneY, gameZoneWidth, gameZoneHeight);
-      //     //      mainCtx.fillRect(0, 0, gameZoneWidth, gameZoneHeight);
-      //gameCtx.drawImage(img, 0, 0);
-      // gameCtx.drawImage(img, 0, 0);
-
-      //     mainCtx.drawImage(img, gameZoneX+img.width, gameZoneY);
-    },
-    false
-  );
-  img.src = "../Src/Imgs/mapBg.png"; // 180*150
-
+        gameCtx.drawImage(images[name], _gameZoneX, _gameZoneY);
+      }
+      _gameZoneX += 180;
+    });
+    _gameZoneY += 150;
+    _gameZoneX = gameZoneX;
+  });
   // console.log(gameCanvas.offsetTop);
   // gameCtx.strokeStyle = "#B2caff";
   //      //mainCtx.strokeStyle = "#B2CA9D";
@@ -1534,89 +1576,34 @@ function updateGameZone() {
   //     );
 }
 
-//console.log('out'+gameZoneWidth);
-// var canvas;
-// var ctx;
-var x = 75;
-var y = 50;
-var WIDTH = 400;
-var HEIGHT = 300;
-var dragok = false;
+var isDrag = false;
+gameCanvas.onmousedown = (e) => {
+  // 180 * 150
+  let offsetX = e.layerX - gameZoneX;
+  let offsetY = e.layerY - gameZoneY;
+  isDrag = true;
+  gameCanvas.onmousemove = (e) => {
+    if (isDrag) {
+      let newX = e.layerX - offsetX;
+      let newY = e.layerY - offsetY;
+      if (newX > 0) newX = 0;
+      if (newY > 0) newY = 0;
+      if (newX + state.gameObjects.maps[0].length * 180 < gameCanvas.width) {
+        newX = gameCanvas.width - state.gameObjects.maps[0].length * 180;
+      }
+      if (newY + state.gameObjects.maps.length * 150 < gameCanvas.height) {
+        newY = gameCanvas.height - state.gameObjects.maps.length * 150;
+      }
+      gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+      gameZoneX = newX;
+      gameZoneY = newY;
 
-function rect(x, y, w, h) {
-  mainCtx.beginPath();
-  mainCtx.rect(x, y, w, h);
-  mainCtx.closePath();
-  mainCtx.fill();
-}
-
-function clear() {
-  mainCtx.clearRect(0, 0, WIDTH, HEIGHT);
-}
-
-// function init() {
-//  canvas = document.getElementById("canvas");
-//  ctx = canvas.getContext("2d");
-//  return setInterval(draw, 10);
-// }
-
-function draw() {
-  clear();
-  mainCtx.fillStyle = "#FAF7F8";
-  rect(0, 0, WIDTH, HEIGHT);
-  mainCtx.fillStyle = "#444444";
-  rect(x - 15, y - 15, 30, 30);
-}
-//draw();
-
-function myMove(e) {
-  if (dragok) {
-    x = e.pageX - mainCanvas.offsetLeft;
-    y = e.pageY - mainCanvas.offsetTop;
-  }
-}
-
-// function myDown(e){
-//
-// }
-
-function myUp() {
-  dragok = false;
-  mainCanvas.onmousemove = null;
-  // console.log(x);
-  // console.log(y);
-}
-
-// init();
-mainCanvas.onmousedown = (e) => {
-  // console.log(gameZoneWidth);
-  if (
-    e.pageX < x + 15 + mainCanvas.offsetLeft &&
-    e.pageX > x - 15 + mainCanvas.offsetLeft &&
-    e.pageY < y + 15 + mainCanvas.offsetTop &&
-    e.pageY > y - 15 + mainCanvas.offsetTop
-  ) {
-    console.log("hi");
-    console.log(x);
-    console.log(y);
-    x = e.pageX - mainCanvas.offsetLeft;
-    y = e.pageY - mainCanvas.offsetTop;
-    dragok = true;
-    mainCanvas.onmousemove = myMove;
-    window.requestAnimationFrame(ana);
-  }
+      updateGameZone();
+    }
+  };
 };
-mainCanvas.onmouseup = myUp;
 
-//var start = null;
-function ana(timestamp) {
-  //if(!start) start = timestamp;
-  //let progress = timestamp - start;
-  console.log(timestamp);
-  draw();
-  if (dragok) {
-    window.requestAnimationFrame(ana);
-  }
-}
-
-//window.requestAnimationFrame(ana);
+gameCanvas.onmouseup = (e) => {
+  isDrag = false;
+  gameCanvas.onmousemove = null;
+};

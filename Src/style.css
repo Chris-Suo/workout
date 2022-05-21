@@ -53,5 +53,5 @@ canvas {
   top:120px;
   left:50%;
   transform: translate(-50%, 0);               
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
