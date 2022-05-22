@@ -112,6 +112,51 @@ var images = {
   // A097: "../Src/Imgs/store/A-97.png",
   // A098: "../Src/Imgs/store/A-98.png",
   // A099: "../Src/Imgs/store/A-99.png",
+  Ex01: "../Src/Imgs/exercise/A1.png",
+  Ex02: "../Src/Imgs/exercise/A2.png",
+  Ex03: "../Src/Imgs/exercise/A3.png",
+  Ex04: "../Src/Imgs/exercise/A4.png",
+  Ex05: "../Src/Imgs/exercise/A5.png",
+  Ex06: "../Src/Imgs/exercise/A6.png",
+  Ex07: "../Src/Imgs/exercise/A7.png",
+  Ex08: "../Src/Imgs/exercise/A8.png",
+  Ex09: "../Src/Imgs/exercise/A9.png",
+  Ex10: "../Src/Imgs/exercise/A10.png",
+  Ex11: "../Src/Imgs/exercise/A11.png",
+  Ex12: "../Src/Imgs/exercise/A12.png",
+  Ex13: "../Src/Imgs/exercise/A13.png",
+  Ex14: "../Src/Imgs/exercise/A14.png",
+  Ex15: "../Src/Imgs/exercise/A15.png",
+  Ex16: "../Src/Imgs/exercise/A16.png",
+  Ex17: "../Src/Imgs/exercise/A17.png",
+  Ex18: "../Src/Imgs/exercise/A18.png",
+  Ex19: "../Src/Imgs/exercise/A19.png",
+  Ex20: "../Src/Imgs/exercise/A20.png",
+  Ex21: "../Src/Imgs/exercise/A21.png",
+  Ex22: "../Src/Imgs/exercise/A22.png",
+  Ex23: "../Src/Imgs/exercise/A23.png",
+  Ex24: "../Src/Imgs/exercise/A24.png",
+  Ex25: "../Src/Imgs/exercise/A25.png",
+  Ex26: "../Src/Imgs/exercise/A26.png",
+  Ex27: "../Src/Imgs/exercise/A27.png",
+  Ex28: "../Src/Imgs/exercise/A28.png",
+  Ex29: "../Src/Imgs/exercise/A29.png",
+  Ex30: "../Src/Imgs/exercise/A30.png",
+  Ex31: "../Src/Imgs/exercise/A31.png",
+  Ex32: "../Src/Imgs/exercise/A32.png",
+  Ex33: "../Src/Imgs/exercise/A33.png",
+  Ex34: "../Src/Imgs/exercise/A34.png",
+  Ex35: "../Src/Imgs/exercise/A35.png",
+  Ex36: "../Src/Imgs/exercise/A36.png",
+  Ex37: "../Src/Imgs/exercise/A37.png",
+  Ex38: "../Src/Imgs/exercise/A38.png",
+  Ex39: "../Src/Imgs/exercise/A39.png",
+  Ex40: "../Src/Imgs/exercise/A40.png",
+  Ex41: "../Src/Imgs/exercise/A41.png",
+  Ex42: "../Src/Imgs/exercise/A42.png",
+  Ex43: "../Src/Imgs/exercise/A43.png",
+  Ex44: "../Src/Imgs/exercise/A44.png",
+  Ex45: "../Src/Imgs/exercise/A45.png",
 };
 
 var mainCanvas = document.getElementById("mainCanvas");
@@ -120,16 +165,15 @@ var dialogCanvas = document.getElementById("dialogCanvas");
 var dialogCtx = dialogCanvas.getContext("2d");
 var gameCanvas = document.getElementById("gameCanvas");
 var gameCtx = gameCanvas.getContext("2d");
-
-// var gameZoneWidth = 0;
-// var gameZoneHeight = 0;
 var gameZoneX = -180;
 var gameZoneY = -150;
+
+var exercisParameter = {};
 
 /*
   home: home/intro
   health: main
-  exercise: 1/2/3...
+  exercise: 1-1/1-2/...
   tasty: intro/main
 
   dialog types: intro
@@ -445,7 +489,7 @@ var buttons = [
     sharp: "imageBtn",
     color: "#F5F5F5",
     action: function () {
-      changeThemePage("exercise", "1");
+      changeThemePage("exercise", "1-1");
     },
     img: {
       src: "W02",
@@ -481,7 +525,9 @@ var buttons = [
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
-    //action: intorBtnAction,
+    action: function () {
+      changeThemePage("exercise", "2-1");
+    },
     img: {
       src: "W03",
       size: {
@@ -516,7 +562,9 @@ var buttons = [
     },
     sharp: "imageBtn",
     color: "#F5F5F5",
-    //action: intorBtnAction,
+    action: function () {
+      changeThemePage("exercise", "3-1");
+    },
     img: {
       src: "W04",
       size: {
@@ -636,12 +684,2892 @@ var buttons = [
       //console.log("click!");
     },
   },
-
-  //
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-1",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-1",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-1",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-2");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-1",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-2",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-2",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      //changeThemePage("exercise", "1-1");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-2",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-3");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-2",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-3",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-3",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      //changeThemePage("exercise", "1-2");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-3",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-4");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-3",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-4",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-4",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      changeThemePage("exercise", "1-3");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-4",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-5");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-4",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-5",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-5",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      // changeThemePage("exercise", "1-4");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-5",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-6");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-5",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-6",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-6",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      //changeThemePage("exercise", "1-5");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-6",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-7");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-6",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-7",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-7",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      // changeThemePage("exercise", "1-6");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-7",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-7",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  // exercise 2
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-1",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-1",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-1",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "2-2");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-1",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-2",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-2",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-2",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "2-3");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-2",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-3",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-3",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-3",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "2-4");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-3",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-4",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-4",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-4",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-4",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  // exercise 3
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-1",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-1",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-1",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "3-2");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-1",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-2",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-2",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-2",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "3-3");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-2",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-3",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-3",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-3",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "3-4");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-3",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-4",
+    },
+    sharp: "iconBtn",
+    text: "X",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y + h);
+        mainCtx.lineTo(x + w, y);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: 20,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-4",
+    },
+    sharp: "iconBtn",
+    text: "<",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w, y);
+        mainCtx.lineTo(x, y + h / 2);
+        mainCtx.lineTo(x + w, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 - 200,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-4",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.fillStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x, y);
+        mainCtx.lineTo(x + w, y + h / 2);
+        mainCtx.lineTo(x, y + h);
+        mainCtx.closePath();
+        mainCtx.fill();
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width / 2 + 180,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: null,
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-4",
+    },
+    sharp: "iconBtn",
+    text: "||",
+    icon: {
+      direction: "left",
+      size: {
+        w: 30,
+        h: 30,
+      },
+      drawIcon: function (x, y, w, h) {
+        mainCtx.lineWidth = 5;
+        mainCtx.strokeStyle = "#fff";
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + w / 4, y);
+        mainCtx.lineTo(x + w / 4, y + h);
+        mainCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(x + (w / 4) * 3, y);
+        mainCtx.lineTo(x + (w / 4) * 3, y + h);
+        mainCtx.stroke();
+      },
+    },
+    showText: false,
+    size: {
+      width: 30,
+      heigth: 30,
+    },
+    position: {
+      x: mainCanvas.width - 50,
+      y: 40,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width - 50;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: function () {
+      exercisParameter.status = "pause";
+      updateDialog = showStartExerciseDialog;
+      updateDialog();
+      showDialog();
+    },
+  },
 ];
 
 var updateDialog = null;
-var dialogButtons = null;
+var dialogButtons = [];
 var dialogParameters = {};
 
 var loaded = 0;
@@ -679,7 +3607,6 @@ function updateComponentPosition() {
 }
 
 function updateTheme() {
-  //console.log("setTheme" + JSON.stringify(state));
   setBackGround();
   gameCanvas.style.zIndex = -1;
   switch (state.theme) {
@@ -692,19 +3619,13 @@ function updateTheme() {
           break;
         case "intro":
           drawIntro();
-          //alert('int');
           break;
-        // case "content":
-        //   drawContent();
-        //   break;
       }
-
       break;
     case "health":
       switch (state.page) {
         case "main":
         default:
-          //alert('??');
           drawMain();
           break;
       }
@@ -724,31 +3645,487 @@ function updateTheme() {
     case "exercise":
       drawExercise();
       switch (state.page) {
-        case "1":
+        case "1-1":
         default:
-          drawExerciseText(10, "1~3", [
+          drawExerciseText("Carpal Tunnel 1/7", 10, "1~3", [
             "放鬆動作：",
             "手肘彎曲撐著，手腕維持正中位置，手指放鬆。",
           ]);
+          setupExercise(3, 10, [images["Ex01"], images["Ex02"]], [5, 10], {
+            theme: "exercise",
+            page: "1-2",
+          });
+
           if (state.firstUse.exersise[0]) {
-            //if (true) {
-            //console.log('t');
             updateDialog = showReadyExerciseDialog;
-            dialogParameters.index = 0; 
-            dialogParameters.exerciseName = "腕隧道舒緩";
+            dialogParameters.index = 0;
             dialogParameters.numPart = "7";
             dialogParameters.seconds = "10~30";
           } else {
             updateDialog = showStartExerciseDialog;
           }
-
+          dialogParameters.exerciseName = "腕隧道舒緩";
           updateDialog();
           showDialog();
+          break;
+        case "1-2":
+          drawExerciseText("Carpal Tunnel 2/7", 10, "1~3", [
+            "手腕伸直/彎曲運動：",
+            "前臂做適當支撐，手垂出桌緣，單純做手腕伸直/彎曲的動作。",
+          ]);
+          setupExercise(
+            3,
+            10,
+            [images["Ex03"], images["Ex04"], images["Ex05"], images["Ex06"]],
+            [4, 5, 9, 10],
+            {
+              theme: "exercise",
+              page: "1-3",
+            }
+          );
+          startExercise();
+          break;
+        case "1-3":
+          drawExerciseText("Carpal Tunnel 3/7", 10, "1~3", [
+            "手指伸直運動：",
+            "手肘彎曲撐著，手腕維持正中位置，手指伸直。",
+          ]);
+          setupExercise(3, 10, [images["Ex07"], images["Ex08"]], [5, 10], {
+            theme: "exercise",
+            page: "1-4",
+          });
+          startExercise();
+          break;
+        case "1-4":
+          drawExerciseText("Carpal Tunnel 4/7", 10, "1~3", [
+            "手指小勾狀運動：",
+            "前兩個指節做彎曲動作。",
+          ]);
+          setupExercise(3, 10, [images["Ex09"]], [10], {
+            theme: "exercise",
+            page: "1-5",
+          });
+          startExercise();
+          break;
+        case "1-5":
+          drawExerciseText("Carpal Tunnel 5/7", 10, "1~3", [
+            "手指七型運動：",
+            "前兩指節伸直，掌指關節彎曲。",
+          ]);
+          setupExercise(3, 10, [images["Ex10"]], [10], {
+            theme: "exercise",
+            page: "1-6",
+          });
+          startExercise();
+          break;
+        case "1-6":
+          drawExerciseText("Carpal Tunnel 6/7", 10, "1~3", [
+            "手指大勾狀運動：",
+            "手指做彎曲動作。",
+          ]);
+          setupExercise(3, 10, [images["Ex11"]], [10], {
+            theme: "exercise",
+            page: "1-7",
+          });
+          startExercise();
+          break;
+        case "1-7":
+          drawExerciseText("Carpal Tunnel 7/7", 10, "1~3", [
+            "手握拳運動：",
+            "做握拳的動作。",
+          ]);
+          setupExercise(3, 10, [images["Ex12"], images["Ex13"]], [5, 10], null);
+          startExercise();
+          break;
+
+        case "2-1":
+          drawExerciseText("Neck & Shoulder 1/4", 20, "3", [
+            "身體打直，右手伸過頭頂左邊，",
+            "將頭往右下方扳，感覺頸部側邊被拉伸。",
+            "每10秒換邊。",
+          ]);
+          setupExercise(
+            3,
+            20,
+            [images["Ex14"], images["Ex15"], images["Ex16"], images["Ex17"]],
+            [9, 10, 19, 20],
+            {
+              theme: "exercise",
+              page: "2-2",
+            }
+          );
+
+          if (state.firstUse.exersise[2]) {
+            updateDialog = showReadyExerciseDialog;
+            dialogParameters.index = 0;
+            dialogParameters.numPart = "4";
+            dialogParameters.seconds = "60";
+          } else {
+            updateDialog = showStartExerciseDialog;
+          }
+          dialogParameters.exerciseName = "肩頸運動";
+          updateDialog();
+          showDialog();
+          break;
+        case "2-2":
+          drawExerciseText("Neck & Shoulder 2/4", 20, "3", [
+            "左手向右前方伸直，右手向上彎曲，",
+            "夾住左手肘，往右邊拉伸，感覺左肩與左側邊被拉伸。",
+            "每10秒換邊。",
+          ]);
+          setupExercise(
+            3,
+            20,
+            [images["Ex18"], images["Ex19"], images["Ex20"], images["Ex21"]],
+            [9, 10, 19, 20],
+            {
+              theme: "exercise",
+              page: "2-3",
+            }
+          );
+          startExercise();
+          break;
+        case "2-3":
+          drawExerciseText(
+            "Neck & Shoulder 3/4",
+            2,
+            "3",
+            [
+              "身體打直，兩邊肩膀往上舉，然後往後至前，",
+              "做轉圈圈的動作，反轉3圈，再正轉3圈。",
+            ],
+            true
+          );
+          setupExercise(
+            1,
+            24,
+            [
+              images["Ex22"],
+              images["Ex23"],
+              images["Ex22"],
+              images["Ex23"],
+              images["Ex22"],
+              images["Ex23"],
+              images["Ex24"],
+              images["Ex25"],
+              images["Ex24"],
+              images["Ex25"],
+              images["Ex24"],
+              images["Ex25"],
+            ],
+            [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24],
+            {
+              theme: "exercise",
+              page: "2-4",
+            }
+          );
+          startExercise();
+          break;
+        case "2-4":
+          drawExerciseText("Neck & Shoulder 4/4", 20, "3", [
+            "雙手手指交叉，舉到頭頂正上方，",
+            "手掌往上翻往上拉伸，感覺手臂與身體兩側被拉伸。",
+            "每10秒換邊。",
+          ]);
+          setupExercise(
+            3,
+            20,
+            [images["Ex26"], images["Ex27"], images["Ex28"], images["Ex29"]],
+            [9, 10, 19, 20],
+            null
+          );
+          startExercise();
+          break;
+
+        case "3-1":
+          drawExerciseText("Elbow 1/4", 10, "5~10", [
+            "將前臂至於桌邊，手腕伸出桌緣。",
+            "輕握拳，掌面朝下，先維持手腕於正中位置，手腕往下屈曲。",
+            "每10秒休息5秒。",
+          ]);
+          setupExercise(
+            10,
+            15,
+            [images["Ex30"], images["Ex31"], images["Ex32"], images["Ex33"]],
+            [9, 10, 14, 15],
+            {
+              theme: "exercise",
+              page: "3-2",
+            },
+            true
+          );
+
+          if (state.firstUse.exersise[3]) {
+            updateDialog = showReadyExerciseDialog;
+            dialogParameters.index = 0;
+            dialogParameters.numPart = "4";
+            dialogParameters.seconds = "50~100";
+          } else {
+            updateDialog = showStartExerciseDialog;
+          }
+          dialogParameters.exerciseName = "手肘運動";
+          updateDialog();
+          showDialog();
+          break;
+        case "3-2":
+          drawExerciseText("Elbow 2/4", 10, "5~10", [
+            "將前臂至於桌邊，手腕伸出桌緣。",
+            "輕握拳，掌面朝下，先維持手腕於正中位置，手腕往上屈曲。",
+            "每10秒休息5秒。",
+          ]);
+          setupExercise(
+            10,
+            15,
+            [images["Ex34"], images["Ex35"], images["Ex36"], images["Ex37"]],
+            [9, 10, 14, 15],
+            {
+              theme: "exercise",
+              page: "3-3",
+            },
+            true
+          );
+          startExercise();
+          break;
+        case "3-3":
+          drawExerciseText("Elbow 3/4", 10, "5~10", [
+            "將前臂至於桌邊，手腕伸出桌緣。輕握拳，拳眼朝上，",
+            "先維持手腕於正中位置，手腕（即小指側）往下屈曲。",
+            "每10秒休息5秒。",
+          ]);
+          setupExercise(
+            10,
+            15,
+            [images["Ex38"], images["Ex39"], images["Ex40"], images["Ex41"]],
+            [9, 10, 14, 15],
+            {
+              theme: "exercise",
+              page: "3-4",
+            },
+            true
+          );
+          startExercise();
+          break;
+        case "3-4":
+          drawExerciseText("Elbow 4/4", 10, "5~10", [
+            "將前臂至於桌邊，手腕伸出桌緣。輕握拳，拳眼朝上，",
+            "先維持手腕於正中位置，手腕（即小指側）往上屈曲。",
+            "每10秒休息5秒。",
+          ]);
+          setupExercise(
+            10,
+            15,
+            [images["Ex42"], images["Ex43"], images["Ex44"], images["Ex45"]],
+            [9, 10, 14, 15],
+            null,
+            true
+          );
+          startExercise();
           break;
       }
       break;
   }
   drawButtons();
+}
+
+function setupExercise(
+  numRound,
+  seconds,
+  picArr,
+  periodArr,
+  nextThemePage,
+  breakTime
+) {
+  //console.log(picArr);
+  //mainCtx.drawImage(picArr[0],mainCanvas.width*0.6,120, 473, 564);//3285*3918
+  let _bkt = breakTime || false;
+  mainCtx.drawImage(
+    picArr[0],
+    mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100,
+    120,
+    473,
+    564
+  );
+
+  mainCtx.font = "70px NotoSansTC-Light";
+  mainCtx.textBaseline = "top";
+  mainCtx.textAlign = "center";
+  mainCtx.fillStyle = "#FFAFAF";
+  if (_bkt) {
+    mainCtx.fillText(
+      seconds - 5,
+      (mainCanvas.width * 0.6) / 2,
+      mainCanvas.height / 2 - 60
+    );
+  } else {
+    mainCtx.fillText(
+      seconds,
+      (mainCanvas.width * 0.6) / 2,
+      mainCanvas.height / 2 - 60
+    );
+  }
+
+  exercisParameter = {
+    status: "init",
+    ruond: numRound,
+    totalTime: seconds * 1000, // to ms
+    pics: picArr,
+    periodArr: periodArr.map((p) => p * 1000),
+    next: nextThemePage,
+  };
+}
+
+function startExercise() {
+  exercisParameter.status = "run";
+  finishedRound = 0;
+  start = null;
+  animattionIndex = 0;
+  window.requestAnimationFrame(updateExercise);
+}
+
+function resumeExercise() {
+  exercisParameter.status = "run";
+  start = null;
+  animattionIndex = 0;
+  window.requestAnimationFrame(updateExercise);
+}
+
+// function stopExercise(){
+//   exercisParameter = {};
+//   finishedRound = 0;
+//   start = null;
+//   animattionIndex = 0;
+// }
+
+var start = null;
+var animattionIndex = 0;
+var finishedRound = 0;
+var _backupValue = 0;
+function updateExercise(timestamp) {
+  if (exercisParameter.status == "run") {
+    //console.log('still run...');
+    if (!start) start = timestamp;
+    let progress = timestamp - start;
+
+    // update frame
+    let picX = mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100;
+    let picY = 120;
+
+    mainCtx.fillStyle = "#EBF5FA";
+    mainCtx.fillRect(
+      picX,
+      picY,
+      mainCanvas.width - picX - 40,
+      mainCanvas.height - picY - 40
+    );
+
+    mainCtx.fillStyle = "#E4E8EA";
+    mainCtx.fillRect(
+      (mainCanvas.width * 0.6) / 2 - 90,
+      mainCanvas.height / 2 - 60,
+      180,
+      80
+    );
+
+    mainCtx.drawImage(
+      exercisParameter.pics[animattionIndex],
+      picX,
+      picY,
+      473,
+      564
+    );
+    //mainCtx.drawImage(exercisParameter.pics[animattionIndex], picX, picY);
+
+    mainCtx.fillStyle = "#FFAFAF";
+    let second = 0;
+    if (state.theme == "exercise" && state.page == "2-3") {
+      let _count = animattionIndex; // 0~11
+      if (_count >= 6) {
+        _count -= 6;
+      }
+      if (_count % 2) {
+        second = Math.ceil(Math.sqrt(_count));
+        _backupValue = second;
+      } else {
+        second = _backupValue;
+      }
+    } else if (state.theme == "exercise" && state.page.split("-")[0] == "3") {
+      //console.log(3);
+      second =
+        Math.floor((exercisParameter.totalTime - progress) / 1000) + 1 - 5;
+      mainCtx.fillStyle = "#E4E8EA";
+      mainCtx.fillRect(30, 140, mainCanvas.width * 0.6 - 30, 40);
+      mainCtx.textBaseline = "middle";
+      mainCtx.textAlign = "center";
+      mainCtx.fillStyle = "#555555";
+      mainCtx.font = "34px NotoSansTC-Light";
+      if (second <= 0) {
+        mainCtx.fillText(
+          "10 秒 / 休息",
+          30 + (mainCanvas.width * 0.6) / 2,
+          160
+        );
+        second = 5-(Math.abs(second));
+        //   //second = 0; 0 -1 -2 -3 -4
+      } else {
+        mainCtx.fillText(
+          "10 秒 / 5~10 次",
+          30 + (mainCanvas.width * 0.6) / 2,
+          160
+        );
+        mainCtx.fillStyle = "#FFAFAF";
+      }
+    } else {
+      second = Math.floor((exercisParameter.totalTime - progress) / 1000) + 1;
+      if (second < 0) second = 0;
+    }
+
+    mainCtx.font = "70px NotoSansTC-Light";
+    mainCtx.textBaseline = "top";
+    mainCtx.textAlign = "center";
+    mainCtx.fillText(
+      second,
+      (mainCanvas.width * 0.6) / 2,
+      mainCanvas.height / 2 - 60
+    );
+    // console.log(progress);
+    if (
+      progress >= exercisParameter.periodArr[animattionIndex] &&
+      animattionIndex < exercisParameter.pics.length - 1
+    ) {
+      //console.log(animattionIndex);
+      animattionIndex++;
+    }
+
+    if (progress < exercisParameter.totalTime) {
+      window.requestAnimationFrame(updateExercise);
+    } else {
+      finishedRound++;
+      if (finishedRound >= exercisParameter.ruond) {
+        // next
+        //console.log("next");
+        if (exercisParameter.next) {
+          changeThemePage(
+            exercisParameter.next.theme,
+            exercisParameter.next.page
+          );
+        } else {
+          //console.log("get start");
+          state.gameObjects.stars++;
+
+          updateDialog = finishExerciseDialog;
+          //console.log(dialogParameters);
+          updateDialog();
+          showDialog();
+        }
+      } else {
+        start = null;
+        animattionIndex = 0;
+        window.requestAnimationFrame(updateExercise);
+      }
+      //console.log(finishedRound);
+      //console.log("dead")
+    }
+  }
 }
 
 function redraw() {
@@ -816,7 +4193,6 @@ function roundRect(ctx, x, y, width, height, radius, boardOnly) {
 
 function drawButtons() {
   buttons.forEach((btn) => {
-    //console.log(btn);
     if (btn.belong.theme == state.theme && btn.belong.page == state.page) {
       switch (btn.sharp) {
         case "normal":
@@ -841,12 +4217,7 @@ function drawButtons() {
               (btn.font.size * btn.text.length) / 2,
             btn.position.y + btn.size.heigth / 2 - btn.font.size / 2 + 3
           );
-          //console.log(btn.font.size * btn.text.length);
-
-          //console.log(btn.text.length);
-          //console.log('hi');
           break;
-
         case "themeSelector_l":
           mainCtx.fillStyle = btn.color || "white";
           roundRect(
@@ -921,7 +4292,6 @@ function drawButtons() {
             btn.position.y + btn.size.heigth - 30
           );
           break;
-
         case "iconBtn":
           if (btn.icon.direction == "left") {
             btn.icon.drawIcon(
@@ -930,15 +4300,17 @@ function drawButtons() {
               btn.icon.size.w,
               btn.icon.size.h
             );
-            mainCtx.font = btn.font.size + "px " + btn.font.family;
-            mainCtx.fillStyle = btn.font.color;
-            mainCtx.textBaseline = "middle";
-            mainCtx.textAlign = "left";
-            mainCtx.fillText(
-              btn.text,
-              btn.position.x + btn.icon.size.w + 10,
-              btn.position.y + 18
-            );
+            if (btn.showText) {
+              mainCtx.font = btn.font.size + "px " + btn.font.family;
+              mainCtx.fillStyle = btn.font.color;
+              mainCtx.textBaseline = "middle";
+              mainCtx.textAlign = "left";
+              mainCtx.fillText(
+                btn.text,
+                btn.position.x + btn.icon.size.w + 10,
+                btn.position.y + 18
+              );
+            }
           } else {
             btn.icon.drawIcon(
               btn.position.x + btn.size.width - btn.icon.size.w,
@@ -946,18 +4318,18 @@ function drawButtons() {
               btn.icon.size.w,
               btn.icon.size.h
             );
-
-            mainCtx.font = btn.font.size + "px " + btn.font.family;
-            mainCtx.fillStyle = btn.font.color;
-            mainCtx.textBaseline = "middle";
-            mainCtx.textAlign = "left";
-            mainCtx.fillText(
-              btn.text,
-              btn.position.x - 10,
-              btn.position.y + 18
-            );
+            if (btn.showText) {
+              mainCtx.font = btn.font.size + "px " + btn.font.family;
+              mainCtx.fillStyle = btn.font.color;
+              mainCtx.textBaseline = "middle";
+              mainCtx.textAlign = "left";
+              mainCtx.fillText(
+                btn.text,
+                btn.position.x - 10,
+                btn.position.y + 18
+              );
+            }
           }
-
           break;
       }
     }
@@ -970,9 +4342,9 @@ function showDialog() {
 
 function closeDialog() {
   dialogCtx.clearRect(0, 0, dialogCanvas.width, dialogCanvas.height);
-  dialogButtons = null;
+  dialogButtons = [];
   updateDialog = null;
-  dialogParameters = {};
+  //dialogParameters = {};
   dialogCanvas.style.zIndex = -1;
 }
 
@@ -987,16 +4359,12 @@ mainCanvas.addEventListener("click", function (e) {
   let _page = state.page;
   buttons.forEach((btn) => {
     if (_theme == btn.belong.theme && _page == btn.belong.page) {
-      //console.log("btn position" + JSON.stringify(btn.position));
-      //console.log("btn size" + JSON.stringify(btn.size));
       if (
         e.layerX <= btn.position.x + btn.size.width &&
         e.layerX >= btn.position.x &&
         e.layerY >= btn.position.y &&
         e.layerY <= btn.position.y + btn.size.heigth
       ) {
-        // alert(btn.text);
-        //console.log(btn.action);
         if (btn.action) btn.action();
       }
     }
@@ -1004,36 +4372,18 @@ mainCanvas.addEventListener("click", function (e) {
 });
 
 dialogCanvas.addEventListener("click", function (e) {
-  if (dialogButtons) {
-    if (
-      e.layerX <= dialogButtons.range.x + dialogButtons.range.w &&
-      e.layerX >= dialogButtons.range.x &&
-      e.layerY <= dialogButtons.range.y + dialogButtons.range.h &&
-      e.layerY >= dialogButtons.range.y
-    )
-      if (dialogButtons.action) dialogButtons.action();
+  if (dialogButtons.length > 0) {
+    dialogButtons.forEach((btn) => {
+      if (
+        e.layerX <= btn.range.x + btn.range.w &&
+        e.layerX >= btn.range.x &&
+        e.layerY <= btn.range.y + btn.range.h &&
+        e.layerY >= btn.range.y
+      )
+        if (btn.action) btn.action();
+    });
   }
-  // let zIndex = dialogCanvas.style.zIndex;
-  // dialogButtons.forEach((btn) => {
-  //   if (zIndex) {
-  //     console.log(JSON.stringify(btn));
-  //   } else {
-  //     console.log("no");
-  //   }
-  //   //   if(btn.action) btn.action();
-  // });
 });
-
-//ctx.fillStyle = 'rgb(200, 0, 0)';
-// ctx.fillRect(10, 10, 50, 50);
-// ctx.fillStyle = 'red';
-//const { width, height } = canvas.getBoundingClientRect();
-//console.log(canvas.width);
-//console.log(canvas.height);
-
-// ctx.moveTo(0, 0);
-// ctx.lineTo(200, 100);
-// ctx.stroke();
 
 // Buttons Action Define
 function startBtnAction() {
@@ -1044,10 +4394,8 @@ function startBtnAction() {
 
   if (state.firstUse.health) {
     changeThemePage("home", "intro");
-    //state.page = 'hehe';
   } else {
     changeThemePage("health", "main");
-    //alert("not first");
   }
 }
 
@@ -1206,7 +4554,7 @@ function showContentDialog() {
     boxPosY + textYbase + textHeight * 9
   );
 
-  dialogButtons = {
+  dialogButtons.push({
     range: {
       x: btnPosX,
       y: btnPosY,
@@ -1217,15 +4565,10 @@ function showContentDialog() {
       closeDialog();
       state.firstUse.health = false;
     },
-  };
-
-  // dialogButtons.push({
-  //   test: "hshs",
-  // });
+  });
 }
 
 function showStartExerciseDialog() {
-  //console.log("??");
   let middleX = dialogCanvas.width / 2;
   let middleY = dialogCanvas.height / 2;
 
@@ -1246,7 +4589,7 @@ function showStartExerciseDialog() {
   dialogCtx.fillText("開　始", middleX, middleY - 50);
   dialogCtx.fillText("START", middleX, middleY + 50);
 
-  dialogButtons = {
+  dialogButtons.push({
     range: {
       x: middleX - 150,
       y: middleY - 150,
@@ -1255,8 +4598,14 @@ function showStartExerciseDialog() {
     },
     action: function () {
       closeDialog();
+      //console.log(exercisParameter);
+      if (exercisParameter.status == "pause") {
+        resumeExercise();
+      } else {
+        startExercise();
+      }
     },
-  };
+  });
 }
 
 function showReadyExerciseDialog() {
@@ -1297,14 +4646,13 @@ function showReadyExerciseDialog() {
   let BtnY = baseY + step * 8 - 50;
   roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
 
-  // dialogCtx.font = "40px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.font = "34px NotoSansTC-Light";
   dialogCtx.textBaseline = "top";
   dialogCtx.textAlign = "left";
   dialogCtx.fillText("確　定", BtnX + 46, BtnY + 20);
 
-  dialogButtons = {
+  dialogButtons.push({
     range: {
       x: BtnX,
       y: BtnY,
@@ -1318,7 +4666,134 @@ function showReadyExerciseDialog() {
       updateDialog();
       showDialog();
     },
-  };
+  });
+}
+
+function confirmExitDialog() {
+  exercisParameter.status = "pause";
+
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+
+  dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
+  roundRect(dialogCtx, middleX - 400, middleY - 250, 800, 500);
+
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  let baseY = middleY - 80;
+  let step = 42;
+  dialogCtx.fillText("若現在關閉，將不會得到", middleX - 47, baseY);
+  dialogCtx.drawImage(images["W05"], middleX + 155, baseY - 50);
+  dialogCtx.fillText("。", middleX + 260, baseY);
+
+  dialogCtx.fillStyle = "#FFAFAF";
+  dialogCtx.fillText("若感到不適，請立即停止。", middleX, baseY + step * 3);
+
+  dialogCtx.fillStyle = "#73A5BE";
+  let Btn1X = middleX + 20;
+  let Btn2X = middleX - 220;
+  let BtnY = baseY + step * 5;
+  roundRect(dialogCtx, Btn1X, BtnY, 200, 70, 10);
+
+  dialogCtx.fillStyle = "#A7A7A7";
+  roundRect(dialogCtx, Btn2X, BtnY, 200, 70, 10);
+
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.font = "34px NotoSansTC-Light";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillText("繼　續", Btn1X + 46, BtnY + 20);
+  dialogCtx.fillText("離　開", Btn2X + 46, BtnY + 20);
+
+  dialogButtons.push({
+    range: {
+      x: Btn1X,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      closeDialog();
+      resumeExercise();
+    },
+  });
+  dialogButtons.push({
+    range: {
+      x: Btn2X,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      closeDialog();
+      changeThemePage("health", "main");
+    },
+  });
+
+  //
+}
+
+function finishExerciseDialog() {
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+
+  dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
+  roundRect(dialogCtx, middleX - 400, middleY - 250, 800, 500);
+
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  let baseY = middleY - 140;
+  let step = 70;
+  //console.log();
+  dialogCtx.fillText(
+    '您已完成"' + dialogParameters.exerciseName + '"',
+    middleX,
+    baseY
+  );
+  dialogCtx.fillText("恭喜獲得", middleX - 47, baseY + step);
+  dialogCtx.drawImage(images["W05"], middleX + 40, baseY + step - 50);
+
+  dialogCtx.fillStyle = "#FFAFAF";
+  dialogCtx.fillText(
+    "請先休息，不要馬上開始其他項目。",
+    middleX,
+    baseY + step * 3
+  );
+
+  dialogCtx.fillStyle = "#73A5BE";
+  let BtnX = middleX - 100;
+  //let Btn2X = middleX - 220;
+  let BtnY = baseY + step * 4;
+  roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
+
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.font = "34px NotoSansTC-Light";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillText("確　定", BtnX + 46, BtnY + 20);
+
+  dialogButtons.push({
+    range: {
+      x: BtnX,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      closeDialog();
+      changeThemePage("health", "main");
+      //exercisParameter.status = "run";
+      //startExercise();
+    },
+  });
 }
 
 function intorBtnAction() {
@@ -1329,6 +4804,7 @@ function intorBtnAction() {
 }
 
 function tastyIntorBtnAction() {
+  state.firstUse.tasty = false;
   changeThemePage("tasty", "main");
   // updateDialog = showContentDialog;
   // updateDialog();
@@ -1452,7 +4928,11 @@ function drawMain() {
   mainCtx.drawImage(images["W05"], mainCanvas.width / 2 - 540, 20);
 
   mainCtx.font = "32px NotoSansTC-Light";
-  mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
+  mainCtx.fillText(
+    "- " + state.gameObjects.stars,
+    mainCanvas.width / 2 - 420,
+    75
+  );
   mainCtx.fillText("您可以選擇您要緩解的部分。", centerX, 120);
   mainCtx.fillText("完成後，您將獲得積分!", centerX, 160);
 
@@ -1466,8 +4946,7 @@ function drawMain() {
 }
 
 function drawExercise() {
-  //console.log('cc');
-  mainCtx.fillStyle = "#ECF4F9";
+  mainCtx.fillStyle = "#EBF5FA";
   roundRect(
     mainCtx,
     20,
@@ -1477,7 +4956,7 @@ function drawExercise() {
     10
   );
 
-  mainCtx.fillStyle = "#d5d5d5";
+  mainCtx.fillStyle = "#E4E8EA";
   roundRect(
     mainCtx,
     30,
@@ -1488,16 +4967,29 @@ function drawExercise() {
   );
 }
 
-function drawExerciseText(second, number, textArr) {
-  mainCtx.fillStyle = "#555555";
+function drawExerciseText(title, second, number, textArr, nosecound) {
+  let _nosecond = nosecound || false;
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
   mainCtx.font = "34px NotoSansTC-Light";
+  mainCtx.fillStyle = "#fff";
   mainCtx.fillText(
-    second + " 秒 / " + number + " 次",
-    30 + (mainCanvas.width * 0.6) / 2,
-    160
+    //"Neck & Shoulder 1/4",
+    title,
+    mainCanvas.width / 2,
+    55
   );
+  mainCtx.fillStyle = "#555555";
+
+  if (_nosecond) {
+    mainCtx.fillText(number + " 次", 30 + (mainCanvas.width * 0.6) / 2, 160);
+  } else {
+    mainCtx.fillText(
+      second + " 秒 / " + number + " 次",
+      30 + (mainCanvas.width * 0.6) / 2,
+      160
+    );
+  }
 
   mainCtx.font = "30px NotoSansTC-Light";
   textArr.forEach((line, i) => {
@@ -1530,27 +5022,13 @@ function drawExerciseText(second, number, textArr) {
   );
 }
 
-// function drawContent() {}
-
 function drawTastyIntro() {
   let middleX = mainCanvas.width / 2;
   // let middleY = mainCanvas.height / 2;
-  //let img = new Image();
-
-  // img.addEventListener(
-  //   "load",
-  //   function () {
-  //     mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100);
-  //     //mainCtx.drawImage(img, mainCanvas.width / 2 + 50, 100, 600, 576);
-  //   },
-  //   false
-  // );
-  // img.src = "../Src/Imgs/W-01.png"; //3126*3001
 
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
-  //let middleY = mainCanvas.height / 2;
 
   mainCtx.font = "40px NotoSansTC-Light";
   mainCtx.fillText("介 紹", mainCanvas.width / 2, 50);
@@ -1593,55 +5071,21 @@ function drawTastyIntro() {
   //   50,
   //   baseY + linStep * 5
   // );
-
-  // let img = new Image();
-
-  // img.addEventListener(
-  //   "load",
-  //   function () {
-  //     mainCtx.drawImage(img, middleX - 250, middleY - 40);
-  //     // mainCtx.drawImage(img, middleX - 270, middleY - 40, 83, 124);
-  //   },
-  //   false
-  // );
-  // img.src = "../Src/Imgs/W-07.png"; //418*626
-
-  // //console.log('home');
-  // mainCtx.font = "78px NotoSansTC-Light";
-  // mainCtx.fillStyle = "#FFF";
-  // mainCtx.textBaseline = "middle";
-  // mainCtx.textAlign = "center";
-  // mainCtx.fillText("Work ? out !", middleX, middleY);
 }
 
 function drawTastyMain() {
-  // gameCanvas.style= "board:1px solid red";
   updateGameZone();
-  //
-  // mainCtx.textBaseline = "middle";
-  // mainCtx.textAlign = "center";
-  // //let middleY = mainCanvas.height / 2;
-  // let centerX = mainCanvas.width / 2;
   mainCtx.font = "32px NotoSansTC-Light";
   mainCtx.fillStyle = "#fff";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
 
-  mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
+  mainCtx.fillText(
+    "- " + state.gameObjects.stars,
+    mainCanvas.width / 2 - 420,
+    75
+  );
   mainCtx.drawImage(images["W05"], mainCanvas.width / 2 - 540, 20);
-
-  // mainCtx.font = "32px NotoSansTC-Light";
-  // mainCtx.fillText("- 0", mainCanvas.width / 2 - 420, 75);
-  // mainCtx.fillText("您可以選擇您要緩解的部分。", centerX, 120);
-  // mainCtx.fillText("完成後，您將獲得積分!", centerX, 160);
-
-  // mainCtx.fillText("1", centerX - 360, mainCanvas.height / 2 + 230);
-  // mainCtx.fillText("2", centerX, mainCanvas.height / 2 + 230);
-  // mainCtx.fillText("3", centerX + 360, mainCanvas.height / 2 + 230);
-
-  // mainCtx.fillStyle = "#f00";
-  // mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 75);
-  // mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 40);
 }
 
 function updateGameZone() {
@@ -1675,20 +5119,6 @@ function updateGameZone() {
     _gameZoneY += 150;
     _gameZoneX = gameZoneX;
   });
-  // console.log(gameCanvas.offsetTop);
-  // gameCtx.strokeStyle = "#B2caff";
-  //      //mainCtx.strokeStyle = "#B2CA9D";
-  // //     //     //mainCtx.strokeStyle = 'rgba(255,255,255,0.2)'
-  // gameCtx.lineWidth = 30;
-  //     roundRect(
-  //       gameCtx,
-  //       0,
-  //       0,
-  //       gameCanvas.width,
-  //       gameCanvas.height,
-  //       60,
-  //       true
-  //     );
 }
 
 var isDrag = false;
