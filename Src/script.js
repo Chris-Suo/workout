@@ -276,10 +276,6 @@ var buttons = [
       width: 200,
       heigth: 70,
     },
-    position: {
-      x: mainCanvas.width / 2 - 100,
-      y: mainCanvas.height - 120,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - this.size.width / 2;
       this.position.y = mainCanvas.height - 120;
@@ -302,10 +298,6 @@ var buttons = [
     size: {
       width: 200,
       heigth: 70,
-    },
-    position: {
-      x: mainCanvas.width / 2 - 100,
-      y: mainCanvas.height - 120,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - this.size.width / 2;
@@ -330,10 +322,6 @@ var buttons = [
       width: 200,
       heigth: 70,
     },
-    position: {
-      x: mainCanvas.width / 2 - 100,
-      y: mainCanvas.height - 120,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - this.size.width / 2;
       this.position.y = mainCanvas.height - 120;
@@ -349,6 +337,29 @@ var buttons = [
   },
   {
     belong: {
+      theme: "tasty",
+      page: "main",
+    },
+    text: "建造",
+    size: {
+      width: 100,
+      heigth: 60,
+    },
+    setPosition: function () {
+      this.position.x = 320;
+      this.position.y = 40;
+    },
+    font: {
+      size: 36,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "normal",
+    color: "#ECD276",
+    //action: intorBtnAction,
+  },
+  {
+    belong: {
       theme: "health",
       page: "main",
     },
@@ -356,10 +367,6 @@ var buttons = [
     size: {
       width: 200,
       heigth: 60,
-    },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 20,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
@@ -383,10 +390,6 @@ var buttons = [
     size: {
       width: 200,
       heigth: 60,
-    },
-    position: {
-      x: mainCanvas.width / 2,
-      y: 20,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2;
@@ -417,10 +420,6 @@ var buttons = [
       width: 200,
       heigth: 60,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 20,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 20;
@@ -446,10 +445,6 @@ var buttons = [
       width: 200,
       heigth: 60,
     },
-    position: {
-      x: mainCanvas.width / 2,
-      y: 20,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2;
       this.position.y = 20;
@@ -472,10 +467,6 @@ var buttons = [
     size: {
       width: 350,
       heigth: 350,
-    },
-    position: {
-      x: mainCanvas.width / 2 - 535,
-      y: mainCanvas.height / 2 - 150,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 535;
@@ -510,10 +501,6 @@ var buttons = [
       width: 350,
       heigth: 350,
     },
-    position: {
-      x: mainCanvas.width / 2 - 175,
-      y: mainCanvas.height / 2 - 150,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 175;
       this.position.y = mainCanvas.height / 2 - 150;
@@ -546,10 +533,6 @@ var buttons = [
     size: {
       width: 350,
       heigth: 350,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 185,
-      y: mainCanvas.height / 2 - 150,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 185;
@@ -606,10 +589,6 @@ var buttons = [
       width: 130,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 535,
-      y: 130,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 535;
       this.position.y = 130;
@@ -619,7 +598,6 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-
     action: function () {
       updateDialog = showContentDialog;
       updateDialog();
@@ -662,10 +640,6 @@ var buttons = [
       width: 130,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 + 535 - 130,
-      y: 130,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 535 - this.size.width;
       this.position.y = 130;
@@ -675,7 +649,6 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-
     action: function () {
       changeThemePage("home", "intro");
       //updateDialog = showContentDialog;
@@ -684,6 +657,7 @@ var buttons = [
       //console.log("click!");
     },
   },
+  //exercise 1
   {
     belong: {
       theme: "exercise",
@@ -715,10 +689,6 @@ var buttons = [
     size: {
       width: 30,
       heigth: 30,
-    },
-    position: {
-      x: 20,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = 20;
@@ -763,10 +733,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -805,10 +771,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -856,10 +818,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -908,10 +866,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -955,10 +909,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -999,10 +949,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -1050,10 +996,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -1102,10 +1044,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -1149,10 +1087,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -1193,10 +1127,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -1244,10 +1174,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -1296,10 +1222,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -1343,10 +1265,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -1387,10 +1305,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -1438,10 +1352,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -1490,10 +1400,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -1537,10 +1443,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -1581,10 +1483,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -1632,10 +1530,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -1684,10 +1578,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -1731,10 +1621,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -1775,10 +1661,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -1826,10 +1708,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -1878,10 +1756,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -1925,10 +1799,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -1969,10 +1839,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -2015,10 +1881,6 @@ var buttons = [
     size: {
       width: 30,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
@@ -2069,10 +1931,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -2116,10 +1974,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -2158,10 +2012,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -2209,10 +2059,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -2261,10 +2107,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -2308,10 +2150,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -2350,10 +2188,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -2401,10 +2235,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -2453,10 +2283,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -2500,10 +2326,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -2542,10 +2364,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -2593,10 +2411,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -2645,10 +2459,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -2692,10 +2502,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -2734,10 +2540,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -2780,10 +2582,6 @@ var buttons = [
     size: {
       width: 30,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
@@ -2834,10 +2632,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -2881,10 +2675,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -2923,10 +2713,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -2974,10 +2760,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -3026,10 +2808,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -3073,10 +2851,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -3115,10 +2889,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -3166,10 +2936,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -3218,10 +2984,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = 20;
       this.position.y = 40;
@@ -3265,10 +3027,6 @@ var buttons = [
       width: 20,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -3307,10 +3065,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -3358,10 +3112,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
       this.position.y = 40;
@@ -3410,57 +3160,6 @@ var buttons = [
       width: 30,
       heigth: 30,
     },
-    position: {
-      x: 20,
-      y: 40,
-    },
-    setPosition: function () {
-      this.position.x = 20;
-      this.position.y = 40;
-    },
-    font: {
-      size: 34,
-      color: "white",
-      family: "NotoSansTC-Light",
-    },
-    action: function () {
-      updateDialog = confirmExitDialog;
-      updateDialog();
-      showDialog();
-    },
-  },
-  {
-    belong: {
-      theme: "exercise",
-      page: "3-4",
-    },
-    sharp: "iconBtn",
-    text: "<",
-    icon: {
-      direction: "left",
-      size: {
-        w: 20,
-        h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
-      },
-    },
-    showText: false,
-    size: {
-      width: 20,
-      heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 - 200,
-      y: 40,
-    },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 - 200;
       this.position.y = 40;
@@ -3499,10 +3198,6 @@ var buttons = [
     size: {
       width: 20,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width / 2 + 180,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width / 2 + 180;
@@ -3545,10 +3240,6 @@ var buttons = [
     size: {
       width: 30,
       heigth: 30,
-    },
-    position: {
-      x: mainCanvas.width - 50,
-      y: 40,
     },
     setPosition: function () {
       this.position.x = mainCanvas.width - 50;
@@ -3602,6 +3293,7 @@ initialize();
 
 function updateComponentPosition() {
   buttons.forEach((btn) => {
+    btn.position = {x:0, y:0};
     btn.setPosition();
   });
 }
@@ -4064,7 +3756,7 @@ function updateExercise(timestamp) {
           30 + (mainCanvas.width * 0.6) / 2,
           160
         );
-        second = 5-(Math.abs(second));
+        second = 5 - Math.abs(second);
         //   //second = 0; 0 -1 -2 -3 -4
       } else {
         mainCtx.fillText(
