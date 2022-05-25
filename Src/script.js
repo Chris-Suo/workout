@@ -197,17 +197,20 @@ var state = {
         { store: 0, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
-      ],
-      [
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
         { store: 0, state: 0 },
       ],
       [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
@@ -224,14 +227,6 @@ var state = {
         { store: -2, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
-      ],
-      [
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
-        { store: 0, state: 0 },
         { store: 0, state: 0 },
       ],
       [
@@ -242,8 +237,20 @@ var state = {
         { store: 0, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
+        { store: 0, state: 0 },
       ],
       [
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+        { store: 0, state: 0 },
+      ],
+      [
+        { store: 0, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
         { store: 0, state: 0 },
@@ -264,6 +271,37 @@ var state = {
     // ],
   },
 };
+
+function checkNeighbor(x, y) {
+  return (
+    (state.gameObjects.maps[x + 1] != undefined &&
+      state.gameObjects.maps[x + 1][y].store != 0) ||
+    (state.gameObjects.maps[x][y + 1] != undefined &&
+      state.gameObjects.maps[x][y + 1].store != 0) ||
+    (state.gameObjects.maps[x - 1] != undefined &&
+      state.gameObjects.maps[x - 1][y].store != 0) ||
+    (state.gameObjects.maps[x][y - 1] != undefined &&
+      state.gameObjects.maps[x][y - 1].store != 0)
+  );
+}
+
+function test() {
+  let _map = state.gameObjects.maps;
+  let _selectPool = [];
+  //3 3 , 3 4
+  for (let i = 0; i < _map.length; i++) {
+    for (let j = 0; j < _map[0].length; j++) {
+      //console.log(i,j);
+      //console.log(checkNeighbor(i, j));
+      if (_map[i][j].store == 0 && checkNeighbor(i, j)) {
+        //console.log(i, j);
+        //console.log(_map[i][j]);
+      }
+    }
+  }
+}
+
+test();
 
 var buttons = [
   {
@@ -3293,7 +3331,7 @@ initialize();
 
 function updateComponentPosition() {
   buttons.forEach((btn) => {
-    btn.position = {x:0, y:0};
+    btn.position = { x: 0, y: 0 };
     btn.setPosition();
   });
 }
@@ -4429,6 +4467,142 @@ function confirmExitDialog() {
   //
 }
 
+var selectBtnOpen = false;
+
+function drawSelectMenu() {
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+  dialogCtx.fillStyle = "#464646";
+  roundRect(dialogCtx, middleX - 250, middleY - 125, 500, 250);
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  dialogCtx.fillText("選擇地區", middleX, middleY - 50);
+  dialogCtx.fillStyle = "#c5c5c5";
+  roundRect(dialogCtx, middleX - 150, middleY - 20, 300, 50);
+
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.fillText("台南市", middleX - 140, middleY + 10);
+
+  dialogCtx.fillStyle = "#464646";
+  dialogCtx.beginPath();
+  dialogCtx.moveTo(middleX + 110, middleY - 10);
+  dialogCtx.lineTo(middleX + 140, middleY - 10);
+  dialogCtx.lineTo(middleX + 125, middleY + 20);
+  dialogCtx.closePath();
+  dialogCtx.fill();
+
+  let btnX = middleX - 90;
+  let btnY = middleY + 50;
+  dialogCtx.fillStyle = "#88A073";
+  roundRect(dialogCtx, btnX, btnY, 180, 50);
+  dialogCtx.fillStyle = "#fff";
+  dialogCtx.fillText("確　定", btnX + 36, btnY + 25);
+}
+
+function areaSelectDialog() {
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+  dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
+  drawSelectMenu();
+
+  dialogButtons.push({
+    range: {
+      x: middleX - 150,
+      y: middleY - 20,
+      w: 300,
+      h: 50,
+    },
+    action: function () {
+      if (selectBtnOpen) {
+        drawSelectMenu();
+        //console.log("op");
+      } else {
+        dialogCtx.fillStyle = "#c5c5c5";
+        roundRect(dialogCtx, middleX - 150, middleY + 20, 300, 50);
+
+        dialogCtx.textAlign = "left";
+        dialogCtx.fillStyle = "#FFF";
+        dialogCtx.font = "36px NotoSansTC-Light";
+        dialogCtx.fillText("尚未開放", middleX - 140, middleY + 50);
+        dialogCtx.strokeStyle = "#464646";
+        dialogCtx.beginPath();
+        dialogCtx.moveTo(middleX - 140, middleY + 25);
+        dialogCtx.lineTo(middleX + 140, middleY + 25);
+        dialogCtx.stroke();
+      }
+      selectBtnOpen = !selectBtnOpen;
+      //console.log('haha');
+      //areaSelectDialog.drawBtn();
+      //closeDialog();
+      //changeThemePage("health", "main");
+      //exercisParameter.status = "run";
+      //startExercise();
+    },
+  });
+  dialogButtons.push({
+    range: {
+      x: middleX - 90,
+      y: middleY + 50,
+      w: 180,
+      h: 50,
+    },
+    action: function () {
+      closeDialog();
+      updateDialog = tastyGuideDialog;
+      updateDialog();
+      showDialog();
+    },
+  });
+}
+
+function tastyGuideDialog() {
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+  dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
+
+  dialogCtx.fillStyle = "#fff";
+  dialogCtx.beginPath();
+  dialogCtx.moveTo(360, 150);
+  dialogCtx.lineTo(400, 150);
+  dialogCtx.lineTo(380, 110);
+  dialogCtx.fill();
+
+  let _baseY = 180;
+  let _step = 40;
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  dialogCtx.fillText("點擊消耗三點，", 350, _baseY);
+  dialogCtx.fillText("將可以在地圖上新增餐館，", 350, _baseY + _step);
+  dialogCtx.fillText("並獲得推薦。", 350, _baseY + _step * 2);
+
+  dialogCtx.beginPath();
+  dialogCtx.moveTo(dialogCanvas.width/2-20, 380);
+  dialogCtx.lineTo(dialogCanvas.width/2+20, 380);
+  dialogCtx.lineTo(dialogCanvas.width/2, 420);
+  dialogCtx.fill();
+
+  _baseY= 300;
+  dialogCtx.fillText("地圖起點，", dialogCanvas.width/2, _baseY);
+  dialogCtx.fillText("地圖可以上下左右進行滑動。", dialogCanvas.width/2, _baseY + _step);
+
+  dialogButtons.push({
+    range: {
+      x: 0,
+      y: 0,
+      w: dialogCanvas.width,
+      h: dialogCanvas.height,
+    },
+    action: function () {
+      closeDialog();
+    }, 
+  });
+}
+
 function finishExerciseDialog() {
   let middleX = dialogCanvas.width / 2;
   let middleY = dialogCanvas.height / 2;
@@ -4498,9 +4672,9 @@ function intorBtnAction() {
 function tastyIntorBtnAction() {
   state.firstUse.tasty = false;
   changeThemePage("tasty", "main");
-  // updateDialog = showContentDialog;
-  // updateDialog();
-  // showDialog();
+  updateDialog = areaSelectDialog;
+  updateDialog();
+  showDialog();
 }
 
 // Theme Define
