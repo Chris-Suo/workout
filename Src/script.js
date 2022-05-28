@@ -112,6 +112,15 @@ var images = {
   // A097: "../Src/Imgs/store/A-97.png",
   // A098: "../Src/Imgs/store/A-98.png",
   // A099: "../Src/Imgs/store/A-99.png",
+  B001: "../Src/Imgs/storeInfo/B-001.png",
+  T01: "../Src/Imgs/T01.png",
+  T02: "../Src/Imgs/T02.png",
+  T03: "../Src/Imgs/T03.png",
+  T04: "../Src/Imgs/T04.png",
+  T05: "../Src/Imgs/T05.png",
+  T06: "../Src/Imgs/T06.png",
+  T07: "../Src/Imgs/T07.png",
+  T08: "../Src/Imgs/T08.png",
   Ex01: "../Src/Imgs/exercise/A1.png",
   Ex02: "../Src/Imgs/exercise/A2.png",
   Ex03: "../Src/Imgs/exercise/A3.png",
@@ -165,6 +174,8 @@ var dialogCanvas = document.getElementById("dialogCanvas");
 var dialogCtx = dialogCanvas.getContext("2d");
 var gameCanvas = document.getElementById("gameCanvas");
 var gameCtx = gameCanvas.getContext("2d");
+var middleX = mainCanvas.width / 2;
+var middleY = mainCanvas.height / 2;
 var gameZoneX = -180;
 var gameZoneY = -150;
 
@@ -184,8 +195,8 @@ var state = {
     tasty: true,
     exersise: [true, true, true],
   },
-  theme: "home",
-  page: "home",
+  theme: "tasty",
+  page: "main",
   gameObjects: {
     stars: 0,
     maps: [
@@ -272,37 +283,6 @@ var state = {
   },
 };
 
-function checkNeighbor(x, y) {
-  return (
-    (state.gameObjects.maps[x + 1] != undefined &&
-      state.gameObjects.maps[x + 1][y].store != 0) ||
-    (state.gameObjects.maps[x][y + 1] != undefined &&
-      state.gameObjects.maps[x][y + 1].store != 0) ||
-    (state.gameObjects.maps[x - 1] != undefined &&
-      state.gameObjects.maps[x - 1][y].store != 0) ||
-    (state.gameObjects.maps[x][y - 1] != undefined &&
-      state.gameObjects.maps[x][y - 1].store != 0)
-  );
-}
-
-function test() {
-  let _map = state.gameObjects.maps;
-  let _selectPool = [];
-  //3 3 , 3 4
-  for (let i = 0; i < _map.length; i++) {
-    for (let j = 0; j < _map[0].length; j++) {
-      //console.log(i,j);
-      //console.log(checkNeighbor(i, j));
-      if (_map[i][j].store == 0 && checkNeighbor(i, j)) {
-        //console.log(i, j);
-        //console.log(_map[i][j]);
-      }
-    }
-  }
-}
-
-test();
-
 var buttons = [
   {
     belong: {
@@ -315,7 +295,7 @@ var buttons = [
       heigth: 70,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - this.size.width / 2;
+      this.position.x = middleX - 100;
       this.position.y = mainCanvas.height - 120;
     },
     font: {
@@ -338,7 +318,7 @@ var buttons = [
       heigth: 70,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - this.size.width / 2;
+      this.position.x = middleX - 100;
       this.position.y = mainCanvas.height - 120;
     },
     font: {
@@ -361,8 +341,8 @@ var buttons = [
       heigth: 70,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - this.size.width / 2;
-      this.position.y = mainCanvas.height - 120;
+      this.position.x = middleX - 100;
+      this.position.y = 570;
     },
     font: {
       size: 36,
@@ -384,8 +364,8 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = 320;
-      this.position.y = 40;
+      this.position.x = mainCanvas.width / 2 - 370;
+      this.position.y = 20;
     },
     font: {
       size: 36,
@@ -394,7 +374,11 @@ var buttons = [
     },
     sharp: "normal",
     color: "#ECD276",
-    //action: intorBtnAction,
+    action: () => {
+      updateDialog = confirmBuildDialog;
+      updateDialog();
+      showDialog();
+    },
   },
   {
     belong: {
@@ -628,8 +612,10 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 535;
-      this.position.y = 130;
+      this.position.x = middleX - 535;
+      let _y = middleY - 231;
+      if (_y < 144) _y = 144;
+      this.position.y = _y;
     },
     font: {
       size: 34,
@@ -679,8 +665,10 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 535 - this.size.width;
-      this.position.y = 130;
+      this.position.x = middleX + 535 - this.size.width;
+      let _y = middleY - 231;
+      if (_y < 144) _y = 144;
+      this.position.y = _y;
     },
     font: {
       size: 34,
@@ -3299,6 +3287,7 @@ var buttons = [
 
 var updateDialog = null;
 var dialogButtons = [];
+var gameButtons = [];
 var dialogParameters = {};
 
 var loaded = 0;
@@ -3323,11 +3312,12 @@ function loadResources() {
 
 function initialize() {
   loadResources();
+  document.getElementById("loading").style.display = "none";
   window.addEventListener("resize", redraw, false);
   redraw();
 }
 
-initialize();
+setTimeout(initialize, 3000);
 
 function updateComponentPosition() {
   buttons.forEach((btn) => {
@@ -3868,8 +3858,10 @@ function redraw() {
     mainCanvas.height = newHeight;
     dialogCanvas.width = newWidth;
     dialogCanvas.height = newHeight;
-    gameCanvas.width = 1080;
+    gameCanvas.width = 1266;
     gameCanvas.height = newHeight - 140;
+    middleX = mainCanvas.width / 2;
+    middleY = mainCanvas.height / 2;
     updateComponentPosition();
     updateTheme();
     if (updateDialog) updateDialog();
@@ -4115,6 +4107,20 @@ dialogCanvas.addEventListener("click", function (e) {
   }
 });
 
+gameCanvas.addEventListener("click", function (e) {
+  if (gameButtons.length > 0) {
+    gameButtons.forEach((btn) => {
+      if (
+        e.layerX <= btn.range.x + btn.range.w &&
+        e.layerX >= btn.range.x &&
+        e.layerY <= btn.range.y + btn.range.h &&
+        e.layerY >= btn.range.y
+      )
+        if (btn.action) btn.action();
+    });
+  }
+});
+
 // Buttons Action Define
 function startBtnAction() {
   if (!resLoaded) {
@@ -4129,31 +4135,36 @@ function startBtnAction() {
   }
 }
 
-function showContentDialog() {
-  dialogCtx.fillStyle = "rgba(0, 0, 0, 0.7)";
+function dialogShadow() {
+  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
   dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
+}
 
-  let btnPosX = dialogCanvas.width / 2 - 100;
-  let btnPosY = dialogCanvas.height - 80;
-  dialogCtx.fillStyle = "#73A5BE";
-  roundRect(dialogCtx, btnPosX, btnPosY, 200, 70, 10);
+function drawDialogButton(x, y, w, h, text) {
+  roundRect(dialogCtx, x, y, w, h, 10);
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textAlign = "left";
+  let ww = dialogCtx.measureText(text).width;
+  dialogCtx.fillText(text, x + (w - ww) / 2, y + (h - 36) / 2);
+}
+
+function showContentDialog() {
+  dialogShadow();
 
   dialogCtx.font = "40px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
-  dialogCtx.fillText("內容", dialogCanvas.width / 2, 40);
-
-  dialogCtx.font = "36px NotoSansTC-Light";
-  dialogCtx.textBaseline = "top";
-  dialogCtx.textAlign = "left";
-  dialogCtx.fillText("確　定", btnPosX + 46, btnPosY + 20);
+  dialogCtx.fillText("內容", middleX, 40);
 
   dialogCtx.fillStyle = "F5F5F5";
-  let boxPosY = 65;
-  let box1PosX = dialogCanvas.width / 2 - 535;
-  let box2PosX = dialogCanvas.width / 2 - 175;
-  let box3PosX = dialogCanvas.width / 2 + 185;
+  let boxPosY = (dialogCanvas.height - 80) / 2 - 255;
+  if (boxPosY < 65) boxPosY = 65;
+  let box1PosX = middleX - 535;
+  let box2PosX = middleX - 175;
+  let box3PosX = middleX + 185;
 
   roundRect(dialogCtx, box1PosX, boxPosY, 350, 510, 10);
   roundRect(dialogCtx, box2PosX, boxPosY, 350, 510, 10);
@@ -4164,126 +4175,133 @@ function showContentDialog() {
   dialogCtx.drawImage(images["W04"], box3PosX + 30, boxPosY + 40);
 
   dialogCtx.fillStyle = "#555555";
-  dialogCtx.font = "40px NotoSansTC-Light";
+  dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.textAlign = "center";
-  dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 20);
-  dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 20);
-  dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 20);
+  dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 34);
+  dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 34);
+  dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 34);
 
   dialogCtx.font = "20px NotoSansTC-Light";
   dialogCtx.textAlign = "left";
-  let textYbase = 290;
+  let textYbase = 292;
   let textHeight = 20;
 
+  //console.log(dialogCtx.measureText("腕隧道症候群是一種常見的疾病，會"));//320
   dialogCtx.fillText(
     "腕隧道症候群是一種常見的疾病，會",
-    box1PosX + 14,
+    box1PosX + 15,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
     "導致手和手臂疼痛、麻木和刺痛。",
-    box1PosX + 14,
+    box1PosX + 15,
     boxPosY + textYbase + textHeight
   );
   dialogCtx.fillText(
     "當手的主要神經之一-正中神經-受到",
-    box1PosX + 14,
+    box1PosX + 15,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
     "擠壓或壓縮時，就會出現這種情況。",
-    box1PosX + 14,
+    box1PosX + 15,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
     "症狀通常可以通過簡單的措施得到",
-    box1PosX + 14,
+    box1PosX + 15,
     boxPosY + textYbase + textHeight * 6
   );
   dialogCtx.fillText(
     "緩解和預防。",
-    box1PosX + 14,
+    box1PosX + 15,
     boxPosY + textYbase + textHeight * 7
   );
 
   dialogCtx.fillText(
-    "肌筋膜頸部疼痛是頸肩部慢性疼痛",
-    box2PosX + 14,
+    "肌筋膜頸部疼痛是頸肩部慢性疼痛的",
+    box2PosX + 15,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
-    "的常見原因。",
-    box2PosX + 14,
+    "常見原因。",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight
   );
   dialogCtx.fillText(
-    "頸部肌肉的過度使用或創傷，以及",
-    box2PosX + 14,
+    "頸部肌肉的過度使用或創傷，以及壓",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
-    "壓力和姿勢，都可能導致頸部/肩部",
-    box2PosX + 14,
+    "力和姿勢，都可能導致頸部/肩部的",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
-    "的肌筋膜疼痛。",
-    box2PosX + 14,
+    "肌筋膜疼痛。",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 5
   );
   dialogCtx.fillText(
-    "對於整天在辦公桌前工作並且在使",
-    box2PosX + 14,
+    "對於整天在辦公桌前工作並且在使用",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 7
   );
   dialogCtx.fillText(
-    "用計算機時操作不當的患者。肌肉",
-    box2PosX + 14,
+    "計算機時操作不當的患者。肌肉可能",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 8
   );
   dialogCtx.fillText(
-    "可能因過度使用或受傷而變得緊繃",
-    box2PosX + 14,
+    "因過度使用或受傷而變得緊繃或發炎",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 9
   );
   dialogCtx.fillText(
-    "或發炎。",
-    box2PosX + 14,
+    "。",
+    box2PosX + 15,
     boxPosY + textYbase + textHeight * 10
   );
 
   dialogCtx.fillText(
-    "網球肘是一種導致肘部外側疼痛的",
-    box3PosX + 14,
+    "網球肘是一種導致肘部外側疼痛的疾",
+    box3PosX + 15,
     boxPosY + textYbase
   );
-  dialogCtx.fillText("疾病。", box3PosX + 14, boxPosY + textYbase + textHeight);
+  dialogCtx.fillText("病。", box3PosX + 15, boxPosY + textYbase + textHeight);
   dialogCtx.fillText(
-    "它經常發生在肘關節附近的前臂肌",
-    box3PosX + 14,
+    "它經常發生在肘關節附近的前臂肌肉",
+    box3PosX + 15,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
-    "肉過度使用或重複動作之後。",
-    box3PosX + 14,
+    "過度使用或重複動作之後。",
+    box3PosX + 15,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
-    "可能會注意到肘部外側疼痛，您可",
-    box3PosX + 14,
+    "可能會注意到肘部外側疼痛，您可能",
+    box3PosX + 15,
     boxPosY + textYbase + textHeight * 6
   );
   dialogCtx.fillText(
-    "能還會發現難以完全伸展手臂。",
-    box3PosX + 14,
+    "還會發現難以完全伸展手臂。",
+    box3PosX + 15,
     boxPosY + textYbase + textHeight * 7
   );
   dialogCtx.fillText(
     "網球肘不治療會好起來的。",
-    box3PosX + 14,
+    box3PosX + 15,
     boxPosY + textYbase + textHeight * 9
   );
 
+  let btnPosX = middleX - 100;
+  let btnPosY = boxPosY + 550;
+  if (btnPosY > dialogCanvas.height - 80) btnPosY = dialogCanvas.height - 80;
+
+  dialogCtx.fillStyle = "#73A5BE";
+  drawDialogButton(btnPosX, btnPosY, 200, 70, "確　定");
   dialogButtons.push({
     range: {
       x: btnPosX,
@@ -4302,8 +4320,7 @@ function showStartExerciseDialog() {
   let middleX = dialogCanvas.width / 2;
   let middleY = dialogCanvas.height / 2;
 
-  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
-  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+  dialogShadow();
 
   dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
 
@@ -4342,19 +4359,16 @@ function showReadyExerciseDialog() {
   let exerciseName = dialogParameters.exerciseName || "";
   let numPart = dialogParameters.numPart || "";
   let seconds = dialogParameters.seconds || "";
-  let middleX = dialogCanvas.width / 2;
-  let middleY = dialogCanvas.height / 2;
-  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
-  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+  dialogShadow();
 
   dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
-  roundRect(dialogCtx, middleX - 400, middleY - 250, 800, 500);
+  roundRect(dialogCtx, middleX - 400, middleY - 250, 800, 500, 10);
 
   dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
-  let baseY = middleY - 140;
+  let baseY = middleY - 180;
   let step = 42;
   dialogCtx.fillText(exerciseName + "運動將花約 5 分鐘，", middleX, baseY);
   dialogCtx.fillText(
@@ -4368,19 +4382,14 @@ function showReadyExerciseDialog() {
     middleX,
     baseY + step * 4
   );
-  dialogCtx.fillStyle = "#FFAFAF";
+  dialogCtx.fillStyle = "#D17C7C";
   dialogCtx.fillText("若感到不適，請立即停止。", middleX, baseY + step * 6);
 
   dialogCtx.fillStyle = "#73A5BE";
-  let BtnX = middleX - 100;
-  let BtnY = baseY + step * 8 - 50;
-  roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
 
-  dialogCtx.fillStyle = "#FFF";
-  dialogCtx.font = "34px NotoSansTC-Light";
-  dialogCtx.textBaseline = "top";
-  dialogCtx.textAlign = "left";
-  dialogCtx.fillText("確　定", BtnX + 46, BtnY + 20);
+  let BtnX = middleX - 100;
+  let BtnY = baseY + step * 8 - 20;
+  drawDialogButton(BtnX, BtnY, 200, 70, "確　定");
 
   dialogButtons.push({
     range: {
@@ -4467,13 +4476,112 @@ function confirmExitDialog() {
   //
 }
 
+function confirmBuildDialog() {
+  let middleX = dialogCanvas.width / 2;
+  let middleY = dialogCanvas.height / 2;
+  dialogCtx.fillStyle = "#464646";
+  roundRect(dialogCtx, middleX - 300, middleY - 115, 600, 230, 10);
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  dialogCtx.fillText("確定消耗　　在您的城市新建餐館?", middleX, middleY - 50);
+  dialogCtx.drawImage(images["W05"], middleX - 125, middleY - 85, 60, 60);
+
+  dialogCtx.fillStyle = "#88A073";
+  let Btn1X = middleX + 20;
+  let Btn2X = middleX - 220;
+  let BtnY = middleY + 10;
+  roundRect(dialogCtx, Btn1X, BtnY, 200, 70, 10);
+
+  dialogCtx.fillStyle = "#A7A7A7";
+  roundRect(dialogCtx, Btn2X, BtnY, 200, 70, 10);
+
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.font = "34px NotoSansTC-Light";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillText("確　定", Btn1X + 46, BtnY + 20);
+  dialogCtx.fillText("取　消", Btn2X + 46, BtnY + 20);
+
+  dialogButtons.push({
+    range: {
+      x: Btn2X,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      closeDialog();
+    },
+  });
+
+  dialogButtons.push({
+    range: {
+      x: Btn1X,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      function checkNeighbor(x, y) {
+        return (
+          (state.gameObjects.maps[x + 1] != undefined &&
+            state.gameObjects.maps[x + 1][y].store != 0) ||
+          (state.gameObjects.maps[x][y + 1] != undefined &&
+            state.gameObjects.maps[x][y + 1].store != 0) ||
+          (state.gameObjects.maps[x - 1] != undefined &&
+            state.gameObjects.maps[x - 1][y].store != 0) ||
+          (state.gameObjects.maps[x][y - 1] != undefined &&
+            state.gameObjects.maps[x][y - 1].store != 0)
+        );
+      }
+
+      let _map = state.gameObjects.maps;
+      let _selectPool = [];
+      //3 3 , 3 4
+      for (let i = 0; i < _map.length; i++) {
+        for (let j = 0; j < _map[0].length; j++) {
+          //console.log(i,j);
+          //console.log(checkNeighbor(i, j));
+          if (_map[i][j].store == 0 && checkNeighbor(i, j)) {
+            _selectPool.push({ x: j, y: i });
+            //console.log(i, j);
+            //console.log(_map[i][j]);
+          }
+        }
+      }
+
+      let selectIndex = Math.floor(Math.random() * _selectPool.length);
+      let x = _selectPool[selectIndex].x;
+      let y = _selectPool[selectIndex].y;
+      state.gameObjects.maps[y][x].store = 1;
+      state.gameObjects.maps[y][x].state = "new";
+      determineGameZomePosition(-(x * 180) + 360, -(y * 150) + 150);
+      updateBoundary(x, y);
+
+      //console.log(_selectPool);
+      //console.log(_selectPool[selectIndex]);
+      //console.log(gameZoneY);
+      updateGameZone();
+      //console.log(_ran);
+
+      //console.log(_selectPool);
+
+      // test();
+      //closeDialog();
+      closeDialog();
+    },
+  });
+}
+
 var selectBtnOpen = false;
 
 function drawSelectMenu() {
   let middleX = dialogCanvas.width / 2;
   let middleY = dialogCanvas.height / 2;
   dialogCtx.fillStyle = "#464646";
-  roundRect(dialogCtx, middleX - 250, middleY - 125, 500, 250);
+  roundRect(dialogCtx, middleX - 250, middleY - 125, 500, 250, 10);
   dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
@@ -4497,6 +4605,8 @@ function drawSelectMenu() {
   let btnX = middleX - 90;
   let btnY = middleY + 50;
   dialogCtx.fillStyle = "#88A073";
+  //drawDialogButton(btnX, btnY, 180, 50, "確　定");
+
   roundRect(dialogCtx, btnX, btnY, 180, 50);
   dialogCtx.fillStyle = "#fff";
   dialogCtx.fillText("確　定", btnX + 36, btnY + 25);
@@ -4560,14 +4670,15 @@ function areaSelectDialog() {
 }
 
 function tastyGuideDialog() {
-  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
-  dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
+  dialogShadow();
+
+  let x = mainCanvas.width / 2 - 370;
 
   dialogCtx.fillStyle = "#fff";
   dialogCtx.beginPath();
-  dialogCtx.moveTo(360, 150);
-  dialogCtx.lineTo(400, 150);
-  dialogCtx.lineTo(380, 110);
+  dialogCtx.moveTo(x+30, 150);
+  dialogCtx.lineTo(x+70, 150);
+  dialogCtx.lineTo(x+50, 110);
   dialogCtx.fill();
 
   let _baseY = 180;
@@ -4576,19 +4687,23 @@ function tastyGuideDialog() {
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
-  dialogCtx.fillText("點擊消耗三點，", 350, _baseY);
-  dialogCtx.fillText("將可以在地圖上新增餐館，", 350, _baseY + _step);
-  dialogCtx.fillText("並獲得推薦。", 350, _baseY + _step * 2);
+  dialogCtx.fillText("點擊消耗三點，", x+60, _baseY);
+  dialogCtx.fillText("將可以在地圖上新增餐館，", x+60, _baseY + _step);
+  dialogCtx.fillText("並獲得推薦。", x+60, _baseY + _step * 2);
 
   dialogCtx.beginPath();
-  dialogCtx.moveTo(dialogCanvas.width/2-20, 380);
-  dialogCtx.lineTo(dialogCanvas.width/2+20, 380);
-  dialogCtx.lineTo(dialogCanvas.width/2, 420);
+  dialogCtx.moveTo(dialogCanvas.width / 2 - 20, 380);
+  dialogCtx.lineTo(dialogCanvas.width / 2 + 20, 380);
+  dialogCtx.lineTo(dialogCanvas.width / 2, 420);
   dialogCtx.fill();
 
-  _baseY= 300;
-  dialogCtx.fillText("地圖起點，", dialogCanvas.width/2, _baseY);
-  dialogCtx.fillText("地圖可以上下左右進行滑動。", dialogCanvas.width/2, _baseY + _step);
+  _baseY = 300;
+  dialogCtx.fillText("地圖起點，", dialogCanvas.width / 2, _baseY);
+  dialogCtx.fillText(
+    "地圖可以上下左右進行滑動。",
+    dialogCanvas.width / 2,
+    _baseY + _step
+  );
 
   dialogButtons.push({
     range: {
@@ -4599,7 +4714,7 @@ function tastyGuideDialog() {
     },
     action: function () {
       closeDialog();
-    }, 
+    },
   });
 }
 
@@ -4662,11 +4777,36 @@ function finishExerciseDialog() {
   });
 }
 
+function showStoreInfoDialog() {
+  dialogShadow();
+  let picNum=dialogParameters.picNum;
+  //console.log(dialogParameters);
+  dialogCtx.drawImage(images["B"+picNum], middleX - 368, middleY - 231, 737, 463); //1474*926 -/2> 737*463
+
+  let btnX = middleX - 286;
+  let btnY = middleY + 141;
+  dialogCtx.fillStyle = "#88A073";
+  drawDialogButton(btnX, btnY, 200, 70, "確　定");
+  dialogButtons.push({
+    range:{
+      x:btnX,
+      y:btnY,
+      w:200,
+      h:70
+    },
+    action:()=>{
+      closeDialog();
+    }
+  });
+}
+
 function intorBtnAction() {
   changeThemePage("health", "main");
-  updateDialog = showContentDialog;
-  updateDialog();
-  showDialog();
+  if (state.firstUse.health) {
+    updateDialog = showContentDialog;
+    updateDialog();
+    showDialog();
+  }
 }
 
 function tastyIntorBtnAction() {
@@ -4679,107 +4819,74 @@ function tastyIntorBtnAction() {
 
 // Theme Define
 function drawHome() {
-  let middleX = mainCanvas.width / 2;
-  let middleY = mainCanvas.height / 2;
-
-  //console.log('home');
   mainCtx.font = "78px NotoSansTC-Light";
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
-  mainCtx.fillText("Work ? out !", middleX, middleY);
+  let txt = "Work ? out !";
+  //console.log(mainCtx.measureText(txt));
+  //ctx.fillText("width:" + ctx.measureText(txt).width, 10, 50)
+  mainCtx.fillText(txt, middleX + 18, middleY);
 
   images["W07"].addEventListener("load", () => {
-    //console.log('load');
-    mainCtx.drawImage(images["W07"], middleX - 250, middleY - 40);
+    mainCtx.drawImage(images["W07"], middleX - 252, middleY - 40);
   });
-  //console.log('go');
-  mainCtx.drawImage(images["W07"], middleX - 250, middleY - 40);
-
-  //mainCtx.textAlign = "left";
-  //  mainCtx.font = "48px NotoSansTC-Light";
-  //  mainCtx.fillText(
-  //    "中文字體範例 - NotoSansTC-Light",
-  //    middleX,
-  //    middleY + 100
-  //  );
-
-  // mainCtx.font = "38px 微軟正黑體";
-  // mainCtx.fillText(
-  //   "中文字體範例 - 微軟正黑體",
-  //   middleX,
-  //   middleY + 100
-  // );
-
-  // mainCtx.font = "38px NotoSansTC";
-  // mainCtx.fillText(
-  //   "中文字體範例 - NotoSansTC",
-  //   middleX,
-  //   middleY + 140
-  // );
-
-  // mainCtx.font = "38px NotoSansTC-Light";
-  // mainCtx.fillText(
-  //   "中文字體範例 - NotoSansTC-Light",
-  //   middleX,
-  //   middleY + 180
-  // );
-  // mainCtx.font = "38px NotoSansTC-Thin";
-  // mainCtx.fillText(
-  //   "中文字體範例 - NotoSansTC-Thin",
-  //   middleX,
-  //   middleY + 220
-  // );
-  //mainCtx.fillText("中文字體範例", middleX, middleY);
+  mainCtx.drawImage(images["W07"], middleX - 252, middleY - 40); //36*112
 
   mainCtx.font = "28px NotoSansTC-Light";
-  mainCtx.fillText("Muscle Soothe for Office Worker", middleX, middleY + 50);
+  mainCtx.fillText(
+    "Muscle Soothe for Office Worker",
+    middleX + 18,
+    middleY + 50
+  );
   //mainCtx.clearRect(10, 10, 20, 20);
 }
 
 function drawIntro() {
-  mainCtx.drawImage(images["W01"], mainCanvas.width / 2 + 50, 100);
+  let _x = (middleX - 650) / 2;
+  mainCtx.drawImage(images["W01"], middleX + _x, middleY - 280); //580*560
 
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
-  //let middleY = mainCanvas.height / 2;
 
   mainCtx.font = "40px NotoSansTC-Light";
-  mainCtx.fillText("介 紹", mainCanvas.width / 2, 50);
+  mainCtx.fillText("介 紹", middleX, 50);
 
+  let _y = middleY - 150;
   mainCtx.font = "46px NotoSansTC-Light";
   mainCtx.textAlign = "left";
-  mainCtx.fillText('關於 "Work ? out !"', 50, 240);
+  mainCtx.fillText('關於 "Work ? out !"', _x, _y);
 
-  let baseY = 300;
+  let baseY = _y + 50;
   let linStep = 40;
-  //mainCtx.font = "26px 微軟正黑體";
   mainCtx.font = "26px NotoSansTC-Light";
   mainCtx.fillText(
     "現今上班族與學生族群，都經常坐著辦公或讀書，不斷的",
-    50,
+    _x,
     baseY
   );
+  //240
+  //console.log(mainCtx.measureText('現今上班族與學生族群，都經常坐著辦公或讀書，不斷的')) //650
   mainCtx.fillText(
     "長時間重複某一特定動作，長時間坐著的上班族「電腦症",
-    50,
+    _x,
     baseY + linStep
   );
   mainCtx.fillText(
     "候群」因姿勢、長時間打電腦或接電話，衍伸出毛病如：",
-    50,
+    _x,
     baseY + linStep * 2
   );
-  mainCtx.fillText("手腕、肩頸及手肘痠痛。", 50, baseY + linStep * 3);
+  mainCtx.fillText("手腕、肩頸及手肘痠痛。", _x, baseY + linStep * 3);
   mainCtx.fillText(
     '"Work? Out!"則是以簡單的肌肉舒緩運動幫助使用者預防',
-    50,
+    _x,
     baseY + linStep * 4
   );
   mainCtx.fillText(
     "及改善，並透過遊戲化的樂趣增加用戶的動機與習慣建立!",
-    50,
+    _x,
     baseY + linStep * 5
   );
 }
@@ -4788,27 +4895,25 @@ function drawMain() {
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
-  //let middleY = mainCanvas.height / 2;
-  let centerX = mainCanvas.width / 2;
 
-  mainCtx.drawImage(images["W05"], mainCanvas.width / 2 - 540, 20);
+  mainCtx.drawImage(images["W05"], middleX - 540, 20, 60, 60); //94*94
 
   mainCtx.font = "32px NotoSansTC-Light";
-  mainCtx.fillText(
-    "- " + state.gameObjects.stars,
-    mainCanvas.width / 2 - 420,
-    75
-  );
-  mainCtx.fillText("您可以選擇您要緩解的部分。", centerX, 120);
-  mainCtx.fillText("完成後，您將獲得積分!", centerX, 160);
+  mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
 
-  mainCtx.fillText("1", centerX - 360, mainCanvas.height / 2 + 230);
-  mainCtx.fillText("2", centerX, mainCanvas.height / 2 + 230);
-  mainCtx.fillText("3", centerX + 360, mainCanvas.height / 2 + 230);
+  let _y = middleY - 255;
+  if (_y < 120) _y = 120;
+  mainCtx.fillText("您可以選擇您要緩解的部分。", middleX, _y);
+  mainCtx.fillText("完成後，您將獲得積分!", middleX, _y + 40);
 
-  mainCtx.fillStyle = "#FFAFAF";
-  mainCtx.fillText("僅為預防症狀，緩解肌肉。", centerX, mainCanvas.height - 65);
-  mainCtx.fillText("若已嚴重不適請就醫。", centerX, mainCanvas.height - 30);
+  mainCtx.fillText("1", middleX - 360, middleY + 230);
+  mainCtx.fillText("2", middleX, middleY + 230);
+  mainCtx.fillText("3", middleX + 360, middleY + 230);
+
+  _y = middleY + 270 + (mainCanvas.height - (middleY + 270)) / 2 - 20;
+  mainCtx.fillStyle = "##D17C7C";
+  mainCtx.fillText("僅為預防症狀，緩解肌肉。", middleX, _y);
+  mainCtx.fillText("若已嚴重不適請就醫。", middleX, _y + 35);
 }
 
 function drawExercise() {
@@ -4889,23 +4994,21 @@ function drawExerciseText(title, second, number, textArr, nosecound) {
 }
 
 function drawTastyIntro() {
-  let middleX = mainCanvas.width / 2;
-  // let middleY = mainCanvas.height / 2;
-
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
 
   mainCtx.font = "40px NotoSansTC-Light";
-  mainCtx.fillText("介 紹", mainCanvas.width / 2, 50);
+  mainCtx.fillText("介 紹", middleX, 50);
 
-  mainCtx.font = "46px NotoSansTC-Light";
   mainCtx.textAlign = "left";
-  mainCtx.fillText('關於 "Tasty ? out !"', 50, 180);
 
-  let baseY = 240;
+  let baseX = (middleX - 498) / 2;
+  let baseY = 230;
+  //let baseY = middleY - 140;
   let linStep = 40;
-  let baseX = middleX + 130;
+  baseX = middleX + (middleX - 498) / 2;
+
   mainCtx.font = "32px NotoSansTC-Light";
   mainCtx.fillText("配合Work?out! 肌肉舒緩。", baseX, baseY);
   mainCtx.fillText("遊戲中有8種不同的美食類型推薦，", baseX, baseY + linStep);
@@ -4914,6 +5017,7 @@ function drawTastyIntro() {
     baseX,
     baseY + linStep * 2
   );
+  //console.log(mainCtx.measureText("遊戲中有8種不同的美食類型推薦，"));//498
   mainCtx.fillText(
     "並隨機新增推薦餐廳至玩家地圖中。",
     baseX,
@@ -4927,16 +5031,24 @@ function drawTastyIntro() {
   mainCtx.fillText("同時組成屬於自己的美食地圖，", baseX, baseY + linStep * 6);
   mainCtx.fillText("能與好友、同事、家人 交流，", baseX, baseY + linStep * 7);
   mainCtx.fillText("再也不必煩惱下一餐吃甚麼!", baseX, baseY + linStep * 8);
-  // mainCtx.fillText(
-  //   '"Work? Out!"則是以簡單的肌肉舒緩運動幫助使用者預防',
-  //   50,
-  //   baseY + linStep * 4
-  // );
-  // mainCtx.fillText(
-  //   "及改善，並透過遊戲化的樂趣增加用戶的動機與習慣建立!",
-  //   50,
-  //   baseY + linStep * 5
-  // );
+
+  let _px = middleX - 700;
+  //let _px = (middleX/2)-380;
+  if (_px < 0) _px = 10;
+  mainCtx.font = "46px NotoSansTC-Light";
+  mainCtx.fillText('關於 "Tasty ? out !"', _px, 180);
+
+  let _py = 210;
+  let imgW = 190;
+  let imgH = 160;
+  mainCtx.drawImage(images["T01"], _px, _py, 190, 160); //1251*1042
+  mainCtx.drawImage(images["T02"], _px + imgW, _py, 190, 160);
+  mainCtx.drawImage(images["T03"], _px + imgW * 2, _py, 190, 160);
+  mainCtx.drawImage(images["T04"], _px + imgW * 3, _py, 190, 160);
+  mainCtx.drawImage(images["T05"], _px, _py + imgH, 190, 160);
+  mainCtx.drawImage(images["T06"], _px + imgW, _py + imgH, 190, 160);
+  mainCtx.drawImage(images["T07"], _px + imgW * 2, _py + imgH, 190, 160);
+  mainCtx.drawImage(images["T08"], _px + imgW * 3, _py + imgH, 190, 160);
 }
 
 function drawTastyMain() {
@@ -4946,12 +5058,62 @@ function drawTastyMain() {
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
 
-  mainCtx.fillText(
-    "- " + state.gameObjects.stars,
-    mainCanvas.width / 2 - 420,
-    75
-  );
-  mainCtx.drawImage(images["W05"], mainCanvas.width / 2 - 540, 20);
+  mainCtx.drawImage(images["W05"], middleX - 540, 20, 60, 60); //94*94
+
+  mainCtx.font = "32px NotoSansTC-Light";
+  mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+}
+
+function hightlightStore(store, x, y) {
+  //180*150
+  //gameCtx.fillStyle="#fefefe";
+  //gameCtx.fillRect(x,y,180,150);
+  gameCtx.strokeStyle = "#ECD276";
+  gameCtx.lineWidth = 10;
+  gameCtx.beginPath();
+  gameCtx.moveTo(x + 60, y);
+  gameCtx.lineTo(x, y);
+  gameCtx.lineTo(x, y + 50);
+  gameCtx.stroke();
+
+  // gameCtx.beginPath();
+  gameCtx.moveTo(x + 120, y);
+  gameCtx.lineTo(x + 180, y);
+  gameCtx.lineTo(x + 180, y + 50);
+  gameCtx.stroke();
+
+  // gameCtx.beginPath();
+  gameCtx.moveTo(x + 60, y + 150);
+  gameCtx.lineTo(x, y + 150);
+  gameCtx.lineTo(x, y + 100);
+  gameCtx.stroke();
+
+  // gameCtx.beginPath();
+  gameCtx.moveTo(x + 180, y + 100);
+  gameCtx.lineTo(x + 180, y + 150);
+  gameCtx.lineTo(x + 120, y + 150);
+  gameCtx.stroke();
+  gameButtons.push({
+    range: {
+      x,
+      y,
+      w: 180,
+      h: 150,
+    },
+    action: () => {
+      store.state = 0;
+      updateGameZone();
+      updateDialog = showStoreInfoDialog;
+      //console.log(store);
+      dialogParameters.picNum = store.store.toString().padStart(3,'0');
+      updateDialog();
+      showDialog();
+    },
+  });
+
+  // updateDialog = showStartExerciseDialog;
+  //   updateDialog();
+  //   showDialog();
 }
 
 function updateGameZone() {
@@ -4963,7 +5125,7 @@ function updateGameZone() {
 
   // //console.log(gameZoneHeight);
   // console.log(state.gameObjects.maps[0].length)
-
+  gameButtons = [];
   let _gameZoneX = gameZoneX;
   let _gameZoneY = gameZoneY;
   state.gameObjects.maps.forEach((row) => {
@@ -4976,7 +5138,7 @@ function updateGameZone() {
         //_gameZoneX += 180;
       } else if (obj.store > 0) {
         let name = "A" + obj.store.toString().padStart(3, "0");
-        console.log(name);
+        //console.log(name);
 
         gameCtx.drawImage(images[name], _gameZoneX, _gameZoneY);
       }
@@ -4985,6 +5147,92 @@ function updateGameZone() {
     _gameZoneY += 150;
     _gameZoneX = gameZoneX;
   });
+
+  _gameZoneX = gameZoneX;
+  _gameZoneY = gameZoneY;
+  state.gameObjects.maps.forEach((row) => {
+    row.forEach((obj) => {
+      switch (obj.state) {
+        case "new":
+          hightlightStore(obj, _gameZoneX, _gameZoneY);
+          break;
+        default:
+          break;
+      }
+      _gameZoneX += 180;
+    });
+    _gameZoneY += 150;
+    _gameZoneX = gameZoneX;
+  });
+}
+
+function updateBoundary(x, y) {
+  let _map = state.gameObjects.maps;
+  // console.log(_map);
+  // console.log(x);
+  // console.log(y);
+
+  if (x + 3 >= _map[0].length) {
+    //append left
+    //console.log('af');
+    state.gameObjects.maps.forEach((row) => {
+      row.push({ store: 0, state: 0 });
+    });
+  }
+  if (x < 3) {
+    //append right
+    //console.log('ar');
+    state.gameObjects.maps.forEach((row) => {
+      row.push({ store: 0, state: 0 });
+      //console.log(row.length);
+      for (let i = row.length - 1; i >= 1; i--) {
+        row[i] = JSON.parse(JSON.stringify(row[i - 1]));
+      }
+    });
+  }
+  if (y + 3 >= _map.length) {
+    //append buttom
+    //console.log('ab');
+    let _nr = [];
+    for (let i = 0; i < _map[0].length; i++) {
+      _nr.push({ store: 0, state: 0 });
+    }
+    //console.log(_nr);
+    state.gameObjects.maps.push(_nr);
+  }
+  if (y < 3) {
+    //append up
+    // console.log("au");
+    let _nr = [];
+    for (let i = 0; i < _map[0].length; i++) {
+      _nr.push({ store: 0, state: 0 });
+    }
+    state.gameObjects.maps.push(_nr);
+
+    for (let j = 0; j < _map[0].length; j++) {
+      for (let i = _map.length - 1; i >= 1; i--) {
+        state.gameObjects.maps[i][j] = JSON.parse(
+          JSON.stringify(state.gameObjects.maps[i - 1][j])
+        );
+      }
+    }
+  }
+}
+
+function determineGameZomePosition(x, y) {
+  let newX = x;
+  let newY = y;
+  if (newX > 0) newX = 0;
+  if (newY > 0) newY = 0;
+  if (newX + state.gameObjects.maps[0].length * 180 < gameCanvas.width) {
+    newX = gameCanvas.width - state.gameObjects.maps[0].length * 180;
+  }
+  if (newY + state.gameObjects.maps.length * 150 < gameCanvas.height) {
+    newY = gameCanvas.height - state.gameObjects.maps.length * 150;
+  }
+  gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  gameZoneX = newX;
+  gameZoneY = newY;
 }
 
 var isDrag = false;
@@ -4997,18 +5245,7 @@ gameCanvas.onmousedown = (e) => {
     if (isDrag) {
       let newX = e.layerX - offsetX;
       let newY = e.layerY - offsetY;
-      if (newX > 0) newX = 0;
-      if (newY > 0) newY = 0;
-      if (newX + state.gameObjects.maps[0].length * 180 < gameCanvas.width) {
-        newX = gameCanvas.width - state.gameObjects.maps[0].length * 180;
-      }
-      if (newY + state.gameObjects.maps.length * 150 < gameCanvas.height) {
-        newY = gameCanvas.height - state.gameObjects.maps.length * 150;
-      }
-      gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-      gameZoneX = newX;
-      gameZoneY = newY;
-
+      determineGameZomePosition(newX, newY);
       updateGameZone();
     }
   };
