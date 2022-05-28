@@ -4425,6 +4425,7 @@ gameCanvas.addEventListener("click", function (e) {
 function startBtnAction() {
   if (!resLoaded) {
     console.log("Loading...");
+    alert('資料讀取中，請稍候...');
     return;
   }
 
