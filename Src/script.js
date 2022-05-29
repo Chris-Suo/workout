@@ -664,7 +664,7 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 370;
+      this.position.x = middleX - 370;
       this.position.y = 20;
     },
     font: {
@@ -694,7 +694,7 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 370;
+      this.position.x = middleX - 370;
       this.position.y = 20;
     },
     font: {
@@ -720,7 +720,7 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 20;
     },
     font: {
@@ -743,7 +743,7 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2;
+      this.position.x = middleX;
       this.position.y = 20;
     },
     font: {
@@ -772,7 +772,7 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 20;
     },
     font: {
@@ -797,7 +797,7 @@ var buttons = [
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2;
+      this.position.x = middleX;
       this.position.y = 20;
     },
     font: {
@@ -820,8 +820,8 @@ var buttons = [
       heigth: 350,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 535;
-      this.position.y = mainCanvas.height / 2 - 150;
+      this.position.x = middleX - 535;
+      this.position.y = middleY - 150;
     },
     font: {
       size: 40,
@@ -853,8 +853,8 @@ var buttons = [
       heigth: 350,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 175;
-      this.position.y = mainCanvas.height / 2 - 150;
+      this.position.x = middleX - 175;
+      this.position.y = middleY - 150;
     },
     font: {
       size: 40,
@@ -886,8 +886,8 @@ var buttons = [
       heigth: 350,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 185;
-      this.position.y = mainCanvas.height / 2 - 150;
+      this.position.x = middleX + 185;
+      this.position.y = middleY - 150;
     },
     font: {
       size: 40,
@@ -915,24 +915,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "內　容",
     icon: {
+      sharp: "+",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "white";
-        roundRect(mainCtx, x, y, w, h, 5);
-
-        mainCtx.strokeStyle = "#9BCAE5";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + 5, y + h / 2);
-        mainCtx.lineTo(x + w - 5, y + h / 2);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 2, y + 5);
-        mainCtx.lineTo(x + w / 2, y + h - 5);
-        mainCtx.stroke();
       },
     },
     showText: true,
@@ -966,26 +953,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "介　紹",
     icon: {
+      sharp: "=",
       direction: "right",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.strokeStyle = "white";
-        mainCtx.lineWidth = 5;
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + 2);
-        mainCtx.lineTo(x + w, y + 2);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h - 2);
-        mainCtx.lineTo(x + w, y + h - 2);
-        mainCtx.stroke();
       },
     },
     showText: true,
@@ -1006,10 +978,6 @@ var buttons = [
     },
     action: function () {
       changeThemePage("home", "intro");
-      //updateDialog = showContentDialog;
-      //updateDialog();
-      //showDialog();
-      //console.log("click!");
     },
   },
   //exercise 1
@@ -1021,23 +989,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1068,19 +1024,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1089,7 +1037,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -1107,19 +1055,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1128,7 +1068,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -1171,22 +1111,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1218,23 +1147,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1265,19 +1182,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1286,7 +1195,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -1306,19 +1215,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1327,7 +1228,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -1370,22 +1271,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1417,23 +1307,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1464,19 +1342,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1485,7 +1355,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -1505,19 +1375,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1526,7 +1388,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -1569,22 +1431,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1616,23 +1467,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1663,19 +1502,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1684,7 +1515,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -1704,19 +1535,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1725,7 +1548,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -1768,22 +1591,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1815,23 +1627,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -1862,19 +1662,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1883,7 +1675,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -1903,19 +1695,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -1924,7 +1708,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -1967,22 +1751,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2014,23 +1787,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2061,19 +1822,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2082,7 +1835,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -2102,19 +1855,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2123,7 +1868,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -2166,22 +1911,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2213,23 +1947,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2260,19 +1982,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2281,7 +1995,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -2301,19 +2015,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2322,7 +2028,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -2369,22 +2075,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2417,23 +2112,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2464,19 +2147,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2485,7 +2160,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -2503,19 +2178,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2524,7 +2191,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -2567,22 +2234,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2614,23 +2270,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2661,19 +2305,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2682,7 +2318,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -2702,19 +2338,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2723,7 +2351,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -2766,22 +2394,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2813,23 +2430,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -2860,19 +2465,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2881,7 +2478,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -2901,19 +2498,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -2922,7 +2511,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -2965,22 +2554,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3012,23 +2590,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3059,19 +2625,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3080,7 +2638,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -3100,19 +2658,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3121,7 +2671,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -3168,22 +2718,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3216,23 +2755,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3263,19 +2790,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3284,7 +2803,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -3302,19 +2821,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3323,7 +2834,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -3366,22 +2877,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3413,23 +2913,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3460,19 +2948,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3481,7 +2961,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -3501,19 +2981,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3522,7 +2994,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -3565,22 +3037,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3612,23 +3073,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3659,19 +3108,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w, y);
-        mainCtx.lineTo(x, y + h / 2);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3680,7 +3121,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = middleX - 200;
       this.position.y = 40;
     },
     font: {
@@ -3700,19 +3141,11 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
+      sharp:">",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3721,7 +3154,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -3764,22 +3197,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3811,23 +3233,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "X",
     icon: {
+      sharp: "X",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y + h);
-        mainCtx.lineTo(x + w, y);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3836,7 +3246,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 - 200;
+      this.position.x = 20;
       this.position.y = 40;
     },
     font: {
@@ -3856,21 +3266,13 @@ var buttons = [
       page: "3-4",
     },
     sharp: "iconBtn",
-    text: ">",
+    text: "<",
     icon: {
+      sharp:"<",
       direction: "left",
       size: {
         w: 20,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.fillStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x, y);
-        mainCtx.lineTo(x + w, y + h / 2);
-        mainCtx.lineTo(x, y + h);
-        mainCtx.closePath();
-        mainCtx.fill();
       },
     },
     showText: false,
@@ -3879,7 +3281,40 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = mainCanvas.width / 2 + 180;
+      this.position.x = middleX - 200;
+      this.position.y = 40;
+    },
+    font: {
+      size: 34,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    action: () => {
+      changeThemePage("exercise", "3-3");
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-4",
+    },
+    sharp: "iconBtn",
+    text: ">",
+    icon: {
+      sharp:">",
+      direction: "left",
+      size: {
+        w: 20,
+        h: 30,
+      },
+    },
+    showText: false,
+    size: {
+      width: 20,
+      heigth: 30,
+    },
+    setPosition: function () {
+      this.position.x = middleX + 180;
       this.position.y = 40;
     },
     font: {
@@ -3926,22 +3361,11 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
+      sharp:"||",
       direction: "left",
       size: {
         w: 30,
         h: 30,
-      },
-      drawIcon: function (x, y, w, h) {
-        mainCtx.lineWidth = 5;
-        mainCtx.strokeStyle = "#fff";
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + w / 4, y);
-        mainCtx.lineTo(x + w / 4, y + h);
-        mainCtx.stroke();
-        mainCtx.beginPath();
-        mainCtx.moveTo(x + (w / 4) * 3, y);
-        mainCtx.lineTo(x + (w / 4) * 3, y + h);
-        mainCtx.stroke();
       },
     },
     showText: false,
@@ -3976,11 +3400,11 @@ var loaded = 0;
 function loadResources() {
   let saveFile = localStorage.getItem("state");
   if (saveFile) {
-   let loadState = JSON.parse(saveFile.toString());
-    loadState.theme = 'home';
-    loadState.page = 'home';
+    let loadState = JSON.parse(saveFile.toString());
+    loadState.theme = "home";
+    loadState.page = "home";
     state = loadState;
-   //"theme":"health","page":"main","
+    //"theme":"health","page":"main","
     //console.log(loadState);
   }
 
@@ -4356,18 +3780,17 @@ function setupExercise(
   mainCtx.textBaseline = "top";
   mainCtx.textAlign = "center";
   mainCtx.fillStyle = "#D17C7C";
-  //console.log(mainCanvas.width*0.6);
   if (_bkt) {
     mainCtx.fillText(
       seconds - 5,
       30 + (mainCanvas.width * 0.6) / 2,
-      mainCanvas.height / 2 - 60
+      middleY - 70
     );
   } else {
     mainCtx.fillText(
       seconds,
       30 + (mainCanvas.width * 0.6) / 2,
-      mainCanvas.height / 2 - 60
+      middleY - 70
     );
   }
 
@@ -4429,7 +3852,7 @@ function updateExercise(timestamp) {
     mainCtx.fillStyle = "#E4E8EA";
     mainCtx.fillRect(
       (mainCanvas.width * 0.6) / 2 - 90,
-      mainCanvas.height / 2 - 75,
+      middleY - 75,
       180,
       90
     );
@@ -4482,9 +3905,10 @@ function updateExercise(timestamp) {
           30 + (mainCanvas.width * 0.6) / 2,
           160
         );
-        mainCtx.fillStyle = "#FFAFAF";
+        mainCtx.fillStyle = "#D17C7C";
       }
     } else {
+      mainCtx.fillStyle = "#D17C7C";
       second = Math.floor((exercisParameter.totalTime - progress) / 1000) + 1;
       if (second < 0) second = 0;
     }
@@ -4596,6 +4020,82 @@ function roundRect(ctx, x, y, width, height, radius, boardOnly) {
     ctx.stroke();
   } else {
     ctx.fill();
+  }
+}
+
+function drawIcon(sharp, x, y, w, h) {
+  mainCtx.fillStyle = "#fff";
+  mainCtx.strokeStyle = "#fff";
+  switch (sharp) {
+    case "X":
+      mainCtx.lineWidth = 5;
+      mainCtx.beginPath();
+      mainCtx.moveTo(x, y);
+      mainCtx.lineTo(x + w, y + h);
+      mainCtx.stroke();
+      mainCtx.beginPath();
+      mainCtx.moveTo(x, y + h);
+      mainCtx.lineTo(x + w, y);
+      mainCtx.stroke();
+      break;
+    case "<":
+      mainCtx.beginPath();
+      mainCtx.moveTo(x + w, y);
+      mainCtx.lineTo(x, y + h / 2);
+      mainCtx.lineTo(x + w, y + h);
+      mainCtx.closePath();
+      mainCtx.fill();
+      break;
+    case ">":
+      mainCtx.beginPath();
+      mainCtx.moveTo(x, y);
+      mainCtx.lineTo(x + w, y + h / 2);
+      mainCtx.lineTo(x, y + h);
+      mainCtx.closePath();
+      mainCtx.fill();
+      break;
+    case "||":
+      mainCtx.lineWidth = 5;
+      mainCtx.beginPath();
+      mainCtx.moveTo(x + w / 4, y);
+      mainCtx.lineTo(x + w / 4, y + h);
+      mainCtx.stroke();
+      mainCtx.beginPath();
+      mainCtx.moveTo(x + (w / 4) * 3, y);
+      mainCtx.lineTo(x + (w / 4) * 3, y + h);
+      mainCtx.stroke();
+      break;
+    case "=":
+      mainCtx.lineWidth = 5;
+      mainCtx.beginPath();
+      mainCtx.moveTo(x, y + 2);
+      mainCtx.lineTo(x + w, y + 2);
+      mainCtx.stroke();
+      mainCtx.beginPath();
+      mainCtx.moveTo(x, y + h / 2);
+      mainCtx.lineTo(x + w, y + h / 2);
+      mainCtx.stroke();
+      mainCtx.beginPath();
+      mainCtx.moveTo(x, y + h - 2);
+      mainCtx.lineTo(x + w, y + h - 2);
+      mainCtx.stroke();
+      break;
+    case "+":
+      roundRect(mainCtx, x, y, w, h, 5);
+      mainCtx.strokeStyle = "#9BCAE5";
+      mainCtx.beginPath();
+      mainCtx.moveTo(x + 5, y + h / 2);
+      mainCtx.lineTo(x + w - 5, y + h / 2);
+      mainCtx.stroke();
+      mainCtx.beginPath();
+      mainCtx.moveTo(x + w / 2, y + 5);
+      mainCtx.lineTo(x + w / 2, y + h - 5);
+      mainCtx.stroke();
+      break;
+    default:
+      //console.log(btn);
+      // if (btn.icon.drawIcon) {btn.icon.drawIcon( x, y, w, h);}
+      break;
   }
 }
 
@@ -4726,7 +4226,8 @@ function drawButtons() {
           break;
         case "iconBtn":
           if (btn.icon.direction == "left") {
-            btn.icon.drawIcon(
+            drawIcon(
+              btn.icon.sharp,
               btn.position.x,
               btn.position.y,
               btn.icon.size.w,
@@ -4744,7 +4245,8 @@ function drawButtons() {
               );
             }
           } else {
-            btn.icon.drawIcon(
+            drawIcon(
+              btn.icon.sharp,
               btn.position.x + btn.size.width - btn.icon.size.w,
               btn.position.y,
               btn.icon.size.w,
@@ -5407,7 +4909,7 @@ function areaSelectDialog() {
 function tastyGuideDialog() {
   dialogShadow();
 
-  let x = mainCanvas.width / 2 - 370;
+  let x = middleX - 370;
 
   dialogCtx.fillStyle = "#fff";
   dialogCtx.beginPath();
@@ -5692,7 +5194,7 @@ function drawExerciseText(title, second, number, textArr, nosecound) {
   mainCtx.fillText(
     //"Neck & Shoulder 1/4",
     title,
-    mainCanvas.width / 2,
+    middleX,
     55
   );
   mainCtx.fillStyle = "#555555";
