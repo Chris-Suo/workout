@@ -498,7 +498,7 @@ var state = {
   theme: "home",
   page: "home",
   gameObjects: {
-    stars: 0,
+    stars: 999,
     maps: [
       [
         { store: 0, state: 0 },
@@ -672,12 +672,41 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    sharp: "normal",
+    sharp: "conditionDisplayBtn",
     color: "#ECD276",
     action: () => {
       updateDialog = confirmBuildDialog;
       updateDialog();
       showDialog();
+    },
+    condition: () => {
+      return state.gameObjects.stars >= 3;
+    },
+  },
+  {
+    belong: {
+      theme: "tasty",
+      page: "main",
+    },
+    text: "建造",
+    size: {
+      width: 100,
+      heigth: 60,
+    },
+    setPosition: function () {
+      this.position.x = mainCanvas.width / 2 - 370;
+      this.position.y = 20;
+    },
+    font: {
+      size: 36,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "conditionDisplayBtn",
+    color: "#A7A7A7",
+    action: null,
+    condition: () => {
+      return state.gameObjects.stars < 3;
     },
   },
   {
@@ -1118,6 +1147,27 @@ var buttons = [
       theme: "exercise",
       page: "1-1",
     },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-2");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-1",
+    },
     sharp: "iconBtn",
     text: "||",
     icon: {
@@ -1245,7 +1295,7 @@ var buttons = [
       family: "NotoSansTC-Light",
     },
     action: function () {
-      //changeThemePage("exercise", "1-1");
+      changeThemePage("exercise", "1-1");
     },
   },
   {
@@ -1284,6 +1334,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-3");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-2",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -1423,7 +1494,7 @@ var buttons = [
       family: "NotoSansTC-Light",
     },
     action: function () {
-      //changeThemePage("exercise", "1-2");
+      changeThemePage("exercise", "1-2");
     },
   },
   {
@@ -1462,6 +1533,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-4");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-3",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -1652,6 +1744,27 @@ var buttons = [
       theme: "exercise",
       page: "1-4",
     },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-5");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-4",
+    },
     sharp: "iconBtn",
     text: "||",
     icon: {
@@ -1779,7 +1892,7 @@ var buttons = [
       family: "NotoSansTC-Light",
     },
     action: function () {
-      // changeThemePage("exercise", "1-4");
+      changeThemePage("exercise", "1-4");
     },
   },
   {
@@ -1818,6 +1931,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-6");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-5",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -1957,7 +2091,7 @@ var buttons = [
       family: "NotoSansTC-Light",
     },
     action: function () {
-      //changeThemePage("exercise", "1-5");
+      changeThemePage("exercise", "1-5");
     },
   },
   {
@@ -1996,6 +2130,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "1-7");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-6",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -2135,7 +2290,7 @@ var buttons = [
       family: "NotoSansTC-Light",
     },
     action: function () {
-      // changeThemePage("exercise", "1-6");
+      changeThemePage("exercise", "1-6");
     },
   },
   {
@@ -2175,7 +2330,36 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      if (finishedRound >= 1) {
+        updateDialog = finishExerciseDialog;
+        updateDialog();
+        showDialog();
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "1-7",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        updateDialog = finishExerciseDialog;
+        updateDialog();
+        showDialog();
+      }
+    },
   },
   {
     belong: {
@@ -2359,6 +2543,27 @@ var buttons = [
       theme: "exercise",
       page: "2-1",
     },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "2-2");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-1",
+    },
     sharp: "iconBtn",
     text: "||",
     icon: {
@@ -2485,7 +2690,9 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      changeThemePage("exercise", "2-1");
+    },
   },
   {
     belong: {
@@ -2523,6 +2730,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "2-3");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-2",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -2661,7 +2889,9 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      changeThemePage("exercise", "2-2");
+    },
   },
   {
     belong: {
@@ -2699,6 +2929,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "2-4");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-3",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -2837,7 +3088,9 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      changeThemePage("exercise", "2-3");
+    },
   },
   {
     belong: {
@@ -2876,7 +3129,36 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      if (finishedRound >= 1) {
+        updateDialog = finishExerciseDialog;
+        updateDialog();
+        showDialog();
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "2-4",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        updateDialog = finishExerciseDialog;
+        updateDialog();
+        showDialog();
+      }
+    },
   },
   {
     belong: {
@@ -3060,6 +3342,27 @@ var buttons = [
       theme: "exercise",
       page: "3-1",
     },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "3-2");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-1",
+    },
     sharp: "iconBtn",
     text: "||",
     icon: {
@@ -3186,7 +3489,9 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      changeThemePage("exercise", "3-1");
+    },
   },
   {
     belong: {
@@ -3224,6 +3529,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "3-3");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-2",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -3362,7 +3688,9 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      changeThemePage("exercise", "3-2");
+    },
   },
   {
     belong: {
@@ -3400,6 +3728,27 @@ var buttons = [
       size: 34,
       color: "white",
       family: "NotoSansTC-Light",
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        changeThemePage("exercise", "3-4");
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-3",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
     },
     action: function () {
       if (finishedRound >= 1) {
@@ -3495,7 +3844,11 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: function () {
+      updateDialog = confirmExitDialog;
+      updateDialog();
+      showDialog();
+    },
   },
   {
     belong: {
@@ -3534,7 +3887,36 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    action: null,
+    action: () => {
+      if (finishedRound >= 1) {
+        updateDialog = finishExerciseDialog;
+        updateDialog();
+        showDialog();
+      }
+    },
+  },
+  {
+    belong: {
+      theme: "exercise",
+      page: "3-4",
+    },
+    sharp: "background",
+    text: "",
+    size: {
+      width: mainCanvas.width - 40,
+      heigth: mainCanvas.height - 120,
+    },
+    setPosition: function () {
+      this.position.x = 20;
+      this.position.y = 100;
+    },
+    action: function () {
+      if (finishedRound >= 1) {
+        updateDialog = finishExerciseDialog;
+        updateDialog();
+        showDialog();
+      }
+    },
   },
   {
     belong: {
@@ -3592,6 +3974,16 @@ var dialogParameters = {};
 
 var loaded = 0;
 function loadResources() {
+  let saveFile = localStorage.getItem("state");
+  if (saveFile) {
+   let loadState = JSON.parse(saveFile.toString());
+    loadState.theme = 'home';
+    loadState.page = 'home';
+    state = loadState;
+   //"theme":"health","page":"main","
+    //console.log(loadState);
+  }
+
   for (let key in images) {
     let _src = images[key];
     images[key] = new Image();
@@ -3958,28 +4350,23 @@ function setupExercise(
   //console.log(picArr);
   //mainCtx.drawImage(picArr[0],mainCanvas.width*0.6,120, 473, 564);//3285*3918
   let _bkt = breakTime || false;
-  mainCtx.drawImage(
-    picArr[0],
-    mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100,
-    120,
-    473,
-    564
-  );
+  mainCtx.drawImage(picArr[0], mainCanvas.width * 0.6 + 50, 120, 473, 564);
 
   mainCtx.font = "70px NotoSansTC-Light";
   mainCtx.textBaseline = "top";
   mainCtx.textAlign = "center";
-  mainCtx.fillStyle = "#FFAFAF";
+  mainCtx.fillStyle = "#D17C7C";
+  //console.log(mainCanvas.width*0.6);
   if (_bkt) {
     mainCtx.fillText(
       seconds - 5,
-      (mainCanvas.width * 0.6) / 2,
+      30 + (mainCanvas.width * 0.6) / 2,
       mainCanvas.height / 2 - 60
     );
   } else {
     mainCtx.fillText(
       seconds,
-      (mainCanvas.width * 0.6) / 2,
+      30 + (mainCanvas.width * 0.6) / 2,
       mainCanvas.height / 2 - 60
     );
   }
@@ -4027,7 +4414,8 @@ function updateExercise(timestamp) {
     let progress = timestamp - start;
 
     // update frame
-    let picX = mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100;
+    let picX = mainCanvas.width * 0.6 + 50;
+    //let picX = mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100;
     let picY = 120;
 
     mainCtx.fillStyle = "#EBF5FA";
@@ -4041,9 +4429,9 @@ function updateExercise(timestamp) {
     mainCtx.fillStyle = "#E4E8EA";
     mainCtx.fillRect(
       (mainCanvas.width * 0.6) / 2 - 90,
-      mainCanvas.height / 2 - 60,
+      mainCanvas.height / 2 - 75,
       180,
-      80
+      90
     );
 
     mainCtx.drawImage(
@@ -4053,9 +4441,10 @@ function updateExercise(timestamp) {
       473,
       564
     );
+    //500*550
     //mainCtx.drawImage(exercisParameter.pics[animattionIndex], picX, picY);
 
-    mainCtx.fillStyle = "#FFAFAF";
+    mainCtx.fillStyle = "#D17C7C";
     let second = 0;
     if (state.theme == "exercise" && state.page == "2-3") {
       let _count = animattionIndex; // 0~11
@@ -4076,7 +4465,8 @@ function updateExercise(timestamp) {
       mainCtx.fillRect(30, 140, mainCanvas.width * 0.6 - 30, 40);
       mainCtx.textBaseline = "middle";
       mainCtx.textAlign = "center";
-      mainCtx.fillStyle = "#555555";
+      mainCtx.fillStyle = "#808080";
+      //mainCtx.fillStyle = "#555555";
       mainCtx.font = "34px NotoSansTC-Light";
       if (second <= 0) {
         mainCtx.fillText(
@@ -4102,11 +4492,7 @@ function updateExercise(timestamp) {
     mainCtx.font = "70px NotoSansTC-Light";
     mainCtx.textBaseline = "top";
     mainCtx.textAlign = "center";
-    mainCtx.fillText(
-      second,
-      (mainCanvas.width * 0.6) / 2,
-      mainCanvas.height / 2 - 60
-    );
+    mainCtx.fillText(second, 30 + (mainCanvas.width * 0.6) / 2, middleY - 70);
     // console.log(progress);
     if (
       progress >= exercisParameter.periodArr[animattionIndex] &&
@@ -4130,7 +4516,7 @@ function updateExercise(timestamp) {
           );
         } else {
           //console.log("get start");
-          state.gameObjects.stars++;
+          //state.gameObjects.stars++;
 
           updateDialog = finishExerciseDialog;
           //console.log(dialogParameters);
@@ -4239,6 +4625,30 @@ function drawButtons() {
               (btn.font.size * btn.text.length) / 2,
             btn.position.y + btn.size.heigth / 2 - btn.font.size / 2 + 3
           );
+          break;
+        case "conditionDisplayBtn":
+          if (btn.condition()) {
+            mainCtx.fillStyle = btn.color || "white";
+            roundRect(
+              mainCtx,
+              btn.position.x,
+              btn.position.y,
+              btn.size.width,
+              btn.size.heigth,
+              10
+            );
+            mainCtx.font = btn.font.size + "px " + btn.font.family;
+            mainCtx.fillStyle = btn.font.color;
+            mainCtx.textBaseline = "top";
+            mainCtx.textAlign = "left";
+            mainCtx.fillText(
+              btn.text,
+              btn.position.x +
+                btn.size.width / 2 -
+                (btn.font.size * btn.text.length) / 2,
+              btn.position.y + btn.size.heigth / 2 - btn.font.size / 2 + 3
+            );
+          }
           break;
         case "themeSelector_l":
           mainCtx.fillStyle = btn.color || "white";
@@ -4353,6 +4763,8 @@ function drawButtons() {
             }
           }
           break;
+        case "background":
+          break;
       }
     }
   });
@@ -4387,7 +4799,13 @@ mainCanvas.addEventListener("click", function (e) {
         e.layerY >= btn.position.y &&
         e.layerY <= btn.position.y + btn.size.heigth
       ) {
-        if (btn.action) btn.action();
+        if (btn.condition) {
+          if (!btn.condition()) return;
+        }
+        if (btn.action) {
+          btn.action();
+          localStorage.setItem("state", JSON.stringify(state));
+        }
       }
     }
   });
@@ -4402,7 +4820,10 @@ dialogCanvas.addEventListener("click", function (e) {
         e.layerY <= btn.range.y + btn.range.h &&
         e.layerY >= btn.range.y
       )
-        if (btn.action) btn.action();
+        if (btn.action) {
+          btn.action();
+          localStorage.setItem("state", JSON.stringify(state));
+        }
     });
   }
 });
@@ -4416,7 +4837,10 @@ gameCanvas.addEventListener("click", function (e) {
         e.layerY <= btn.range.y + btn.range.h &&
         e.layerY >= btn.range.y
       )
-        if (btn.action) btn.action();
+        if (btn.action) {
+          btn.action();
+          localStorage.setItem("state", JSON.stringify(state));
+        }
     });
   }
 });
@@ -4425,7 +4849,7 @@ gameCanvas.addEventListener("click", function (e) {
 function startBtnAction() {
   if (!resLoaded) {
     console.log("Loading...");
-    alert('資料讀取中，請稍候...');
+    alert("資料讀取中，請稍候...");
     return;
   }
 
@@ -4856,8 +5280,8 @@ function confirmBuildDialog() {
       let selectIndex = Math.floor(Math.random() * _selectPool.length);
       let x = _selectPool[selectIndex].x;
       let y = _selectPool[selectIndex].y;
-      let newStore = Math.floor(Math.random() * 200); 
-      state.gameObjects.maps[y][x].store = newStore+1;
+      let newStore = Math.floor(Math.random() * 200);
+      state.gameObjects.maps[y][x].store = newStore + 1;
       state.gameObjects.maps[y][x].state = "new";
       determineGameZomePosition(-(x * 180) + 360, -(y * 150) + 150);
       updateBoundary(x, y);
@@ -4872,6 +5296,15 @@ function confirmBuildDialog() {
 
       // test();
       //closeDialog();
+      state.gameObjects.stars -= 3;
+      mainCtx.fillStyle = "#B2CA9D";
+      mainCtx.fillRect(middleX - 480, 20, 100, 60);
+      mainCtx.font = "32px NotoSansTC-Light";
+      mainCtx.fillStyle = "#FFF";
+      mainCtx.textBaseline = "middle";
+      mainCtx.textAlign = "center";
+      mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+      drawButtons();
       closeDialog();
     },
   });
@@ -5071,6 +5504,10 @@ function finishExerciseDialog() {
       h: 70,
     },
     action: function () {
+      //console.log('finish');
+      state.gameObjects.stars++;
+      exercisParameter.status = "stop";
+      //console.log(exercisParameter)
       closeDialog();
       changeThemePage("health", "main");
       //exercisParameter.status = "run";
@@ -5280,7 +5717,7 @@ function drawExerciseText(title, second, number, textArr, nosecound) {
     );
   });
 
-  mainCtx.fillStyle = "#FFAFAF";
+  mainCtx.fillStyle = "#D17C7C";
   mainCtx.font = "34px NotoSansTC-Light";
   mainCtx.fillText(
     "若感到不適，請立即停止。",
