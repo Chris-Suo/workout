@@ -4361,20 +4361,28 @@ dialogCanvas.addEventListener("click", function (e) {
 
 gameCanvas.addEventListener("click", function (e) {
   // console.log("gc click");
-  // console.log(e);
+  //console.log(e);
   if (gameButtons.length > 0) {
     //console.log("check");
     //  console.log(gameButtons);
     gameButtons.forEach((btn) => {
+      let _x = 0;
+      let _y = 0;
+      if (navigator.userAgent.indexOf("Chrome") != -1) {
+        // chrome
+        _x = e.offsetX;
+        _y = e.offsetY;
+      } else {
+        // other
+        _x = e.layerX;
+        _y = e.layerY;
+      }
+
       if (
-        (e.layerX <= btn.range.x + btn.range.w &&
-          e.layerX >= btn.range.x &&
-          e.layerY <= btn.range.y + btn.range.h &&
-          e.layerY >= btn.range.y) ||
-        (e.offsetX <= btn.range.x + btn.range.w &&
-          e.offsetX >= btn.range.x &&
-          e.offsetY <= btn.range.y + btn.range.h &&
-          e.offsetY >= btn.range.y)
+        _x <= btn.range.x + btn.range.w &&
+        _x >= btn.range.x &&
+        _y <= btn.range.y + btn.range.h &&
+        _y >= btn.range.y
       ) {
         //console.log("in btn");
         if (btn.action) {
@@ -5441,7 +5449,7 @@ function updateGameZone() {
         let name = "A" + num;
         //console.log(name);
         gameCtx.drawImage(images[name], _gameZoneX, _gameZoneY);
-        
+
         gameButtons.push({
           range: {
             x: _gameZoneX,
