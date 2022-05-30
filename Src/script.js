@@ -2,6 +2,7 @@
 // 1366 * 668 (x1.4055)
 const MIN_WIDTH = 1366;
 const MIN_HEIGHT = 668;
+const MAX_STORES = 200;
 
 var resLoaded = false;
 var images = {
@@ -571,6 +572,7 @@ var state = {
         { store: 0, state: 0 },
       ],
     ],
+    storeList: [],
     // maps: [
     //   [1, 2, 3, 4, 5, 6, 7],
     //   [8, 9, 10, 11, 12, 13, 14],
@@ -603,9 +605,38 @@ var buttons = [
       color: "white",
       family: "NotoSansTC-Light",
     },
-    sharp: "normal",
+    sharp: "conditionDisplayBtn",
     color: "#73A5BE",
     action: startBtnAction,
+    condition: () => {
+      return resLoaded;
+    },
+  },
+  {
+    belong: {
+      theme: "home",
+      page: "home",
+    },
+    text: "開　始",
+    size: {
+      width: 200,
+      heigth: 70,
+    },
+    setPosition: function () {
+      this.position.x = middleX - 100;
+      this.position.y = mainCanvas.height - 120;
+    },
+    font: {
+      size: 36,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "conditionDisplayBtn",
+    color: "#A7A7A7",
+    action: null,
+    condition: () => {
+      return !resLoaded;
+    },
   },
   {
     belong: {
@@ -1024,7 +1055,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -1055,7 +1086,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -1111,7 +1142,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -1182,7 +1213,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -1215,7 +1246,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -1271,7 +1302,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -1342,7 +1373,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -1375,7 +1406,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -1431,7 +1462,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -1502,7 +1533,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -1535,7 +1566,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -1591,7 +1622,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -1662,7 +1693,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -1695,7 +1726,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -1751,7 +1782,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -1822,7 +1853,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -1855,7 +1886,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -1911,7 +1942,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -1982,7 +2013,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2015,7 +2046,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -2075,7 +2106,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -2147,7 +2178,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2178,7 +2209,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -2234,7 +2265,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -2305,7 +2336,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2338,7 +2369,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -2394,7 +2425,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -2465,7 +2496,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2498,7 +2529,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -2554,7 +2585,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -2625,7 +2656,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2658,7 +2689,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -2718,7 +2749,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -2790,7 +2821,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2821,7 +2852,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -2877,7 +2908,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -2948,7 +2979,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -2981,7 +3012,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -3037,7 +3068,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -3108,7 +3139,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -3141,7 +3172,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -3197,7 +3228,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -3268,7 +3299,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "<",
     icon: {
-      sharp:"<",
+      sharp: "<",
       direction: "left",
       size: {
         w: 20,
@@ -3301,7 +3332,7 @@ var buttons = [
     sharp: "iconBtn",
     text: ">",
     icon: {
-      sharp:">",
+      sharp: ">",
       direction: "left",
       size: {
         w: 20,
@@ -3361,7 +3392,7 @@ var buttons = [
     sharp: "iconBtn",
     text: "||",
     icon: {
-      sharp:"||",
+      sharp: "||",
       direction: "left",
       size: {
         w: 30,
@@ -3406,6 +3437,10 @@ function loadResources() {
     state = loadState;
     //"theme":"health","page":"main","
     //console.log(loadState);
+  } else {
+    for (let i = 1; i <= MAX_STORES; i++) {
+      state.gameObjects.storeList.push(i);
+    }
   }
 
   for (let key in images) {
@@ -3419,6 +3454,7 @@ function loadResources() {
         if (loaded == Object.keys(images).length) {
           resLoaded = true;
           console.log("OK");
+          drawButtons();
         }
       },
       false
@@ -3634,7 +3670,7 @@ function updateTheme() {
           );
           setupExercise(
             1,
-            24,
+            12,
             [
               images["Ex22"],
               images["Ex23"],
@@ -3649,7 +3685,7 @@ function updateTheme() {
               images["Ex24"],
               images["Ex25"],
             ],
-            [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24],
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             {
               theme: "exercise",
               page: "2-4",
@@ -3787,11 +3823,7 @@ function setupExercise(
       middleY - 70
     );
   } else {
-    mainCtx.fillText(
-      seconds,
-      30 + (mainCanvas.width * 0.6) / 2,
-      middleY - 70
-    );
+    mainCtx.fillText(seconds, 30 + (mainCanvas.width * 0.6) / 2, middleY - 70);
   }
 
   exercisParameter = {
@@ -3850,12 +3882,7 @@ function updateExercise(timestamp) {
     );
 
     mainCtx.fillStyle = "#E4E8EA";
-    mainCtx.fillRect(
-      (mainCanvas.width * 0.6) / 2 - 90,
-      middleY - 75,
-      180,
-      90
-    );
+    mainCtx.fillRect((mainCanvas.width * 0.6) / 2 - 90, middleY - 75, 180, 90);
 
     mainCtx.drawImage(
       exercisParameter.pics[animattionIndex],
@@ -3870,6 +3897,7 @@ function updateExercise(timestamp) {
     mainCtx.fillStyle = "#D17C7C";
     let second = 0;
     if (state.theme == "exercise" && state.page == "2-3") {
+      console.log(animattionIndex);
       let _count = animattionIndex; // 0~11
       if (_count >= 6) {
         _count -= 6;
@@ -4331,18 +4359,28 @@ dialogCanvas.addEventListener("click", function (e) {
 });
 
 gameCanvas.addEventListener("click", function (e) {
+ // console.log("gc click");
+ // console.log(e);
   if (gameButtons.length > 0) {
+    //console.log("check");
+  //  console.log(gameButtons);
     gameButtons.forEach((btn) => {
       if (
-        e.layerX <= btn.range.x + btn.range.w &&
-        e.layerX >= btn.range.x &&
-        e.layerY <= btn.range.y + btn.range.h &&
-        e.layerY >= btn.range.y
-      )
+        (e.layerX <= btn.range.x + btn.range.w &&
+          e.layerX >= btn.range.x &&
+          e.layerY <= btn.range.y + btn.range.h &&
+          e.layerY >= btn.range.y) ||
+        (e.offsetX <= btn.range.x + btn.range.w &&
+          e.offsetX >= btn.range.x &&
+          e.offsetY <= btn.range.y + btn.range.h &&
+          e.offsetY >= btn.range.y)
+      ) {
+        //console.log("in btn");
         if (btn.action) {
           btn.action();
           localStorage.setItem("state", JSON.stringify(state));
         }
+      }
     });
   }
 });
@@ -4751,6 +4789,11 @@ function confirmBuildDialog() {
       h: 70,
     },
     action: function () {
+      if (state.gameObjects.storeList.length == 0) {
+        alert("沒有可建的新商店！");
+        return;
+      }
+
       function checkNeighbor(x, y) {
         return (
           (state.gameObjects.maps[x + 1] != undefined &&
@@ -4782,8 +4825,12 @@ function confirmBuildDialog() {
       let selectIndex = Math.floor(Math.random() * _selectPool.length);
       let x = _selectPool[selectIndex].x;
       let y = _selectPool[selectIndex].y;
-      let newStore = Math.floor(Math.random() * 200);
-      state.gameObjects.maps[y][x].store = newStore + 1;
+      let newStoreIndex = Math.floor(
+        Math.random() * state.gameObjects.storeList.length
+      );
+      //console.log("newStoreIndex:"+newStoreIndex);
+      state.gameObjects.maps[y][x].store =
+        state.gameObjects.storeList[newStoreIndex];
       state.gameObjects.maps[y][x].state = "new";
       determineGameZomePosition(-(x * 180) + 360, -(y * 150) + 150);
       updateBoundary(x, y);
@@ -4799,6 +4846,11 @@ function confirmBuildDialog() {
       // test();
       //closeDialog();
       state.gameObjects.stars -= 3;
+      let _listS = state.gameObjects.storeList.slice(0, newStoreIndex);
+      let _listE = state.gameObjects.storeList.slice(newStoreIndex + 1);
+      //console.log(_listS);
+      //console.log(_listE);
+      state.gameObjects.storeList = _listS.concat(_listE);
       mainCtx.fillStyle = "#B2CA9D";
       mainCtx.fillRect(middleX - 480, 20, 100, 60);
       mainCtx.font = "32px NotoSansTC-Light";
@@ -5480,6 +5532,7 @@ function determineGameZomePosition(x, y) {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
   gameZoneX = newX;
   gameZoneY = newY;
+  // console.log()
 }
 
 var isDrag = false;
