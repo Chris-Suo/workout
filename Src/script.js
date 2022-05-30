@@ -3454,6 +3454,7 @@ function loadResources() {
         if (loaded == Object.keys(images).length) {
           resLoaded = true;
           console.log("OK");
+          updateComponentPosition();
           drawButtons();
         }
       },
@@ -4359,11 +4360,11 @@ dialogCanvas.addEventListener("click", function (e) {
 });
 
 gameCanvas.addEventListener("click", function (e) {
- // console.log("gc click");
- // console.log(e);
+  // console.log("gc click");
+  // console.log(e);
   if (gameButtons.length > 0) {
     //console.log("check");
-  //  console.log(gameButtons);
+    //  console.log(gameButtons);
     gameButtons.forEach((btn) => {
       if (
         (e.layerX <= btn.range.x + btn.range.w &&
@@ -5436,10 +5437,25 @@ function updateGameZone() {
         gameCtx.drawImage(images["home"], _gameZoneX, _gameZoneY);
         //_gameZoneX += 180;
       } else if (obj.store > 0) {
-        let name = "A" + obj.store.toString().padStart(3, "0");
+        let num = obj.store.toString().padStart(3, "0");
+        let name = "A" + num;
         //console.log(name);
-
         gameCtx.drawImage(images[name], _gameZoneX, _gameZoneY);
+        
+        gameButtons.push({
+          range: {
+            x: _gameZoneX,
+            y: _gameZoneY,
+            w: 180,
+            h: 150,
+          },
+          action: () => {
+            updateDialog = showStoreInfoDialog;
+            dialogParameters.picNum = num;
+            updateDialog();
+            showDialog();
+          },
+        });
       }
       _gameZoneX += 180;
     });
