@@ -499,7 +499,7 @@ var state = {
   theme: "home",
   page: "home",
   gameObjects: {
-    stars: 999,
+    stars: 3,
     maps: [
       [
         { store: 0, state: 0 },
@@ -673,7 +673,8 @@ var buttons = [
     },
     setPosition: function () {
       this.position.x = middleX - 100;
-      this.position.y = 570;
+      //this.position.y = 570;
+      this.position.y =  530 + (mainCanvas.height-530)/2 - 35;
     },
     font: {
       size: 36,
@@ -691,19 +692,19 @@ var buttons = [
     },
     text: "建造",
     size: {
-      width: 100,
-      heigth: 60,
+      width: 150,
+      heigth: 50,
     },
     setPosition: function () {
-      this.position.x = middleX - 370;
-      this.position.y = 20;
+      this.position.x = middleX + 370;
+      this.position.y = 25;
     },
     font: {
       size: 36,
       color: "white",
       family: "NotoSansTC-Light",
     },
-    sharp: "conditionDisplayBtn",
+    sharp: "conditionDisplayBtn_build",
     color: "#ECD276",
     action: () => {
       updateDialog = confirmBuildDialog;
@@ -721,23 +722,56 @@ var buttons = [
     },
     text: "建造",
     size: {
-      width: 100,
-      heigth: 60,
+      width: 150,
+      heigth: 50,
     },
     setPosition: function () {
-      this.position.x = middleX - 370;
-      this.position.y = 20;
+      this.position.x = middleX + 370;
+      this.position.y = 25;
     },
     font: {
       size: 36,
       color: "white",
       family: "NotoSansTC-Light",
     },
-    sharp: "conditionDisplayBtn",
+    sharp: "conditionDisplayBtn_build",
     color: "#A7A7A7",
-    action: null,
+    action:  () => { //2
+      updateDialog = noStarDialog;
+      updateDialog();
+      showDialog();
+    },
     condition: () => {
       return state.gameObjects.stars < 3;
+    },
+  },
+  {
+    belong: {
+      theme: "health",
+      page: "main",
+    },
+    text: "Tasty",
+    size: {
+      width: 220,
+      heigth: 60,
+    },
+    setPosition: function () {
+      this.position.x = middleX - 20;
+      this.position.y = 20;
+    },
+    font: {
+      size: 40,
+      color: "white",
+      family: "NotoSansTC-Light",
+    },
+    sharp: "themeSelector_r",
+    color: "#555555",
+    action: function () {
+      if (state.firstUse.tasty) {
+        changeThemePage("tasty", "intro");
+      } else {
+        changeThemePage("tasty", "main");
+      }
     },
   },
   {
@@ -765,41 +799,12 @@ var buttons = [
   },
   {
     belong: {
-      theme: "health",
-      page: "main",
-    },
-    text: "Tasty",
-    size: {
-      width: 200,
-      heigth: 60,
-    },
-    setPosition: function () {
-      this.position.x = middleX;
-      this.position.y = 20;
-    },
-    font: {
-      size: 40,
-      color: "white",
-      family: "NotoSansTC-Light",
-    },
-    sharp: "themeSelector_r",
-    color: "#555555",
-    action: function () {
-      if (state.firstUse.tasty) {
-        changeThemePage("tasty", "intro");
-      } else {
-        changeThemePage("tasty", "main");
-      }
-    },
-  },
-  {
-    belong: {
       theme: "tasty",
       page: "main",
     },
     text: "Health",
     size: {
-      width: 200,
+      width: 220,
       heigth: 60,
     },
     setPosition: function () {
@@ -947,7 +952,7 @@ var buttons = [
     text: "內　容",
     icon: {
       sharp: "+",
-      direction: "left",
+      direction: "right",
       size: {
         w: 30,
         h: 30,
@@ -959,7 +964,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = middleX - 535;
+      this.position.x = middleX + 535 - this.size.width;
       let _y = middleY - 231;
       if (_y < 144) _y = 144;
       this.position.y = _y;
@@ -985,7 +990,7 @@ var buttons = [
     text: "介　紹",
     icon: {
       sharp: "=",
-      direction: "right",
+      direction: "left",
       size: {
         w: 30,
         h: 30,
@@ -997,7 +1002,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = middleX + 535 - this.size.width;
+      this.position.x = middleX - 535;
       let _y = middleY - 231;
       if (_y < 144) _y = 144;
       this.position.y = _y;
@@ -1033,7 +1038,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -1046,37 +1051,6 @@ var buttons = [
       updateDialog();
       showDialog();
     },
-  },
-  {
-    belong: {
-      theme: "exercise",
-      page: "1-1",
-    },
-    sharp: "iconBtn",
-    text: "<",
-    icon: {
-      sharp: "<",
-      direction: "left",
-      size: {
-        w: 20,
-        h: 30,
-      },
-    },
-    showText: false,
-    size: {
-      width: 20,
-      heigth: 30,
-    },
-    setPosition: function () {
-      this.position.x = middleX - 200;
-      this.position.y = 40;
-    },
-    font: {
-      size: 34,
-      color: "white",
-      family: "NotoSansTC-Light",
-    },
-    action: null,
   },
   {
     belong: {
@@ -1191,7 +1165,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -1351,7 +1325,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -1511,7 +1485,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -1671,7 +1645,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -1831,7 +1805,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -1991,7 +1965,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -2156,7 +2130,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -2169,37 +2143,6 @@ var buttons = [
       updateDialog();
       showDialog();
     },
-  },
-  {
-    belong: {
-      theme: "exercise",
-      page: "2-1",
-    },
-    sharp: "iconBtn",
-    text: "<",
-    icon: {
-      sharp: "<",
-      direction: "left",
-      size: {
-        w: 20,
-        h: 30,
-      },
-    },
-    showText: false,
-    size: {
-      width: 20,
-      heigth: 30,
-    },
-    setPosition: function () {
-      this.position.x = middleX - 200;
-      this.position.y = 40;
-    },
-    font: {
-      size: 34,
-      color: "white",
-      family: "NotoSansTC-Light",
-    },
-    action: null,
   },
   {
     belong: {
@@ -2314,7 +2257,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -2474,7 +2417,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -2634,7 +2577,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -2799,7 +2742,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -2812,37 +2755,6 @@ var buttons = [
       updateDialog();
       showDialog();
     },
-  },
-  {
-    belong: {
-      theme: "exercise",
-      page: "3-1",
-    },
-    sharp: "iconBtn",
-    text: "<",
-    icon: {
-      sharp: "<",
-      direction: "left",
-      size: {
-        w: 20,
-        h: 30,
-      },
-    },
-    showText: false,
-    size: {
-      width: 20,
-      heigth: 30,
-    },
-    setPosition: function () {
-      this.position.x = middleX - 200;
-      this.position.y = 40;
-    },
-    font: {
-      size: 34,
-      color: "white",
-      family: "NotoSansTC-Light",
-    },
-    action: null,
   },
   {
     belong: {
@@ -2957,7 +2869,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -3117,7 +3029,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -3277,7 +3189,7 @@ var buttons = [
       heigth: 30,
     },
     setPosition: function () {
-      this.position.x = 20;
+      this.position.x = 26;
       this.position.y = 40;
     },
     font: {
@@ -4097,28 +4009,28 @@ function drawIcon(sharp, x, y, w, h) {
     case "=":
       mainCtx.lineWidth = 5;
       mainCtx.beginPath();
-      mainCtx.moveTo(x, y + 2);
-      mainCtx.lineTo(x + w, y + 2);
+      mainCtx.moveTo(x, y + 6);
+      mainCtx.lineTo(x + w, y + 6);
       mainCtx.stroke();
       mainCtx.beginPath();
-      mainCtx.moveTo(x, y + h / 2);
-      mainCtx.lineTo(x + w, y + h / 2);
+      mainCtx.moveTo(x, y + h / 2 + 4);
+      mainCtx.lineTo(x + w, y + h / 2 + 4);
       mainCtx.stroke();
       mainCtx.beginPath();
-      mainCtx.moveTo(x, y + h - 2);
-      mainCtx.lineTo(x + w, y + h - 2);
+      mainCtx.moveTo(x, y + h + 2);
+      mainCtx.lineTo(x + w, y + h + 2);
       mainCtx.stroke();
       break;
     case "+":
-      roundRect(mainCtx, x, y, w, h, 5);
+      roundRect(mainCtx, x, y + 4, w, h, 5);
       mainCtx.strokeStyle = "#9BCAE5";
       mainCtx.beginPath();
-      mainCtx.moveTo(x + 5, y + h / 2);
-      mainCtx.lineTo(x + w - 5, y + h / 2);
+      mainCtx.moveTo(x + 5, y + h / 2 + 4);
+      mainCtx.lineTo(x + w - 5, y + h / 2 + 4);
       mainCtx.stroke();
       mainCtx.beginPath();
-      mainCtx.moveTo(x + w / 2, y + 5);
-      mainCtx.lineTo(x + w / 2, y + h - 5);
+      mainCtx.moveTo(x + w / 2, y + 9);
+      mainCtx.lineTo(x + w / 2, y + h - 1);
       mainCtx.stroke();
       break;
     default:
@@ -4156,16 +4068,40 @@ function drawButtons() {
           );
           break;
         case "conditionDisplayBtn":
+        case "conditionDisplayBtn_build":
           if (btn.condition()) {
-            mainCtx.fillStyle = btn.color || "white";
-            roundRect(
-              mainCtx,
-              btn.position.x,
-              btn.position.y,
-              btn.size.width,
-              btn.size.heigth,
-              10
-            );
+            if (btn.sharp == "conditionDisplayBtn_build") {
+              if (state.gameObjects.stars >= 3) {
+                mainCtx.fillStyle = "rgba(85, 85, 85,0.3)";
+                roundRect(
+                  mainCtx,
+                  btn.position.x + 3,
+                  btn.position.y + 3,
+                  btn.size.width,
+                  btn.size.heigth,
+                  30
+                );
+              }
+              mainCtx.fillStyle = btn.color || "white";
+              roundRect(
+                mainCtx,
+                btn.position.x,
+                btn.position.y,
+                btn.size.width,
+                btn.size.heigth,
+                30
+              );
+            } else {
+              mainCtx.fillStyle = btn.color || "white";
+              roundRect(
+                mainCtx,
+                btn.position.x,
+                btn.position.y,
+                btn.size.width,
+                btn.size.heigth,
+                10
+              );
+            }
             mainCtx.font = btn.font.size + "px " + btn.font.family;
             mainCtx.fillStyle = btn.font.color;
             mainCtx.textBaseline = "top";
@@ -4187,7 +4123,8 @@ function drawButtons() {
             btn.position.y,
             btn.size.width,
             btn.size.heigth,
-            { tl: 10, tr: 0, br: 0, bl: 10 }
+            10
+            // { tl: 10, tr: 0, br: 0, bl: 10 }
           );
           mainCtx.font = btn.font.size + "px " + btn.font.family;
           mainCtx.fillStyle = btn.font.color;
@@ -4207,7 +4144,8 @@ function drawButtons() {
             btn.position.y,
             btn.size.width,
             btn.size.heigth,
-            { tl: 0, tr: 10, br: 10, bl: 0 }
+            10
+            //{ tl: 0, tr: 10, br: 10, bl: 0 }
           );
           mainCtx.font = btn.font.size + "px " + btn.font.family;
           mainCtx.fillStyle = btn.font.color;
@@ -4220,6 +4158,15 @@ function drawButtons() {
           );
           break;
         case "imageBtn":
+          mainCtx.fillStyle = "rgba(85, 85, 85, 0.3)";
+          roundRect(
+            mainCtx,
+            btn.position.x + 4,
+            btn.position.y + 4,
+            btn.size.width,
+            btn.size.heigth,
+            10
+          );
           mainCtx.fillStyle = btn.color || "white";
           roundRect(
             mainCtx,
@@ -4409,8 +4356,9 @@ function startBtnAction() {
   }
 }
 
-function dialogShadow() {
-  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
+function dialogShadow(alpha) {
+  let _a = alpha || 0.5;
+  dialogCtx.fillStyle = "rgba(85, 85, 85," + _a + ")";
   dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
 }
 
@@ -4425,16 +4373,16 @@ function drawDialogButton(x, y, w, h, text) {
 }
 
 function showContentDialog() {
-  dialogShadow();
+  dialogShadow(0.8);
 
   dialogCtx.font = "40px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
-  dialogCtx.fillText("內容", middleX, 40);
+  dialogCtx.fillText("內容", middleX, 50);
 
   dialogCtx.fillStyle = "F5F5F5";
-  let boxPosY = (dialogCanvas.height - 80) / 2 - 255;
+  let boxPosY = (dialogCanvas.height - 80) / 2 - 249;
   if (boxPosY < 65) boxPosY = 65;
   let box1PosX = middleX - 535;
   let box2PosX = middleX - 175;
@@ -4445,17 +4393,17 @@ function showContentDialog() {
   roundRect(dialogCtx, box3PosX, boxPosY, 350, 510, 10);
 
   dialogCtx.drawImage(images["W02"], box1PosX + 30, boxPosY + 40);
-  dialogCtx.drawImage(images["W03"], box2PosX + 30, boxPosY + 40);
+  dialogCtx.drawImage(images["W03"], box2PosX + 20, boxPosY + 40);
   dialogCtx.drawImage(images["W04"], box3PosX + 30, boxPosY + 40);
 
   dialogCtx.fillStyle = "#555555";
-  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.font = "34px NotoSansTC-Light";
   dialogCtx.textAlign = "center";
   dialogCtx.fillText("腕隧道症候群", box1PosX + 175, boxPosY + 34);
   dialogCtx.fillText("肩頸痠痛", box2PosX + 175, boxPosY + 34);
   dialogCtx.fillText("網球肘", box3PosX + 175, boxPosY + 34);
 
-  dialogCtx.font = "20px NotoSansTC-Light";
+  dialogCtx.font = "18px NotoSansTC-Light";
   dialogCtx.textAlign = "left";
   let textYbase = 292;
   let textHeight = 20;
@@ -4571,7 +4519,7 @@ function showContentDialog() {
   );
 
   let btnPosX = middleX - 100;
-  let btnPosY = boxPosY + 550;
+  let btnPosY = boxPosY + 556;
   if (btnPosY > dialogCanvas.height - 80) btnPosY = dialogCanvas.height - 80;
 
   dialogCtx.fillStyle = "#73A5BE";
@@ -4750,11 +4698,46 @@ function confirmExitDialog() {
   //
 }
 
-function confirmBuildDialog() {
-  let middleX = dialogCanvas.width / 2;
-  let middleY = dialogCanvas.height / 2;
+
+function noStarDialog(){
   dialogCtx.fillStyle = "#464646";
-  roundRect(dialogCtx, middleX - 300, middleY - 115, 600, 230, 10);
+  roundRect(dialogCtx, middleX - 350, middleY - 115, 700, 230, 10);
+  dialogCtx.font = "36px NotoSansTC-Light";
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.textBaseline = "middle";
+  dialogCtx.textAlign = "center";
+  dialogCtx.drawImage(images["W05"], middleX-260, middleY - 85, 60, 60);
+  dialogCtx.fillText("不足,可透過做舒緩運動獲得。", middleX+60, middleY - 50); //470
+
+  dialogCtx.fillStyle = "#88A073";
+  let BtnX = middleX - 100;
+  let BtnY = middleY + 10;
+  roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
+
+  //dialogCtx.fillStyle = "#A7A7A7";
+
+  dialogCtx.fillStyle = "#FFF";
+  dialogCtx.font = "34px NotoSansTC-Light";
+  dialogCtx.textBaseline = "top";
+  dialogCtx.textAlign = "left";
+  dialogCtx.fillText("確　定", BtnX + 46, BtnY + 20);
+
+  dialogButtons.push({
+    range: {
+      x: BtnX,
+      y: BtnY,
+      w: 200,
+      h: 70,
+    },
+    action: function () {
+      closeDialog();
+    },
+  });
+}
+
+function confirmBuildDialog() {
+  dialogCtx.fillStyle = "#464646";
+  roundRect(dialogCtx, middleX - 350, middleY - 115, 700, 230, 10);
   dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
@@ -4876,27 +4859,27 @@ function confirmBuildDialog() {
 var selectBtnOpen = false;
 
 function drawSelectMenu() {
-  let middleX = dialogCanvas.width / 2;
-  let middleY = dialogCanvas.height / 2;
+  
+  
   dialogCtx.fillStyle = "#464646";
   roundRect(dialogCtx, middleX - 250, middleY - 125, 500, 250, 10);
   dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
-  dialogCtx.fillText("選擇地區", middleX, middleY - 50);
+  dialogCtx.fillText("選擇地區", middleX, middleY - 70);
   dialogCtx.fillStyle = "#c5c5c5";
-  roundRect(dialogCtx, middleX - 150, middleY - 20, 300, 50);
+  roundRect(dialogCtx, middleX - 150, middleY - 40, 300, 50);
 
   dialogCtx.textAlign = "left";
   dialogCtx.fillStyle = "#FFF";
-  dialogCtx.fillText("台南市", middleX - 140, middleY + 10);
+  dialogCtx.fillText("台南市", middleX - 140, middleY - 10);
 
   dialogCtx.fillStyle = "#464646";
   dialogCtx.beginPath();
-  dialogCtx.moveTo(middleX + 110, middleY - 10);
-  dialogCtx.lineTo(middleX + 140, middleY - 10);
-  dialogCtx.lineTo(middleX + 125, middleY + 20);
+  dialogCtx.moveTo(middleX + 110, middleY - 30);
+  dialogCtx.lineTo(middleX + 140, middleY - 30);
+  dialogCtx.lineTo(middleX + 125, middleY );
   dialogCtx.closePath();
   dialogCtx.fill();
 
@@ -4911,8 +4894,6 @@ function drawSelectMenu() {
 }
 
 function areaSelectDialog() {
-  let middleX = dialogCanvas.width / 2;
-  let middleY = dialogCanvas.height / 2;
   dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
   dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
   drawSelectMenu();
@@ -4930,16 +4911,16 @@ function areaSelectDialog() {
         //console.log("op");
       } else {
         dialogCtx.fillStyle = "#c5c5c5";
-        roundRect(dialogCtx, middleX - 150, middleY + 20, 300, 50);
+        roundRect(dialogCtx, middleX - 150, middleY , 300, 50);
 
         dialogCtx.textAlign = "left";
         dialogCtx.fillStyle = "#FFF";
         dialogCtx.font = "36px NotoSansTC-Light";
-        dialogCtx.fillText("尚未開放", middleX - 140, middleY + 50);
+        dialogCtx.fillText("尚未開放", middleX - 140, middleY + 30);
         dialogCtx.strokeStyle = "#464646";
         dialogCtx.beginPath();
-        dialogCtx.moveTo(middleX - 140, middleY + 25);
-        dialogCtx.lineTo(middleX + 140, middleY + 25);
+        dialogCtx.moveTo(middleX - 140, middleY + 5);
+        dialogCtx.lineTo(middleX + 140, middleY + 5);
         dialogCtx.stroke();
       }
       selectBtnOpen = !selectBtnOpen;
@@ -5133,18 +5114,18 @@ function drawHome() {
   mainCtx.textAlign = "center";
   let txt = "Work ? out !";
   //console.log(mainCtx.measureText(txt));
-  //ctx.fillText("width:" + ctx.measureText(txt).width, 10, 50)
-  mainCtx.fillText(txt, middleX + 18, middleY);
+  //ctx.fillText("width:" + ctx.measureText(txt).width, 10, 50) //411.7
+  mainCtx.fillText(txt, middleX + 30, middleY);
 
   images["W07"].addEventListener("load", () => {
-    mainCtx.drawImage(images["W07"], middleX - 252, middleY - 40);
+    mainCtx.drawImage(images["W07"], middleX - 240, middleY - 40);
   });
-  mainCtx.drawImage(images["W07"], middleX - 252, middleY - 40); //36*112
+  mainCtx.drawImage(images["W07"], middleX - 240, middleY - 40); //36*112
 
   mainCtx.font = "28px NotoSansTC-Light";
   mainCtx.fillText(
     "Muscle Soothe for Office Worker",
-    middleX + 18,
+    middleX + 30,
     middleY + 50
   );
   //mainCtx.clearRect(10, 10, 20, 20);
@@ -5219,7 +5200,7 @@ function drawMain() {
   mainCtx.fillText("3", middleX + 360, middleY + 230);
 
   _y = middleY + 270 + (mainCanvas.height - (middleY + 270)) / 2 - 20;
-  mainCtx.fillStyle = "##D17C7C";
+  mainCtx.fillStyle = "#D17C7C";
   mainCtx.fillText("僅為預防症狀，緩解肌肉。", middleX, _y);
   mainCtx.fillText("若已嚴重不適請就醫。", middleX, _y + 35);
 }
@@ -5310,14 +5291,13 @@ function drawTastyIntro() {
   mainCtx.fillText("介 紹", middleX, 50);
 
   mainCtx.textAlign = "left";
-
-  let baseX = (middleX - 498) / 2;
-  let baseY = 230;
+  mainCtx.textBaseline = "top";
+  let baseX = middleX + (middleX - 498) / 2 + 40;
+  let baseY = 210;
   //let baseY = middleY - 140;
-  let linStep = 40;
-  baseX = middleX + (middleX - 498) / 2;
+  let linStep = 36;
 
-  mainCtx.font = "32px NotoSansTC-Light";
+  mainCtx.font = "28px NotoSansTC-Light";
   mainCtx.fillText("配合Work?out! 肌肉舒緩。", baseX, baseY);
   mainCtx.fillText("遊戲中有8種不同的美食類型推薦，", baseX, baseY + linStep);
   mainCtx.fillText(
@@ -5344,7 +5324,8 @@ function drawTastyIntro() {
   //let _px = (middleX/2)-380;
   if (_px < 0) _px = 10;
   mainCtx.font = "46px NotoSansTC-Light";
-  mainCtx.fillText('關於 "Tasty ? out !"', _px, 180);
+  mainCtx.textBaseline = "middle";
+  mainCtx.fillText('關於 "Tasty ? out !"', _px, 150);
 
   let _py = 210;
   let imgW = 190;
@@ -5425,6 +5406,8 @@ function hightlightStore(store, x, y) {
 }
 
 function updateGameZone() {
+  // roundRect(mainCtx, gameCanvas.)
+  //console.log(gameCanvas);
   // //gameZoneWidth = mainCanvas.width - (mainCanvas.width / 2 - 540) * 2;
   // gameZoneWidth = 1080;
   // gameZoneHeight = mainCanvas.height - 140;
@@ -5487,6 +5470,54 @@ function updateGameZone() {
     _gameZoneY += 150;
     _gameZoneX = gameZoneX;
   });
+
+  // gameCtx.fillStyle = "#B2CA9D";
+  gameCtx.fillStyle = "#B2CA9D";
+  let _r = 20;
+
+  gameCtx.beginPath();
+  gameCtx.moveTo(0, _r);
+  gameCtx.quadraticCurveTo(0, 0, _r, 0);
+  gameCtx.lineTo(0, 0);
+  gameCtx.closePath();
+  gameCtx.fill();
+
+  gameCtx.beginPath();
+  gameCtx.moveTo(gameCanvas.width-_r, 0);
+  gameCtx.quadraticCurveTo(gameCanvas.width, 0, gameCanvas.width, _r);
+  gameCtx.lineTo(gameCanvas.width, 0);
+  gameCtx.closePath();
+  gameCtx.fill();
+
+  gameCtx.beginPath();
+  gameCtx.moveTo(0, gameCanvas.height-_r);
+  gameCtx.quadraticCurveTo(0, gameCanvas.height, _r, gameCanvas.height);
+  gameCtx.lineTo(0, gameCanvas.height);
+  gameCtx.closePath();
+  gameCtx.fill();
+
+  gameCtx.beginPath();
+  gameCtx.moveTo(gameCanvas.width, gameCanvas.height-_r);
+  gameCtx.quadraticCurveTo(gameCanvas.width, gameCanvas.height, gameCanvas.width-_r, gameCanvas.height);
+  gameCtx.lineTo(gameCanvas.width, gameCanvas.height);
+  gameCtx.closePath();
+  gameCtx.fill();
+  // ctx.moveTo(x + radius.tl, y);
+  // ctx.lineTo(x + width - radius.tr, y);
+  // ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+  // ctx.lineTo(x + width, y + height - radius.br);
+  // ctx.quadraticCurveTo(
+  //   x + width,
+  //   y + height,
+  //   x + width - radius.br,
+  //   y + height
+  // );
+  // ctx.lineTo(x + radius.bl, y + height);
+  // ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+  // ctx.lineTo(x, y + radius.tl);
+  // ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+
+  //gameCtx.fillRect(0,0, 10, 10);
 }
 
 function updateBoundary(x, y) {
