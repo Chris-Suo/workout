@@ -674,7 +674,7 @@ var buttons = [
     setPosition: function () {
       this.position.x = middleX - 100;
       //this.position.y = 570;
-      this.position.y =  530 + (mainCanvas.height-530)/2 - 35;
+      this.position.y = 530 + (mainCanvas.height - 530) / 2 - 35;
     },
     font: {
       size: 36,
@@ -690,9 +690,9 @@ var buttons = [
       theme: "tasty",
       page: "main",
     },
-    text: "建造",
+    text: "建 造",
     size: {
-      width: 150,
+      width: 120,
       heigth: 50,
     },
     setPosition: function () {
@@ -720,9 +720,9 @@ var buttons = [
       theme: "tasty",
       page: "main",
     },
-    text: "建造",
+    text: "建 造",
     size: {
-      width: 150,
+      width: 120,
       heigth: 50,
     },
     setPosition: function () {
@@ -736,7 +736,8 @@ var buttons = [
     },
     sharp: "conditionDisplayBtn_build",
     color: "#A7A7A7",
-    action:  () => { //2
+    action: () => {
+      //2
       updateDialog = noStarDialog;
       updateDialog();
       showDialog();
@@ -752,11 +753,11 @@ var buttons = [
     },
     text: "Tasty",
     size: {
-      width: 220,
+      width: 200,
       heigth: 60,
     },
     setPosition: function () {
-      this.position.x = middleX - 20;
+      this.position.x = middleX;
       this.position.y = 20;
     },
     font: {
@@ -804,7 +805,7 @@ var buttons = [
     },
     text: "Health",
     size: {
-      width: 220,
+      width: 200,
       heigth: 60,
     },
     setPosition: function () {
@@ -3723,7 +3724,8 @@ function setupExercise(
   //console.log(picArr);
   //mainCtx.drawImage(picArr[0],mainCanvas.width*0.6,120, 473, 564);//3285*3918
   let _bkt = breakTime || false;
-  mainCtx.drawImage(picArr[0], mainCanvas.width * 0.6 + 50, 120, 473, 564);
+  mainCtx.drawImage(picArr[0], mainCanvas.width * 0.7 - 80, 120, 473, 564);
+  //mainCtx.drawImage(picArr[0], mainCanvas.width * 0.6 + 50, 120, 473, 564);
 
   mainCtx.font = "70px NotoSansTC-Light";
   mainCtx.textBaseline = "top";
@@ -3782,7 +3784,11 @@ function updateExercise(timestamp) {
     let progress = timestamp - start;
 
     // update frame
-    let picX = mainCanvas.width * 0.6 + 50;
+    //let picX =  30+(mainCanvas.width-60)*0.6;//  30+mainCanvas.width * 0.6 + 50;
+    // 30 + (1440) * 0.6
+    // 30 + 864 = 894
+
+    let picX = mainCanvas.width * 0.7 - 80;
     //let picX = mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100;
     let picY = 120;
 
@@ -3880,7 +3886,7 @@ function updateExercise(timestamp) {
             exercisParameter.next.page
           );
         } else {
-          //console.log("get start");
+          console.log("ana req");
           //state.gameObjects.stars++;
 
           updateDialog = finishExerciseDialog;
@@ -4068,40 +4074,16 @@ function drawButtons() {
           );
           break;
         case "conditionDisplayBtn":
-        case "conditionDisplayBtn_build":
           if (btn.condition()) {
-            if (btn.sharp == "conditionDisplayBtn_build") {
-              if (state.gameObjects.stars >= 3) {
-                mainCtx.fillStyle = "rgba(85, 85, 85,0.3)";
-                roundRect(
-                  mainCtx,
-                  btn.position.x + 3,
-                  btn.position.y + 3,
-                  btn.size.width,
-                  btn.size.heigth,
-                  30
-                );
-              }
-              mainCtx.fillStyle = btn.color || "white";
-              roundRect(
-                mainCtx,
-                btn.position.x,
-                btn.position.y,
-                btn.size.width,
-                btn.size.heigth,
-                30
-              );
-            } else {
-              mainCtx.fillStyle = btn.color || "white";
-              roundRect(
-                mainCtx,
-                btn.position.x,
-                btn.position.y,
-                btn.size.width,
-                btn.size.heigth,
-                10
-              );
-            }
+            mainCtx.fillStyle = btn.color || "white";
+            roundRect(
+              mainCtx,
+              btn.position.x,
+              btn.position.y,
+              btn.size.width,
+              btn.size.heigth,
+              10
+            );
             mainCtx.font = btn.font.size + "px " + btn.font.family;
             mainCtx.fillStyle = btn.font.color;
             mainCtx.textBaseline = "top";
@@ -4115,7 +4097,62 @@ function drawButtons() {
             );
           }
           break;
+        case "conditionDisplayBtn_build":
+          if (btn.condition()) {
+            if (state.gameObjects.stars >= 3) {
+              mainCtx.fillStyle = "rgba(85, 85, 85,0.3)";
+              // roundRect(
+              //   mainCtx,
+              //   btn.position.x + 3,
+              //   btn.position.y + 3,
+              //   btn.size.width,
+              //   btn.size.heigth,
+              //   30
+              // );
+              roundRect(
+                mainCtx,
+                btn.position.x + 3,
+                btn.position.y + 3,
+                btn.size.width,
+                btn.size.heigth,
+                10
+              );
+            }
+            mainCtx.fillStyle = btn.color || "white";
+            // roundRect(
+            //   mainCtx,
+            //   btn.position.x,
+            //   btn.position.y,
+            //   btn.size.width,
+            //   btn.size.heigth,
+            //   30
+            // );
+            roundRect(
+              mainCtx,
+              btn.position.x,
+              btn.position.y,
+              btn.size.width,
+              btn.size.heigth,
+              10
+            );
+
+            mainCtx.font = btn.font.size + "px " + btn.font.family;
+            mainCtx.fillStyle = btn.font.color;
+            mainCtx.textBaseline = "top";
+            mainCtx.textAlign = "left";
+            mainCtx.fillText(
+              btn.text,
+              btn.position.x +
+                btn.size.width / 2 -
+                mainCtx.measureText(btn.text).width / 2,
+              btn.position.y + btn.size.heigth / 2 - btn.font.size / 2 + 3
+            );
+          }
+          break;
         case "themeSelector_l":
+          mainCtx.fillStyle = "#555555";
+          mainCtx.fillRect(middleX - 10, 20, 20, 60);
+
           mainCtx.fillStyle = btn.color || "white";
           roundRect(
             mainCtx,
@@ -4137,6 +4174,9 @@ function drawButtons() {
           );
           break;
         case "themeSelector_r":
+          mainCtx.fillStyle = "#555555";
+          mainCtx.fillRect(middleX - 10, 20, 20, 60);
+
           mainCtx.fillStyle = btn.color || "white";
           roundRect(
             mainCtx,
@@ -4410,112 +4450,106 @@ function showContentDialog() {
 
   //console.log(dialogCtx.measureText("腕隧道症候群是一種常見的疾病，會"));//320
   dialogCtx.fillText(
-    "腕隧道症候群是一種常見的疾病，會",
+    "腕隧道症候群是一種常見的疾病，會導",
     box1PosX + 15,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
-    "導致手和手臂疼痛、麻木和刺痛。",
+    "致手和手臂疼痛、麻木和刺痛。",
     box1PosX + 15,
     boxPosY + textYbase + textHeight
   );
   dialogCtx.fillText(
-    "當手的主要神經之一-正中神經-受到",
+    "當手的主要神經之一-正中神經-受到擠",
     box1PosX + 15,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
-    "擠壓或壓縮時，就會出現這種情況。",
+    "壓或壓縮時，就會出現這種情況。",
     box1PosX + 15,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
-    "症狀通常可以通過簡單的措施得到",
+    "症狀通常可以通過簡單的措施得到緩",
     box1PosX + 15,
     boxPosY + textYbase + textHeight * 6
   );
   dialogCtx.fillText(
-    "緩解和預防。",
+    "解和預防。",
     box1PosX + 15,
     boxPosY + textYbase + textHeight * 7
   );
 
   dialogCtx.fillText(
-    "肌筋膜頸部疼痛是頸肩部慢性疼痛的",
+    "肌筋膜頸部疼痛是頸肩部慢性疼痛的常",
     box2PosX + 15,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
-    "常見原因。",
+    "見原因。",
     box2PosX + 15,
     boxPosY + textYbase + textHeight
   );
   dialogCtx.fillText(
-    "頸部肌肉的過度使用或創傷，以及壓",
+    "頸部肌肉的過度使用或創傷，以及壓力",
     box2PosX + 15,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
-    "力和姿勢，都可能導致頸部/肩部的",
+    "和姿勢，都可能導致頸部/肩部的肌筋",
     box2PosX + 15,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
-    "肌筋膜疼痛。",
+    "膜疼痛。",
     box2PosX + 15,
     boxPosY + textYbase + textHeight * 5
   );
   dialogCtx.fillText(
-    "對於整天在辦公桌前工作並且在使用",
+    "對於整天在辦公桌前工作並且在使用計",
     box2PosX + 15,
     boxPosY + textYbase + textHeight * 7
   );
   dialogCtx.fillText(
-    "計算機時操作不當的患者。肌肉可能",
+    "算機時操作不當的患者。肌肉可能因過",
     box2PosX + 15,
     boxPosY + textYbase + textHeight * 8
   );
   dialogCtx.fillText(
-    "因過度使用或受傷而變得緊繃或發炎",
+    "度使用或受傷而變得緊繃或發炎。",
     box2PosX + 15,
     boxPosY + textYbase + textHeight * 9
   );
-  dialogCtx.fillText(
-    "。",
-    box2PosX + 15,
-    boxPosY + textYbase + textHeight * 10
-  );
 
   dialogCtx.fillText(
-    "網球肘是一種導致肘部外側疼痛的疾",
+    "網球肘是一種導致肘部外側疼痛的疾病。",
     box3PosX + 15,
     boxPosY + textYbase
   );
-  dialogCtx.fillText("病。", box3PosX + 15, boxPosY + textYbase + textHeight);
   dialogCtx.fillText(
-    "它經常發生在肘關節附近的前臂肌肉",
+    "它經常發生在肘關節附近的前臂肌肉過",
+    box3PosX + 15,
+    boxPosY + textYbase + textHeight * 2
+  );
+  dialogCtx.fillText(
+    "度使用或重複動作之後。",
     box3PosX + 15,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
-    "過度使用或重複動作之後。",
+    "可能會注意到肘部外側疼痛，您可能還",
     box3PosX + 15,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
-    "可能會注意到肘部外側疼痛，您可能",
+    "會發現難以完全伸展手臂。",
     box3PosX + 15,
     boxPosY + textYbase + textHeight * 6
   );
   dialogCtx.fillText(
-    "還會發現難以完全伸展手臂。",
-    box3PosX + 15,
-    boxPosY + textYbase + textHeight * 7
-  );
-  dialogCtx.fillText(
     "網球肘不治療會好起來的。",
     box3PosX + 15,
-    boxPosY + textYbase + textHeight * 9
+    boxPosY + textYbase + textHeight * 8
   );
 
   let btnPosX = middleX - 100;
@@ -4698,16 +4732,15 @@ function confirmExitDialog() {
   //
 }
 
-
-function noStarDialog(){
+function noStarDialog() {
   dialogCtx.fillStyle = "#464646";
   roundRect(dialogCtx, middleX - 350, middleY - 115, 700, 230, 10);
   dialogCtx.font = "36px NotoSansTC-Light";
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.textBaseline = "middle";
   dialogCtx.textAlign = "center";
-  dialogCtx.drawImage(images["W05"], middleX-260, middleY - 85, 60, 60);
-  dialogCtx.fillText("不足,可透過做舒緩運動獲得。", middleX+60, middleY - 50); //470
+  dialogCtx.drawImage(images["W05"], middleX - 240, middleY - 85, 60, 60);
+  dialogCtx.fillText("不足,可透過做舒緩運動獲得。", middleX + 60, middleY - 50); //470
 
   dialogCtx.fillStyle = "#88A073";
   let BtnX = middleX - 100;
@@ -4849,7 +4882,7 @@ function confirmBuildDialog() {
       mainCtx.fillStyle = "#FFF";
       mainCtx.textBaseline = "middle";
       mainCtx.textAlign = "center";
-      mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+      mainCtx.fillText(state.gameObjects.stars, middleX - 430, 50);
       drawButtons();
       closeDialog();
     },
@@ -4859,8 +4892,6 @@ function confirmBuildDialog() {
 var selectBtnOpen = false;
 
 function drawSelectMenu() {
-  
-  
   dialogCtx.fillStyle = "#464646";
   roundRect(dialogCtx, middleX - 250, middleY - 125, 500, 250, 10);
   dialogCtx.font = "36px NotoSansTC-Light";
@@ -4879,7 +4910,7 @@ function drawSelectMenu() {
   dialogCtx.beginPath();
   dialogCtx.moveTo(middleX + 110, middleY - 30);
   dialogCtx.lineTo(middleX + 140, middleY - 30);
-  dialogCtx.lineTo(middleX + 125, middleY );
+  dialogCtx.lineTo(middleX + 125, middleY);
   dialogCtx.closePath();
   dialogCtx.fill();
 
@@ -4911,7 +4942,7 @@ function areaSelectDialog() {
         //console.log("op");
       } else {
         dialogCtx.fillStyle = "#c5c5c5";
-        roundRect(dialogCtx, middleX - 150, middleY , 300, 50);
+        roundRect(dialogCtx, middleX - 150, middleY, 300, 50);
 
         dialogCtx.textAlign = "left";
         dialogCtx.fillStyle = "#FFF";
@@ -4998,10 +5029,12 @@ function tastyGuideDialog() {
 }
 
 function finishExerciseDialog() {
-  let middleX = dialogCanvas.width / 2;
-  let middleY = dialogCanvas.height / 2;
-  dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
-  roundRect(dialogCtx, 0, 0, dialogCanvas.width, dialogCanvas.height);
+  console.log("finish");
+  exercisParameter.status = "stop";
+  state.gameObjects.stars++;
+  console.log("start++");
+
+  dialogShadow();
 
   dialogCtx.fillStyle = "rgba(70, 70, 70, 0.9)";
   roundRect(dialogCtx, middleX - 400, middleY - 250, 800, 500);
@@ -5049,8 +5082,7 @@ function finishExerciseDialog() {
     },
     action: function () {
       //console.log('finish');
-      state.gameObjects.stars++;
-      exercisParameter.status = "stop";
+
       //console.log(exercisParameter)
       closeDialog();
       changeThemePage("health", "main");
@@ -5188,7 +5220,8 @@ function drawMain() {
   mainCtx.drawImage(images["W05"], middleX - 540, 20, 60, 60); //94*94
 
   mainCtx.font = "32px NotoSansTC-Light";
-  mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+  //mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+  mainCtx.fillText(state.gameObjects.stars, middleX - 460, 50);
 
   let _y = middleY - 255;
   if (_y < 120) _y = 120;
@@ -5350,7 +5383,8 @@ function drawTastyMain() {
   mainCtx.drawImage(images["W05"], middleX - 540, 20, 60, 60); //94*94
 
   mainCtx.font = "32px NotoSansTC-Light";
-  mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+  // mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
+  mainCtx.fillText(state.gameObjects.stars, middleX - 460, 50);
 }
 
 function hightlightStore(store, x, y) {
@@ -5472,8 +5506,9 @@ function updateGameZone() {
   });
 
   // gameCtx.fillStyle = "#B2CA9D";
+  //gameCtx.fillStyle = "red";
   gameCtx.fillStyle = "#B2CA9D";
-  let _r = 20;
+  let _r = 10;
 
   gameCtx.beginPath();
   gameCtx.moveTo(0, _r);
@@ -5483,22 +5518,27 @@ function updateGameZone() {
   gameCtx.fill();
 
   gameCtx.beginPath();
-  gameCtx.moveTo(gameCanvas.width-_r, 0);
+  gameCtx.moveTo(gameCanvas.width - _r, 0);
   gameCtx.quadraticCurveTo(gameCanvas.width, 0, gameCanvas.width, _r);
   gameCtx.lineTo(gameCanvas.width, 0);
   gameCtx.closePath();
   gameCtx.fill();
 
   gameCtx.beginPath();
-  gameCtx.moveTo(0, gameCanvas.height-_r);
+  gameCtx.moveTo(0, gameCanvas.height - _r);
   gameCtx.quadraticCurveTo(0, gameCanvas.height, _r, gameCanvas.height);
   gameCtx.lineTo(0, gameCanvas.height);
   gameCtx.closePath();
   gameCtx.fill();
 
   gameCtx.beginPath();
-  gameCtx.moveTo(gameCanvas.width, gameCanvas.height-_r);
-  gameCtx.quadraticCurveTo(gameCanvas.width, gameCanvas.height, gameCanvas.width-_r, gameCanvas.height);
+  gameCtx.moveTo(gameCanvas.width, gameCanvas.height - _r);
+  gameCtx.quadraticCurveTo(
+    gameCanvas.width,
+    gameCanvas.height,
+    gameCanvas.width - _r,
+    gameCanvas.height
+  );
   gameCtx.lineTo(gameCanvas.width, gameCanvas.height);
   gameCtx.closePath();
   gameCtx.fill();
