@@ -4682,8 +4682,8 @@ function confirmExitDialog() {
   let baseY = middleY - 80;
   let step = 42;
   dialogCtx.fillText("若現在關閉，將不會得到", middleX - 47, baseY);
-  dialogCtx.drawImage(images["W05"], middleX + 155, baseY - 50);
-  dialogCtx.fillText("。", middleX + 260, baseY);
+  dialogCtx.drawImage(images["W05"], middleX + 155, baseY - 35, 60, 60);
+  dialogCtx.fillText("。", middleX + 230, baseY);
 
   dialogCtx.fillStyle = "#FFAFAF";
   dialogCtx.fillText("若感到不適，請立即停止。", middleX, baseY + step * 3);
