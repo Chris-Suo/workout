@@ -3816,7 +3816,7 @@ function updateExercise(timestamp) {
     mainCtx.fillStyle = "#D17C7C";
     let second = 0;
     if (state.theme == "exercise" && state.page == "2-3") {
-      console.log(animattionIndex);
+      //console.log(animattionIndex);
       let _count = animattionIndex; // 0~11
       if (_count >= 6) {
         _count -= 6;
@@ -3886,7 +3886,7 @@ function updateExercise(timestamp) {
             exercisParameter.next.page
           );
         } else {
-          console.log("ana req");
+          //console.log("ana req");
           //state.gameObjects.stars++;
 
           updateDialog = finishExerciseDialog;
@@ -5029,10 +5029,10 @@ function tastyGuideDialog() {
 }
 
 function finishExerciseDialog() {
-  console.log("finish");
+  //console.log("finish");
   exercisParameter.status = "stop";
   state.gameObjects.stars++;
-  console.log("start++");
+  //console.log("start++");
 
   dialogShadow();
 
