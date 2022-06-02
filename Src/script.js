@@ -3541,9 +3541,9 @@ function updateTheme() {
             }
           );
 
-          if (state.firstUse.exersise[2]) {
+          if (state.firstUse.exersise[1]) {
             updateDialog = showReadyExerciseDialog;
-            dialogParameters.index = 0;
+            dialogParameters.index = 1;
             dialogParameters.numPart = "4";
             dialogParameters.seconds = "60";
           } else {
@@ -3641,9 +3641,9 @@ function updateTheme() {
             true
           );
 
-          if (state.firstUse.exersise[3]) {
+          if (state.firstUse.exersise[2]) {
             updateDialog = showReadyExerciseDialog;
-            dialogParameters.index = 0;
+            dialogParameters.index = 2;
             dialogParameters.numPart = "4";
             dialogParameters.seconds = "50~100";
           } else {
@@ -4544,12 +4544,12 @@ function showContentDialog() {
   dialogCtx.fillText(
     "會發現難以完全伸展手臂。",
     box3PosX + 15,
-    boxPosY + textYbase + textHeight * 6
+    boxPosY + textYbase + textHeight * 5
   );
   dialogCtx.fillText(
     "網球肘不治療會好起來的。",
     box3PosX + 15,
-    boxPosY + textYbase + textHeight * 8
+    boxPosY + textYbase + textHeight * 7
   );
 
   let btnPosX = middleX - 100;
