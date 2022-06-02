@@ -769,8 +769,10 @@ var buttons = [
     color: "#555555",
     action: function () {
       if (state.firstUse.tasty) {
+        document.querySelector('body').style.backgroundColor = "#B2CA9D";
         changeThemePage("tasty", "intro");
       } else {
+        document.querySelector('body').style.backgroundColor = "#9BCAE5";
         changeThemePage("tasty", "main");
       }
     },
