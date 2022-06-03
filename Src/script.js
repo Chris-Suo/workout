@@ -573,15 +573,6 @@ var state = {
       ],
     ],
     storeList: [],
-    // maps: [
-    //   [1, 2, 3, 4, 5, 6, 7],
-    //   [8, 9, 10, 11, 12, 13, 14],
-    //   [15, 16, 17, 18, 19, 20, 21],
-    //   [22, 23, 24, -1, -2, 25, 26],
-    //   [27, 28, 29, 30, 0, 0, 0],
-    //   [0, 0, 0, 0, 0, 0, 0],
-    //   [0, 0, 0, 0, 0, 0, 0],
-    // ],
   },
 };
 
@@ -673,7 +664,6 @@ var buttons = [
     },
     setPosition: function () {
       this.position.x = middleX - 100;
-      //this.position.y = 570;
       this.position.y = 530 + (mainCanvas.height - 530) / 2 - 35;
     },
     font: {
@@ -737,7 +727,6 @@ var buttons = [
     sharp: "conditionDisplayBtn_build",
     color: "#A7A7A7",
     action: () => {
-      //2
       updateDialog = noStarDialog;
       updateDialog();
       showDialog();
@@ -773,7 +762,6 @@ var buttons = [
       } else {
         changeThemePage("tasty", "main");
       }
-      //console.log('tt');
       document.querySelector("body").style.backgroundColor = "#B2CA9D";
     },
   },
@@ -798,7 +786,6 @@ var buttons = [
     },
     sharp: "themeSelector_l",
     color: "#73A5BE",
-    //action: intorBtnAction,
   },
   {
     belong: {
@@ -982,7 +969,6 @@ var buttons = [
       updateDialog = showContentDialog;
       updateDialog();
       showDialog();
-      //console.log("click!");
     },
   },
   {
@@ -3351,8 +3337,6 @@ function loadResources() {
     loadState.theme = "home";
     loadState.page = "home";
     state = loadState;
-    //"theme":"health","page":"main","
-    //console.log(loadState);
   } else {
     for (let i = 1; i <= MAX_STORES; i++) {
       state.gameObjects.storeList.push(i);
@@ -3724,11 +3708,8 @@ function setupExercise(
   nextThemePage,
   breakTime
 ) {
-  //console.log(picArr);
-  //mainCtx.drawImage(picArr[0],mainCanvas.width*0.6,120, 473, 564);//3285*3918
   let _bkt = breakTime || false;
   mainCtx.drawImage(picArr[0], mainCanvas.width * 0.7 - 80, 120, 473, 564);
-  //mainCtx.drawImage(picArr[0], mainCanvas.width * 0.6 + 50, 120, 473, 564);
 
   mainCtx.font = "70px NotoSansTC-Light";
   mainCtx.textBaseline = "top";
@@ -3769,30 +3750,17 @@ function resumeExercise() {
   window.requestAnimationFrame(updateExercise);
 }
 
-// function stopExercise(){
-//   exercisParameter = {};
-//   finishedRound = 0;
-//   start = null;
-//   animattionIndex = 0;
-// }
-
 var start = null;
 var animattionIndex = 0;
 var finishedRound = 0;
 var _backupValue = 0;
 function updateExercise(timestamp) {
   if (exercisParameter.status == "run") {
-    //console.log('still run...');
     if (!start) start = timestamp;
     let progress = timestamp - start;
 
     // update frame
-    //let picX =  30+(mainCanvas.width-60)*0.6;//  30+mainCanvas.width * 0.6 + 50;
-    // 30 + (1440) * 0.6
-    // 30 + 864 = 894
-
     let picX = mainCanvas.width * 0.7 - 80;
-    //let picX = mainCanvas.width * 0.6 + (mainCanvas.width / MIN_WIDTH) * 100;
     let picY = 120;
 
     mainCtx.fillStyle = "#EBF5FA";
@@ -3813,13 +3781,10 @@ function updateExercise(timestamp) {
       473,
       564
     );
-    //500*550
-    //mainCtx.drawImage(exercisParameter.pics[animattionIndex], picX, picY);
 
     mainCtx.fillStyle = "#D17C7C";
     let second = 0;
     if (state.theme == "exercise" && state.page == "2-3") {
-      //console.log(animattionIndex);
       let _count = animattionIndex; // 0~11
       if (_count >= 6) {
         _count -= 6;
@@ -3831,7 +3796,6 @@ function updateExercise(timestamp) {
         second = _backupValue;
       }
     } else if (state.theme == "exercise" && state.page.split("-")[0] == "3") {
-      //console.log(3);
       second =
         Math.floor((exercisParameter.totalTime - progress) / 1000) + 1 - 5;
       mainCtx.fillStyle = "#E4E8EA";
@@ -3839,7 +3803,6 @@ function updateExercise(timestamp) {
       mainCtx.textBaseline = "middle";
       mainCtx.textAlign = "center";
       mainCtx.fillStyle = "#808080";
-      //mainCtx.fillStyle = "#555555";
       mainCtx.font = "34px NotoSansTC-Light";
       if (second <= 0) {
         mainCtx.fillText(
@@ -3848,7 +3811,6 @@ function updateExercise(timestamp) {
           160
         );
         second = 5 - Math.abs(second);
-        //   //second = 0; 0 -1 -2 -3 -4
       } else {
         mainCtx.fillText(
           "10 秒 / 5~10 次",
@@ -3867,12 +3829,10 @@ function updateExercise(timestamp) {
     mainCtx.textBaseline = "top";
     mainCtx.textAlign = "center";
     mainCtx.fillText(second, 30 + (mainCanvas.width * 0.6) / 2, middleY - 70);
-    // console.log(progress);
     if (
       progress >= exercisParameter.periodArr[animattionIndex] &&
       animattionIndex < exercisParameter.pics.length - 1
     ) {
-      //console.log(animattionIndex);
       animattionIndex++;
     }
 
@@ -3881,19 +3841,13 @@ function updateExercise(timestamp) {
     } else {
       finishedRound++;
       if (finishedRound >= exercisParameter.ruond) {
-        // next
-        //console.log("next");
         if (exercisParameter.next) {
           changeThemePage(
             exercisParameter.next.theme,
             exercisParameter.next.page
           );
         } else {
-          //console.log("ana req");
-          //state.gameObjects.stars++;
-
           updateDialog = finishExerciseDialog;
-          //console.log(dialogParameters);
           updateDialog();
           showDialog();
         }
@@ -3902,8 +3856,6 @@ function updateExercise(timestamp) {
         animattionIndex = 0;
         window.requestAnimationFrame(updateExercise);
       }
-      //console.log(finishedRound);
-      //console.log("dead")
     }
   }
 }
@@ -3945,10 +3897,6 @@ function roundRect(ctx, x, y, width, height, radius, boardOnly) {
   if (typeof radius === "number") {
     radius = { tl: radius, tr: radius, br: radius, bl: radius };
   } else {
-    //var defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
-    //for (var side in defaultRadius) {
-    //  radius[side] = radius[side] || defaultRadius[side];
-    //}
   }
   ctx.beginPath();
   ctx.moveTo(x + radius.tl, y);
@@ -4043,8 +3991,6 @@ function drawIcon(sharp, x, y, w, h) {
       mainCtx.stroke();
       break;
     default:
-      //console.log(btn);
-      // if (btn.icon.drawIcon) {btn.icon.drawIcon( x, y, w, h);}
       break;
   }
 }
@@ -4104,14 +4050,6 @@ function drawButtons() {
           if (btn.condition()) {
             if (state.gameObjects.stars >= 3) {
               mainCtx.fillStyle = "rgba(85, 85, 85,0.3)";
-              // roundRect(
-              //   mainCtx,
-              //   btn.position.x + 3,
-              //   btn.position.y + 3,
-              //   btn.size.width,
-              //   btn.size.heigth,
-              //   30
-              // );
               roundRect(
                 mainCtx,
                 btn.position.x + 3,
@@ -4122,14 +4060,6 @@ function drawButtons() {
               );
             }
             mainCtx.fillStyle = btn.color || "white";
-            // roundRect(
-            //   mainCtx,
-            //   btn.position.x,
-            //   btn.position.y,
-            //   btn.size.width,
-            //   btn.size.heigth,
-            //   30
-            // );
             roundRect(
               mainCtx,
               btn.position.x,
@@ -4164,7 +4094,6 @@ function drawButtons() {
             btn.size.width,
             btn.size.heigth,
             10
-            // { tl: 10, tr: 0, br: 0, bl: 10 }
           );
           mainCtx.font = btn.font.size + "px " + btn.font.family;
           mainCtx.fillStyle = btn.font.color;
@@ -4188,7 +4117,6 @@ function drawButtons() {
             btn.size.width,
             btn.size.heigth,
             10
-            //{ tl: 0, tr: 10, br: 10, bl: 0 }
           );
           mainCtx.font = btn.font.size + "px " + btn.font.family;
           mainCtx.fillStyle = btn.font.color;
@@ -4299,7 +4227,6 @@ function closeDialog() {
   dialogCtx.clearRect(0, 0, dialogCanvas.width, dialogCanvas.height);
   dialogButtons = [];
   updateDialog = null;
-  //dialogParameters = {};
   dialogCanvas.style.zIndex = -1;
 }
 
@@ -4350,11 +4277,7 @@ dialogCanvas.addEventListener("click", function (e) {
 });
 
 gameCanvas.addEventListener("click", function (e) {
-  // console.log("gc click");
-  //console.log(e);
   if (gameButtons.length > 0) {
-    //console.log("check");
-    //  console.log(gameButtons);
     gameButtons.forEach((btn) => {
       let _x = 0;
       let _y = 0;
@@ -4374,7 +4297,6 @@ gameCanvas.addEventListener("click", function (e) {
         _y <= btn.range.y + btn.range.h &&
         _y >= btn.range.y
       ) {
-        //console.log("in btn");
         if (btn.action) {
           btn.action();
           localStorage.setItem("state", JSON.stringify(state));
@@ -4451,7 +4373,6 @@ function showContentDialog() {
   let textYbase = 310;
   let textHeight = 20;
 
-  //console.log(dialogCtx.measureText("腕隧道症候群是一種常見的疾病，會"));//320
   dialogCtx.fillText(
     "腕隧道症候群是一種常見的疾病，會導",
     box1PosX + 15,
@@ -4604,7 +4525,6 @@ function showStartExerciseDialog() {
     },
     action: function () {
       closeDialog();
-      //console.log(exercisParameter);
       if (exercisParameter.status == "pause") {
         resumeExercise();
       } else {
@@ -4731,8 +4651,6 @@ function confirmExitDialog() {
       changeThemePage("health", "main");
     },
   });
-
-  //
 }
 
 function noStarDialog() {
@@ -4749,8 +4667,6 @@ function noStarDialog() {
   let BtnX = middleX - 100;
   let BtnY = middleY + 10;
   roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
-
-  //dialogCtx.fillStyle = "#A7A7A7";
 
   dialogCtx.fillStyle = "#FFF";
   dialogCtx.font = "34px NotoSansTC-Light";
@@ -4837,15 +4753,10 @@ function confirmBuildDialog() {
 
       let _map = state.gameObjects.maps;
       let _selectPool = [];
-      //3 3 , 3 4
       for (let i = 0; i < _map.length; i++) {
         for (let j = 0; j < _map[0].length; j++) {
-          //console.log(i,j);
-          //console.log(checkNeighbor(i, j));
           if (_map[i][j].store == 0 && checkNeighbor(i, j)) {
             _selectPool.push({ x: j, y: i });
-            //console.log(i, j);
-            //console.log(_map[i][j]);
           }
         }
       }
@@ -4856,28 +4767,15 @@ function confirmBuildDialog() {
       let newStoreIndex = Math.floor(
         Math.random() * state.gameObjects.storeList.length
       );
-      //console.log("newStoreIndex:"+newStoreIndex);
       state.gameObjects.maps[y][x].store =
         state.gameObjects.storeList[newStoreIndex];
       state.gameObjects.maps[y][x].state = "new";
       determineGameZomePosition(-(x * 180) + 360, -(y * 150) + 150);
       updateBoundary(x, y);
-
-      //console.log(_selectPool);
-      //console.log(_selectPool[selectIndex]);
-      //console.log(gameZoneY);
       updateGameZone();
-      //console.log(_ran);
-
-      //console.log(_selectPool);
-
-      // test();
-      //closeDialog();
       state.gameObjects.stars -= 3;
       let _listS = state.gameObjects.storeList.slice(0, newStoreIndex);
       let _listE = state.gameObjects.storeList.slice(newStoreIndex + 1);
-      //console.log(_listS);
-      //console.log(_listE);
       state.gameObjects.storeList = _listS.concat(_listE);
       mainCtx.fillStyle = "#B2CA9D";
       mainCtx.fillRect(middleX - 480, 20, 100, 60);
@@ -4920,7 +4818,6 @@ function drawSelectMenu() {
   let btnX = middleX - 90;
   let btnY = middleY + 50;
   dialogCtx.fillStyle = "#88A073";
-  //drawDialogButton(btnX, btnY, 180, 50, "確　定");
 
   roundRect(dialogCtx, btnX, btnY, 180, 50);
   dialogCtx.fillStyle = "#fff";
@@ -4942,7 +4839,6 @@ function areaSelectDialog() {
     action: function () {
       if (selectBtnOpen) {
         drawSelectMenu();
-        //console.log("op");
       } else {
         dialogCtx.fillStyle = "#c5c5c5";
         roundRect(dialogCtx, middleX - 150, middleY, 300, 50);
@@ -4958,12 +4854,6 @@ function areaSelectDialog() {
         dialogCtx.stroke();
       }
       selectBtnOpen = !selectBtnOpen;
-      //console.log('haha');
-      //areaSelectDialog.drawBtn();
-      //closeDialog();
-      //changeThemePage("health", "main");
-      //exercisParameter.status = "run";
-      //startExercise();
     },
   });
   dialogButtons.push({
@@ -5032,10 +4922,8 @@ function tastyGuideDialog() {
 }
 
 function finishExerciseDialog() {
-  //console.log("finish");
   exercisParameter.status = "stop";
-  state.gameObjects.stars++;
-  //console.log("start++");
+  state.gameObjects.stars += 1;
 
   dialogShadow();
 
@@ -5048,7 +4936,6 @@ function finishExerciseDialog() {
   dialogCtx.textAlign = "center";
   let baseY = middleY - 140;
   let step = 70;
-  //console.log();
   dialogCtx.fillText(
     '您已完成"' + dialogParameters.exerciseName + '"',
     middleX,
@@ -5066,7 +4953,6 @@ function finishExerciseDialog() {
 
   dialogCtx.fillStyle = "#73A5BE";
   let BtnX = middleX - 100;
-  //let Btn2X = middleX - 220;
   let BtnY = baseY + step * 4;
   roundRect(dialogCtx, BtnX, BtnY, 200, 70, 10);
 
@@ -5084,13 +4970,8 @@ function finishExerciseDialog() {
       h: 70,
     },
     action: function () {
-      //console.log('finish');
-
-      //console.log(exercisParameter)
       closeDialog();
       changeThemePage("health", "main");
-      //exercisParameter.status = "run";
-      //startExercise();
     },
   });
 }
@@ -5098,7 +4979,6 @@ function finishExerciseDialog() {
 function showStoreInfoDialog() {
   dialogShadow();
   let picNum = dialogParameters.picNum;
-  //console.log(dialogParameters);
   dialogCtx.drawImage(
     images["B" + picNum],
     middleX - 368,
@@ -5148,8 +5028,6 @@ function drawHome() {
   mainCtx.textBaseline = "middle";
   mainCtx.textAlign = "center";
   let txt = "Work ? out !";
-  //console.log(mainCtx.measureText(txt));
-  //ctx.fillText("width:" + ctx.measureText(txt).width, 10, 50) //411.7
   mainCtx.fillText(txt, middleX + 30, middleY);
 
   images["W07"].addEventListener("load", () => {
@@ -5163,7 +5041,6 @@ function drawHome() {
     middleX + 30,
     middleY + 50
   );
-  //mainCtx.clearRect(10, 10, 20, 20);
 }
 
 function drawIntro() {
@@ -5190,8 +5067,6 @@ function drawIntro() {
     _x,
     baseY
   );
-  //240
-  //console.log(mainCtx.measureText('現今上班族與學生族群，都經常坐著辦公或讀書，不斷的')) //650
   mainCtx.fillText(
     "長時間重複某一特定動作，長時間坐著的上班族「電腦症",
     _x,
@@ -5223,7 +5098,6 @@ function drawMain() {
   mainCtx.drawImage(images["W05"], middleX - 540, 20, 60, 60); //94*94
 
   mainCtx.font = "32px NotoSansTC-Light";
-  //mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
   mainCtx.fillText(state.gameObjects.stars, middleX - 460, 50);
 
   let _y = middleY - 255;
@@ -5269,12 +5143,7 @@ function drawExerciseText(title, second, number, textArr, nosecound) {
   mainCtx.textAlign = "center";
   mainCtx.font = "34px NotoSansTC-Light";
   mainCtx.fillStyle = "#fff";
-  mainCtx.fillText(
-    //"Neck & Shoulder 1/4",
-    title,
-    middleX,
-    55
-  );
+  mainCtx.fillText(title, middleX, 55);
   mainCtx.fillStyle = "#555555";
 
   if (_nosecond) {
@@ -5289,7 +5158,6 @@ function drawExerciseText(title, second, number, textArr, nosecound) {
 
   mainCtx.font = "30px NotoSansTC-Light";
   textArr.forEach((line, i) => {
-    //console.log(i);
     mainCtx.fillText(
       line,
       30 + (mainCanvas.width * 0.6) / 2,
@@ -5330,7 +5198,6 @@ function drawTastyIntro() {
   mainCtx.textBaseline = "top";
   let baseX = middleX + (middleX - 498) / 2 + 40;
   let baseY = 210;
-  //let baseY = middleY - 140;
   let linStep = 36;
 
   mainCtx.font = "28px NotoSansTC-Light";
@@ -5341,7 +5208,6 @@ function drawTastyIntro() {
     baseX,
     baseY + linStep * 2
   );
-  //console.log(mainCtx.measureText("遊戲中有8種不同的美食類型推薦，"));//498
   mainCtx.fillText(
     "並隨機新增推薦餐廳至玩家地圖中。",
     baseX,
@@ -5357,7 +5223,6 @@ function drawTastyIntro() {
   mainCtx.fillText("再也不必煩惱下一餐吃甚麼!", baseX, baseY + linStep * 8);
 
   let _px = middleX - 700;
-  //let _px = (middleX/2)-380;
   if (_px < 0) _px = 10;
   mainCtx.font = "46px NotoSansTC-Light";
   mainCtx.textBaseline = "middle";
@@ -5386,14 +5251,10 @@ function drawTastyMain() {
   mainCtx.drawImage(images["W05"], middleX - 540, 20, 60, 60); //94*94
 
   mainCtx.font = "32px NotoSansTC-Light";
-  // mainCtx.fillText("- " + state.gameObjects.stars, middleX - 450, 56);
   mainCtx.fillText(state.gameObjects.stars, middleX - 460, 50);
 }
 
 function hightlightStore(store, x, y) {
-  //180*150
-  //gameCtx.fillStyle="#fefefe";
-  //gameCtx.fillRect(x,y,180,150);
   gameCtx.strokeStyle = "#ECD276";
   gameCtx.lineWidth = 10;
   gameCtx.beginPath();
@@ -5402,19 +5263,16 @@ function hightlightStore(store, x, y) {
   gameCtx.lineTo(x, y + 50);
   gameCtx.stroke();
 
-  // gameCtx.beginPath();
   gameCtx.moveTo(x + 120, y);
   gameCtx.lineTo(x + 180, y);
   gameCtx.lineTo(x + 180, y + 50);
   gameCtx.stroke();
 
-  // gameCtx.beginPath();
   gameCtx.moveTo(x + 60, y + 150);
   gameCtx.lineTo(x, y + 150);
   gameCtx.lineTo(x, y + 100);
   gameCtx.stroke();
 
-  // gameCtx.beginPath();
   gameCtx.moveTo(x + 180, y + 100);
   gameCtx.lineTo(x + 180, y + 150);
   gameCtx.lineTo(x + 120, y + 150);
@@ -5430,44 +5288,26 @@ function hightlightStore(store, x, y) {
       store.state = 0;
       updateGameZone();
       updateDialog = showStoreInfoDialog;
-      //console.log(store);
       dialogParameters.picNum = store.store.toString().padStart(3, "0");
       updateDialog();
       showDialog();
     },
   });
-
-  // updateDialog = showStartExerciseDialog;
-  //   updateDialog();
-  //   showDialog();
 }
 
 function updateGameZone() {
-  // roundRect(mainCtx, gameCanvas.)
-  //console.log(gameCanvas);
-  // //gameZoneWidth = mainCanvas.width - (mainCanvas.width / 2 - 540) * 2;
-  // gameZoneWidth = 1080;
-  // gameZoneHeight = mainCanvas.height - 140;
-  // gameZoneX = mainCanvas.width / 2 - 540;
-  // gameZoneY = 120;
-
-  // //console.log(gameZoneHeight);
-  // console.log(state.gameObjects.maps[0].length)
   gameButtons = [];
   let _gameZoneX = gameZoneX;
   let _gameZoneY = gameZoneY;
   state.gameObjects.maps.forEach((row) => {
     row.forEach((obj) => {
-      //console.log(obj);
       if (obj.store == 0) {
         gameCtx.drawImage(images["mapBg"], _gameZoneX, _gameZoneY);
       } else if (obj.store == -1) {
         gameCtx.drawImage(images["home"], _gameZoneX, _gameZoneY);
-        //_gameZoneX += 180;
       } else if (obj.store > 0) {
         let num = obj.store.toString().padStart(3, "0");
         let name = "A" + num;
-        //console.log(name);
         gameCtx.drawImage(images[name], _gameZoneX, _gameZoneY);
 
         gameButtons.push({
@@ -5508,11 +5348,8 @@ function updateGameZone() {
     _gameZoneX = gameZoneX;
   });
 
-  // gameCtx.fillStyle = "#B2CA9D";
-  //gameCtx.fillStyle = "red";
   gameCtx.fillStyle = "#B2CA9D";
   let _r = 10;
-
   gameCtx.beginPath();
   gameCtx.moveTo(0, _r);
   gameCtx.quadraticCurveTo(0, 0, _r, 0);
@@ -5545,40 +5382,19 @@ function updateGameZone() {
   gameCtx.lineTo(gameCanvas.width, gameCanvas.height);
   gameCtx.closePath();
   gameCtx.fill();
-  // ctx.moveTo(x + radius.tl, y);
-  // ctx.lineTo(x + width - radius.tr, y);
-  // ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
-  // ctx.lineTo(x + width, y + height - radius.br);
-  // ctx.quadraticCurveTo(
-  //   x + width,
-  //   y + height,
-  //   x + width - radius.br,
-  //   y + height
-  // );
-  // ctx.lineTo(x + radius.bl, y + height);
-  // ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
-  // ctx.lineTo(x, y + radius.tl);
-  // ctx.quadraticCurveTo(x, y, x + radius.tl, y);
-
-  //gameCtx.fillRect(0,0, 10, 10);
 }
 
 function updateBoundary(x, y) {
   let _map = state.gameObjects.maps;
-  // console.log(_map);
-  // console.log(x);
-  // console.log(y);
 
   if (x + 3 >= _map[0].length) {
     //append left
-    //console.log('af');
     state.gameObjects.maps.forEach((row) => {
       row.push({ store: 0, state: 0 });
     });
   }
   if (x < 3) {
     //append right
-    //console.log('ar');
     state.gameObjects.maps.forEach((row) => {
       row.push({ store: 0, state: 0 });
       //console.log(row.length);
@@ -5589,17 +5405,14 @@ function updateBoundary(x, y) {
   }
   if (y + 3 >= _map.length) {
     //append buttom
-    //console.log('ab');
     let _nr = [];
     for (let i = 0; i < _map[0].length; i++) {
       _nr.push({ store: 0, state: 0 });
     }
-    //console.log(_nr);
     state.gameObjects.maps.push(_nr);
   }
   if (y < 3) {
     //append up
-    // console.log("au");
     let _nr = [];
     for (let i = 0; i < _map[0].length; i++) {
       _nr.push({ store: 0, state: 0 });
@@ -5630,7 +5443,6 @@ function determineGameZomePosition(x, y) {
   gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
   gameZoneX = newX;
   gameZoneY = newY;
-  // console.log()
 }
 
 var isDrag = false;
