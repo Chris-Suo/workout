@@ -4448,7 +4448,7 @@ function showContentDialog() {
 
   dialogCtx.font = "18px NotoSansTC-Light";
   dialogCtx.textAlign = "left";
-  let textYbase = 292;
+  let textYbase = 310;
   let textHeight = 20;
 
   //console.log(dialogCtx.measureText("腕隧道症候群是一種常見的疾病，會"));//320
