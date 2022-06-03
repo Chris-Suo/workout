@@ -13,10 +13,6 @@ body {
   background-color: #9BCAE5;
 }
 
-body{
-  
-}
-
 #loading{
   display: flex;
   justify-content: center;
@@ -24,26 +20,11 @@ body{
   height: 100vh;
   font-size: 1.2rem;
 }
-/* @font-face { */
-  /* font-family: "NotoSansTC";
-  src: url("./NotoSansTC-Regular.otf") format("opentype"); */
-  /* src: url("./Macondo-Regular.ttf"); */
-  /* src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
-  url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
-  url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg"); */
-/* } */
 
 @font-face {
   font-family: "NotoSansTC-Light";
   src: url("../Src/Fonts/NotoSansTC-Light.otf") format("opentype");
 }
-
-/* @font-face {
-  font-family: "NotoSansTC-Thin";
-  src: url("./NotoSansTC-Thin.otf") format("opentype");
-} */
-
-/* NotoSansTC-Regular.otf */
 
 canvas {
   position: absolute;
@@ -59,10 +40,8 @@ canvas {
 
 #gameCanvas{
   z-index: -1;
-  /* display: block; */
   position: absolute;
   top:120px;
   left:50%;
   transform: translate(-50%, 0);               
-  /* border: 1px solid red; */
 }
