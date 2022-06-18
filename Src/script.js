@@ -1,10 +1,13 @@
 // 1920 * 940
 // 1366 * 668 (x1.4055)
+// 定義最小畫面大小，單位px
 const MIN_WIDTH = 1366;
 const MIN_HEIGHT = 668;
+// 定義商店數量
 const MAX_STORES = 200;
 
 var resLoaded = false;
+// 圖片資源位置
 var images = {
   W01: "../Src/Imgs/W-01.png",
   W02: "../Src/Imgs/W-02.png",
@@ -469,19 +472,25 @@ var images = {
   Ex45: "../Src/Imgs/exercise/A45.png",
 };
 
+// 初始化canvas物件
 var mainCanvas = document.getElementById("mainCanvas");
 var mainCtx = mainCanvas.getContext("2d");
 var dialogCanvas = document.getElementById("dialogCanvas");
 var dialogCtx = dialogCanvas.getContext("2d");
 var gameCanvas = document.getElementById("gameCanvas");
 var gameCtx = gameCanvas.getContext("2d");
+// 定義畫布中心位置
 var middleX = mainCanvas.width / 2;
 var middleY = mainCanvas.height / 2;
 var gameZoneX = -180;
 var gameZoneY = -150;
-
+// 定義運動畫面參數物件
 var exercisParameter = {};
+// 定義星星增加/扣除規則
+var NUM_ADD_STAR = 1;
+var NUM_SUB_STAR = 3;
 
+// 定義全域狀態物件
 /*
   home: home/intro
   health: main
@@ -496,8 +505,10 @@ var state = {
     tasty: true,
     exersise: [true, true, true],
   },
+  // 定義當前畫面
   theme: "home",
   page: "home",
+  // 定義遊戲物件，包含星星數量與地圖
   gameObjects: {
     stars: 3,
     maps: [
@@ -576,6 +587,7 @@ var state = {
   },
 };
 
+// 定義畫面可互動物件
 var buttons = [
   {
     belong: {
@@ -702,7 +714,7 @@ var buttons = [
       showDialog();
     },
     condition: () => {
-      return state.gameObjects.stars >= 3;
+      return state.gameObjects.stars >= NUM_SUB_STAR;
     },
   },
   {
@@ -732,7 +744,7 @@ var buttons = [
       showDialog();
     },
     condition: () => {
-      return state.gameObjects.stars < 3;
+      return state.gameObjects.stars < NUM_SUB_STAR;
     },
   },
   {
@@ -3324,11 +3336,13 @@ var buttons = [
   },
 ];
 
+// 初始化物件
 var updateDialog = null;
 var dialogButtons = [];
 var gameButtons = [];
 var dialogParameters = {};
 
+// 載入資源，確認資源載入後更新畫面按鈕
 var loaded = 0;
 function loadResources() {
   let saveFile = localStorage.getItem("state");
@@ -3363,6 +3377,7 @@ function loadResources() {
   }
 }
 
+// 初始化畫面內容
 function initialize() {
   document.getElementById("loading").style.display = "none";
   window.addEventListener("resize", redraw, false);
@@ -3372,6 +3387,7 @@ function initialize() {
 loadResources();
 setTimeout(initialize, 3000);
 
+// 更新畫面按鈕位置，當螢幕重新縮放時調用
 function updateComponentPosition() {
   buttons.forEach((btn) => {
     btn.position = { x: 0, y: 0 };
@@ -3379,6 +3395,7 @@ function updateComponentPosition() {
   });
 }
 
+// 根據當前狀態繪製畫面內容
 function updateTheme() {
   setBackGround();
   gameCanvas.style.zIndex = -1;
@@ -3388,9 +3405,11 @@ function updateTheme() {
       switch (state.page) {
         case "home":
         default:
+          // 繪製首頁
           drawHome();
           break;
         case "intro":
+          // 繪製介紹頁面
           drawIntro();
           break;
       }
@@ -3399,6 +3418,7 @@ function updateTheme() {
       switch (state.page) {
         case "main":
         default:
+          // 繪製Health主頁
           drawMain();
           break;
       }
@@ -3407,15 +3427,18 @@ function updateTheme() {
       switch (state.page) {
         case "intro":
         default:
+          // 繪製Tasty介紹頁面
           drawTastyIntro();
           break;
         case "main":
+          // 繪製Tasty主頁面
           gameCanvas.style.zIndex = 2;
           drawTastyMain();
           break;
       }
       break;
     case "exercise":
+      // 繪製運動頁面
       drawExercise();
       switch (state.page) {
         case "1-1":
@@ -3700,6 +3723,7 @@ function updateTheme() {
   drawButtons();
 }
 
+// 設定運動頁面參數與繪製畫面
 function setupExercise(
   numRound,
   seconds,
@@ -3735,6 +3759,7 @@ function setupExercise(
   };
 }
 
+// 開始運動，執行動畫
 function startExercise() {
   exercisParameter.status = "run";
   finishedRound = 0;
@@ -3743,6 +3768,7 @@ function startExercise() {
   window.requestAnimationFrame(updateExercise);
 }
 
+// 恢復運動
 function resumeExercise() {
   exercisParameter.status = "run";
   start = null;
@@ -3750,6 +3776,7 @@ function resumeExercise() {
   window.requestAnimationFrame(updateExercise);
 }
 
+// 根據時間更新運動動畫
 var start = null;
 var animattionIndex = 0;
 var finishedRound = 0;
@@ -3772,7 +3799,7 @@ function updateExercise(timestamp) {
     );
 
     mainCtx.fillStyle = "#E4E8EA";
-    mainCtx.fillRect((mainCanvas.width * 0.6) / 2 - 90, middleY - 75, 180, 90);
+    mainCtx.fillRect((mainCanvas.width * 0.6) / 2 - 200, middleY - 75, 400, 90);
 
     mainCtx.drawImage(
       exercisParameter.pics[animattionIndex],
@@ -3784,6 +3811,7 @@ function updateExercise(timestamp) {
 
     mainCtx.fillStyle = "#D17C7C";
     let second = 0;
+    // 肩頸運動第三步驟為計數方式
     if (state.theme == "exercise" && state.page == "2-3") {
       let _count = animattionIndex; // 0~11
       if (_count >= 6) {
@@ -3795,7 +3823,9 @@ function updateExercise(timestamp) {
       } else {
         second = _backupValue;
       }
-    } else if (state.theme == "exercise" && state.page.split("-")[0] == "3") {
+    }
+    // 網球肘需要5秒休息時間
+    else if (state.theme == "exercise" && state.page.split("-")[0] == "3") {
       second =
         Math.floor((exercisParameter.totalTime - progress) / 1000) + 1 - 5;
       mainCtx.fillStyle = "#E4E8EA";
@@ -3836,17 +3866,20 @@ function updateExercise(timestamp) {
       animattionIndex++;
     }
 
+    // 若時間尚未完成，繼續更新動畫
     if (progress < exercisParameter.totalTime) {
       window.requestAnimationFrame(updateExercise);
     } else {
       finishedRound++;
       if (finishedRound >= exercisParameter.ruond) {
+        // 判斷完成運動後，自動轉跳下一步
         if (exercisParameter.next) {
           changeThemePage(
             exercisParameter.next.theme,
             exercisParameter.next.page
           );
         } else {
+          // 完成運動提示畫面
           updateDialog = finishExerciseDialog;
           updateDialog();
           showDialog();
@@ -3860,6 +3893,7 @@ function updateExercise(timestamp) {
   }
 }
 
+// 若畫面縮放呼叫此function，更新畫面物件相對位置
 function redraw() {
   let newWidth = window.innerWidth < MIN_WIDTH ? MIN_WIDTH : window.innerWidth;
   let newHeight =
@@ -3880,6 +3914,7 @@ function redraw() {
   }
 }
 
+// 設定背景顏色
 function setBackGround() {
   if (state.theme == "tasty") {
     mainCtx.fillStyle = "#B2CA9D";
@@ -3890,6 +3925,7 @@ function setBackGround() {
   }
 }
 
+// 繪製圓角矩形
 function roundRect(ctx, x, y, width, height, radius, boardOnly) {
   if (typeof radius === "undefined") {
     radius = 5;
@@ -3921,6 +3957,7 @@ function roundRect(ctx, x, y, width, height, radius, boardOnly) {
   }
 }
 
+// 繪製icon
 function drawIcon(sharp, x, y, w, h) {
   mainCtx.fillStyle = "#fff";
   mainCtx.strokeStyle = "#fff";
@@ -3995,6 +4032,7 @@ function drawIcon(sharp, x, y, w, h) {
   }
 }
 
+// 繪製按鈕(可互動元件)
 function drawButtons() {
   buttons.forEach((btn) => {
     if (btn.belong.theme == state.theme && btn.belong.page == state.page) {
@@ -4048,7 +4086,7 @@ function drawButtons() {
           break;
         case "conditionDisplayBtn_build":
           if (btn.condition()) {
-            if (state.gameObjects.stars >= 3) {
+            if (state.gameObjects.stars >= NUM_SUB_STAR) {
               mainCtx.fillStyle = "rgba(85, 85, 85,0.3)";
               roundRect(
                 mainCtx,
@@ -4219,10 +4257,12 @@ function drawButtons() {
   });
 }
 
+// 顯示提示視窗
 function showDialog() {
   dialogCanvas.style.zIndex = 3;
 }
 
+// 關閉提示視窗
 function closeDialog() {
   dialogCtx.clearRect(0, 0, dialogCanvas.width, dialogCanvas.height);
   dialogButtons = [];
@@ -4230,12 +4270,14 @@ function closeDialog() {
   dialogCanvas.style.zIndex = -1;
 }
 
+// 設定轉跳頁面
 function changeThemePage(toTheme, toPage) {
   state.theme = toTheme;
   state.page = toPage;
   updateTheme();
 }
 
+// 定義主畫面點擊事件
 mainCanvas.addEventListener("click", function (e) {
   let _theme = state.theme;
   let _page = state.page;
@@ -4259,6 +4301,7 @@ mainCanvas.addEventListener("click", function (e) {
   });
 });
 
+// 定義提示視窗點擊事件
 dialogCanvas.addEventListener("click", function (e) {
   if (dialogButtons.length > 0) {
     dialogButtons.forEach((btn) => {
@@ -4276,13 +4319,17 @@ dialogCanvas.addEventListener("click", function (e) {
   }
 });
 
+// 定義遊戲畫面點擊事件
 gameCanvas.addEventListener("click", function (e) {
   if (gameButtons.length > 0) {
     gameButtons.forEach((btn) => {
       let _x = 0;
       let _y = 0;
-      if (navigator.userAgent.indexOf("Chrome") != -1) {
-        // chrome
+      if (
+        navigator.userAgent.indexOf("Chrome") != -1 ||
+        navigator.userAgent.indexOf("Safari") != -1
+      ) {
+        // chrome or safari
         _x = e.offsetX;
         _y = e.offsetY;
       } else {
@@ -4306,7 +4353,9 @@ gameCanvas.addEventListener("click", function (e) {
   }
 });
 
+// 定義按鍵功能內容
 // Buttons Action Define
+// 主畫面開始按鈕功能
 function startBtnAction() {
   if (!resLoaded) {
     console.log("Loading...");
@@ -4321,12 +4370,14 @@ function startBtnAction() {
   }
 }
 
+// 設定提示畫面透明背景
 function dialogShadow(alpha) {
   let _a = alpha || 0.5;
   dialogCtx.fillStyle = "rgba(85, 85, 85," + _a + ")";
   dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
 }
 
+// 繪製提示視窗按鈕
 function drawDialogButton(x, y, w, h, text) {
   roundRect(dialogCtx, x, y, w, h, 10);
   dialogCtx.font = "36px NotoSansTC-Light";
@@ -4337,6 +4388,7 @@ function drawDialogButton(x, y, w, h, text) {
   dialogCtx.fillText(text, x + (w - ww) / 2, y + (h - 36) / 2);
 }
 
+// 顯示內容頁面
 function showContentDialog() {
   dialogShadow(0.8);
 
@@ -4358,7 +4410,7 @@ function showContentDialog() {
   roundRect(dialogCtx, box3PosX, boxPosY, 350, 510, 10);
 
   dialogCtx.drawImage(images["W02"], box1PosX + 30, boxPosY + 40);
-  dialogCtx.drawImage(images["W03"], box2PosX + 20, boxPosY + 40);
+  dialogCtx.drawImage(images["W03"], box2PosX + 10, boxPosY + 40);
   dialogCtx.drawImage(images["W04"], box3PosX + 30, boxPosY + 40);
 
   dialogCtx.fillStyle = "#555555";
@@ -4370,109 +4422,109 @@ function showContentDialog() {
 
   dialogCtx.font = "18px NotoSansTC-Light";
   dialogCtx.textAlign = "left";
-  let textYbase = 310;
+  let textYbase = 305;
   let textHeight = 20;
 
   dialogCtx.fillText(
     "腕隧道症候群是一種常見的疾病，會導",
-    box1PosX + 15,
+    box1PosX + 20,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
     "致手和手臂疼痛、麻木和刺痛。",
-    box1PosX + 15,
+    box1PosX + 20,
     boxPosY + textYbase + textHeight
   );
   dialogCtx.fillText(
     "當手的主要神經之一-正中神經-受到擠",
-    box1PosX + 15,
+    box1PosX + 20,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
     "壓或壓縮時，就會出現這種情況。",
-    box1PosX + 15,
+    box1PosX + 20,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
     "症狀通常可以通過簡單的措施得到緩",
-    box1PosX + 15,
+    box1PosX + 20,
     boxPosY + textYbase + textHeight * 6
   );
   dialogCtx.fillText(
     "解和預防。",
-    box1PosX + 15,
+    box1PosX + 20,
     boxPosY + textYbase + textHeight * 7
   );
 
   dialogCtx.fillText(
     "肌筋膜頸部疼痛是頸肩部慢性疼痛的常",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
     "見原因。",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight
   );
   dialogCtx.fillText(
     "頸部肌肉的過度使用或創傷，以及壓力",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
     "和姿勢，都可能導致頸部/肩部的肌筋",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
     "膜疼痛。",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight * 5
   );
   dialogCtx.fillText(
     "對於整天在辦公桌前工作並且在使用計",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight * 7
   );
   dialogCtx.fillText(
     "算機時操作不當的患者。肌肉可能因過",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight * 8
   );
   dialogCtx.fillText(
     "度使用或受傷而變得緊繃或發炎。",
-    box2PosX + 15,
+    box2PosX + 20,
     boxPosY + textYbase + textHeight * 9
   );
 
   dialogCtx.fillText(
     "網球肘是一種導致肘部外側疼痛的疾病。",
-    box3PosX + 15,
+    box3PosX + 20,
     boxPosY + textYbase
   );
   dialogCtx.fillText(
     "它經常發生在肘關節附近的前臂肌肉過",
-    box3PosX + 15,
+    box3PosX + 20,
     boxPosY + textYbase + textHeight * 2
   );
   dialogCtx.fillText(
     "度使用或重複動作之後。",
-    box3PosX + 15,
+    box3PosX + 20,
     boxPosY + textYbase + textHeight * 3
   );
   dialogCtx.fillText(
     "可能會注意到肘部外側疼痛，您可能還",
-    box3PosX + 15,
+    box3PosX + 20,
     boxPosY + textYbase + textHeight * 4
   );
   dialogCtx.fillText(
     "會發現難以完全伸展手臂。",
-    box3PosX + 15,
+    box3PosX + 20,
     boxPosY + textYbase + textHeight * 5
   );
   dialogCtx.fillText(
     "網球肘不治療會好起來的。",
-    box3PosX + 15,
+    box3PosX + 20,
     boxPosY + textYbase + textHeight * 7
   );
 
@@ -4496,6 +4548,7 @@ function showContentDialog() {
   });
 }
 
+// 顯示開始運動提示視窗
 function showStartExerciseDialog() {
   let middleX = dialogCanvas.width / 2;
   let middleY = dialogCanvas.height / 2;
@@ -4534,6 +4587,7 @@ function showStartExerciseDialog() {
   });
 }
 
+// 顯示準備運動提示視窗
 function showReadyExerciseDialog() {
   let exerciseName = dialogParameters.exerciseName || "";
   let numPart = dialogParameters.numPart || "";
@@ -4587,6 +4641,7 @@ function showReadyExerciseDialog() {
   });
 }
 
+// 確認離開提示視窗
 function confirmExitDialog() {
   exercisParameter.status = "pause";
 
@@ -4653,6 +4708,7 @@ function confirmExitDialog() {
   });
 }
 
+// 顯示星星不足提示視窗
 function noStarDialog() {
   dialogCtx.fillStyle = "#464646";
   roundRect(dialogCtx, middleX - 350, middleY - 115, 700, 230, 10);
@@ -4687,6 +4743,7 @@ function noStarDialog() {
   });
 }
 
+// 詢問是否建造提示視窗
 function confirmBuildDialog() {
   dialogCtx.fillStyle = "#464646";
   roundRect(dialogCtx, middleX - 350, middleY - 115, 700, 230, 10);
@@ -4773,7 +4830,7 @@ function confirmBuildDialog() {
       determineGameZomePosition(-(x * 180) + 360, -(y * 150) + 150);
       updateBoundary(x, y);
       updateGameZone();
-      state.gameObjects.stars -= 3;
+      state.gameObjects.stars -= NUM_SUB_STAR;
       let _listS = state.gameObjects.storeList.slice(0, newStoreIndex);
       let _listE = state.gameObjects.storeList.slice(newStoreIndex + 1);
       state.gameObjects.storeList = _listS.concat(_listE);
@@ -4791,7 +4848,7 @@ function confirmBuildDialog() {
 }
 
 var selectBtnOpen = false;
-
+// 繪製地區選擇選單
 function drawSelectMenu() {
   dialogCtx.fillStyle = "#464646";
   roundRect(dialogCtx, middleX - 250, middleY - 125, 500, 250, 10);
@@ -4824,6 +4881,7 @@ function drawSelectMenu() {
   dialogCtx.fillText("確　定", btnX + 36, btnY + 25);
 }
 
+// 顯示地區選擇提示視窗
 function areaSelectDialog() {
   dialogCtx.fillStyle = "rgba(85, 85, 85, 0.5)";
   dialogCtx.fillRect(0, 0, dialogCanvas.width, dialogCanvas.height);
@@ -4872,10 +4930,11 @@ function areaSelectDialog() {
   });
 }
 
+// 顯示tasty指引畫面
 function tastyGuideDialog() {
   dialogShadow();
 
-  let x = middleX - 370;
+  let x = middleX + 370;
 
   dialogCtx.fillStyle = "#fff";
   dialogCtx.beginPath();
@@ -4921,9 +4980,10 @@ function tastyGuideDialog() {
   });
 }
 
+// 完成運動提示視窗
 function finishExerciseDialog() {
   exercisParameter.status = "stop";
-  state.gameObjects.stars += 1;
+  state.gameObjects.stars += NUM_ADD_STAR;
 
   dialogShadow();
 
@@ -4942,7 +5002,7 @@ function finishExerciseDialog() {
     baseY
   );
   dialogCtx.fillText("恭喜獲得", middleX - 47, baseY + step);
-  dialogCtx.drawImage(images["W05"], middleX + 40, baseY + step - 50);
+  dialogCtx.drawImage(images["W05"], middleX + 30, baseY + step - 35, 60, 60);
 
   dialogCtx.fillStyle = "#FFAFAF";
   dialogCtx.fillText(
@@ -4976,6 +5036,7 @@ function finishExerciseDialog() {
   });
 }
 
+// 顯示商店資訊卡
 function showStoreInfoDialog() {
   dialogShadow();
   let picNum = dialogParameters.picNum;
@@ -5004,6 +5065,7 @@ function showStoreInfoDialog() {
   });
 }
 
+// 介紹頁確認按鈕
 function intorBtnAction() {
   changeThemePage("health", "main");
   if (state.firstUse.health) {
@@ -5013,6 +5075,7 @@ function intorBtnAction() {
   }
 }
 
+// Tasty介紹頁確認按鈕
 function tastyIntorBtnAction() {
   state.firstUse.tasty = false;
   changeThemePage("tasty", "main");
@@ -5021,7 +5084,9 @@ function tastyIntorBtnAction() {
   showDialog();
 }
 
+// 定義畫面內容
 // Theme Define
+// 繪製主頁面
 function drawHome() {
   mainCtx.font = "78px NotoSansTC-Light";
   mainCtx.fillStyle = "#FFF";
@@ -5043,6 +5108,7 @@ function drawHome() {
   );
 }
 
+// 繪製介紹頁
 function drawIntro() {
   let _x = (middleX - 650) / 2;
   mainCtx.drawImage(images["W01"], middleX + _x, middleY - 280); //580*560
@@ -5090,6 +5156,7 @@ function drawIntro() {
   );
 }
 
+// 繪製主選單頁面
 function drawMain() {
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
@@ -5115,6 +5182,7 @@ function drawMain() {
   mainCtx.fillText("若已嚴重不適請就醫。", middleX, _y + 35);
 }
 
+// 繪製運動頁面
 function drawExercise() {
   mainCtx.fillStyle = "#EBF5FA";
   roundRect(
@@ -5137,6 +5205,7 @@ function drawExercise() {
   );
 }
 
+// 繪製運動頁面介紹文字
 function drawExerciseText(title, second, number, textArr, nosecound) {
   let _nosecond = nosecound || false;
   mainCtx.textBaseline = "middle";
@@ -5186,6 +5255,7 @@ function drawExerciseText(title, second, number, textArr, nosecound) {
   );
 }
 
+// 繪製tasty介紹頁面
 function drawTastyIntro() {
   mainCtx.fillStyle = "#FFF";
   mainCtx.textBaseline = "middle";
@@ -5241,6 +5311,7 @@ function drawTastyIntro() {
   mainCtx.drawImage(images["T08"], _px + imgW * 3, _py + imgH, 190, 160);
 }
 
+// 繪製tasty主頁面
 function drawTastyMain() {
   updateGameZone();
   mainCtx.font = "32px NotoSansTC-Light";
@@ -5254,6 +5325,7 @@ function drawTastyMain() {
   mainCtx.fillText(state.gameObjects.stars, middleX - 460, 50);
 }
 
+// 顯示新增商店黃色外匡
 function hightlightStore(store, x, y) {
   gameCtx.strokeStyle = "#ECD276";
   gameCtx.lineWidth = 10;
@@ -5295,6 +5367,7 @@ function hightlightStore(store, x, y) {
   });
 }
 
+// 更新遊戲畫面內容
 function updateGameZone() {
   gameButtons = [];
   let _gameZoneX = gameZoneX;
@@ -5384,6 +5457,7 @@ function updateGameZone() {
   gameCtx.fill();
 }
 
+// 更新遊戲畫面邊界
 function updateBoundary(x, y) {
   let _map = state.gameObjects.maps;
 
@@ -5429,6 +5503,7 @@ function updateBoundary(x, y) {
   }
 }
 
+// 設定遊戲畫面繪製座標
 function determineGameZomePosition(x, y) {
   let newX = x;
   let newY = y;
@@ -5445,6 +5520,7 @@ function determineGameZomePosition(x, y) {
   gameZoneY = newY;
 }
 
+// 設定滑鼠拖移事件
 var isDrag = false;
 gameCanvas.onmousedown = (e) => {
   // 180 * 150
